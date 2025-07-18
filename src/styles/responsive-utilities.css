@@ -358,6 +358,24 @@
   .ant-typography h2 {
     font-size: 1.25rem !important;
   }
+
+  /* Experience section mobile fixes */
+  .experience-card {
+    margin-left: 0 !important;
+  }
+
+  .experience-card .ant-card-body {
+    padding: 16px !important;
+  }
+
+  /* Certificate section mobile fixes */
+  .certification-card {
+    margin-bottom: 16px;
+  }
+
+  .certification-card .ant-card-body {
+    padding: 16px !important;
+  }
 }
 
 /* Tablet optimizations */
@@ -386,6 +404,65 @@
 
   .portfolio-card {
     padding: 32px;
+  }
+}
+
+/* Mobile Experience and Certificate Section Improvements */
+@media (max-width: 640px) {
+  /* Experience section mobile improvements */
+  .experience-card {
+    margin-left: 8px !important;
+    margin-right: 8px !important;
+  }
+
+  /* Technology tags mobile improvements */
+  .experience-card .flex-wrap {
+    gap: 12px !important;
+    justify-content: center !important;
+  }
+
+  /* Certificate section mobile improvements */
+  .certification-card {
+    height: auto !important;
+    min-height: 300px;
+  }
+
+  .certification-card .ant-card-body {
+    padding: 20px 16px !important;
+  }
+
+  /* Improve credential ID readability */
+  .certification-card .font-mono {
+    word-break: break-all;
+    line-height: 1.5 !important;
+    font-size: 14px !important;
+  }
+
+  /* Better card spacing */
+  .ant-card {
+    border-radius: 16px !important;
+    margin-bottom: 16px;
+  }
+
+  .ant-tag {
+    border-radius: 12px !important;
+  }
+}
+
+/* Extra small mobile improvements */
+@media (max-width: 480px) {
+  /* Experience section extra small mobile */
+  .experience-card .ant-card-body {
+    padding: 16px !important;
+  }
+
+  /* Certificate section extra small mobile */
+  .certification-card .ant-card-body {
+    padding: 16px 12px !important;
+  }
+
+  .certification-card .font-mono {
+    font-size: 12px !important;
   }
 }
 

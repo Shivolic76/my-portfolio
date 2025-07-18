@@ -1032,29 +1032,31 @@ const Portfolio: React.FC = () => {
                               </Text>
                             </div>
                           </div>
-                          <div className="flex flex-col sm:flex-row sm:justify-between lg:justify-end gap-2 sm:gap-3 flex-shrink-0">
-                            <Tag
-                              color="green"
-                              className="text-xs sm:text-sm font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border-0 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 w-fit mx-auto sm:mx-0 shadow-sm"
-                            >
-                              {exp.type}
-                            </Tag>
-                            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
-                              <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                          <div className="flex flex-col gap-3 sm:gap-4 flex-shrink-0">
+                            <div className="flex justify-center sm:justify-start">
+                              <Tag
+                                color="green"
+                                className="text-sm sm:text-base font-semibold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border-0 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 shadow-sm"
+                              >
+                                {exp.type}
+                              </Tag>
+                            </div>
+                            <div className="flex flex-col gap-3 sm:gap-2">
+                              <div className="flex items-center justify-center sm:justify-start gap-3 text-base sm:text-lg text-gray-600 dark:text-gray-400">
                                 <SafeIcon
                                   icon={FaCalendarAlt}
-                                  className="text-blue-500 text-base sm:text-lg"
+                                  className="text-blue-500 text-lg sm:text-xl flex-shrink-0"
                                 />
-                                <span className="font-semibold">
+                                <span className="font-semibold text-center sm:text-left">
                                   {exp.duration}
                                 </span>
                               </div>
-                              <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                              <div className="flex items-center justify-center sm:justify-start gap-3 text-base sm:text-lg text-gray-600 dark:text-gray-400">
                                 <SafeIcon
                                   icon={FaMapMarkerAlt}
-                                  className="text-red-500 text-base sm:text-lg"
+                                  className="text-red-500 text-lg sm:text-xl flex-shrink-0"
                                 />
-                                <span className="font-semibold">
+                                <span className="font-semibold text-center sm:text-left">
                                   {exp.location}
                                 </span>
                               </div>
@@ -1117,11 +1119,11 @@ const Portfolio: React.FC = () => {
                               Technologies Used
                             </Text>
                           </div>
-                          <div className="flex flex-wrap gap-2 sm:gap-3 sm:ml-2">
+                          <div className="flex flex-wrap gap-3 sm:gap-4 justify-center sm:justify-start sm:ml-2">
                             {exp.technologies.map((tech, i) => (
                               <span
                                 key={i}
-                                className="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm lg:text-base font-semibold bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 text-blue-700 dark:text-blue-300 rounded-lg sm:rounded-xl border border-blue-200 dark:border-blue-800 hover:from-blue-100 hover:to-blue-200 dark:hover:from-blue-900/30 dark:hover:to-blue-800/30 hover:scale-105 transition-all duration-200 shadow-sm"
+                                className="px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base lg:text-lg font-semibold bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 text-blue-700 dark:text-blue-300 rounded-xl sm:rounded-2xl border border-blue-200 dark:border-blue-800 hover:from-blue-100 hover:to-blue-200 dark:hover:from-blue-900/30 dark:hover:to-blue-800/30 hover:scale-105 transition-all duration-200 shadow-sm min-w-fit"
                               >
                                 {tech}
                               </span>
@@ -1415,27 +1417,27 @@ const Portfolio: React.FC = () => {
                     className="glass-effect border-0 shadow-xl rounded-2xl sm:rounded-3xl hover-lift-light fade-in-scale certification-card h-full"
                     style={{ animationDelay: `${index * 0.2}s` }}
                   >
-                    <div className="p-4 sm:p-6 text-center">
+                    <div className="p-5 sm:p-7 text-center">
                       <div
-                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl mx-auto mb-3 sm:mb-4 flex items-center justify-center text-white text-2xl sm:text-3xl shadow-lg certification-icon"
+                        className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl mx-auto mb-4 sm:mb-5 flex items-center justify-center text-white text-3xl sm:text-4xl shadow-lg certification-icon"
                         style={{ backgroundColor: cert.color }}
                       >
                         {cert.icon}
                       </div>
                       <Title
                         level={5}
-                        className="!mb-2 text-gray-800 dark:text-white text-sm sm:text-base"
+                        className="!mb-3 text-gray-800 dark:text-white text-base sm:text-lg font-bold"
                       >
                         {cert.title}
                       </Title>
-                      <Text className="text-blue-600 dark:text-blue-400 font-medium block mb-2 text-xs sm:text-sm">
+                      <Text className="text-blue-600 dark:text-blue-400 font-medium block mb-3 text-sm sm:text-base">
                         {cert.issuer}
                       </Text>
-                      <Tag color="green" className="mb-3 text-xs">
+                      <Tag color="green" className="mb-4 text-sm sm:text-base px-3 py-1">
                         {cert.date}
                       </Tag>
-                      <div className="bg-gray-50 dark:bg-gray-800 p-2 sm:p-3 rounded-lg">
-                        <Text className="text-xs text-gray-500 font-mono">
+                      <div className="bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <Text className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-mono font-medium">
                           ID: {cert.credentialId}
                         </Text>
                       </div>
