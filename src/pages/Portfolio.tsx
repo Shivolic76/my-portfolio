@@ -494,7 +494,7 @@ const Portfolio: React.FC = () => {
             </motion.div>
 
             <motion.div
-              className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 px-2"
+              className="flex flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 px-2"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.8, duration: 0.6 }}

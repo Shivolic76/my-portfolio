@@ -17,7 +17,8 @@ const FloatingThemeToggle: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState<Position>({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-  const [dragStartTime, setDragStartTime] = useState(0);
+  const [hasMoved, setHasMoved] = useState(false);
+  const dragTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,31 +39,37 @@ const FloatingThemeToggle: React.FC = () => {
   }, []);
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    const startTime = Date.now();
-    setDragStartTime(startTime);
+    setHasMoved(false);
     setDragStart({
       x: e.clientX - position.x,
       y: e.clientY - position.y,
     });
 
-    // Start dragging after a short delay to distinguish from click
-    const dragTimeout = setTimeout(() => {
+    // Clear any existing timeout
+    if (dragTimeoutRef.current) {
+      clearTimeout(dragTimeoutRef.current);
+    }
+
+    // Start dragging after a delay
+    dragTimeoutRef.current = setTimeout(() => {
       setIsDragging(true);
-    }, 150); // 150ms delay before starting drag
+    }, 200); // 200ms delay before starting drag
 
-    const cleanup = () => {
-      clearTimeout(dragTimeout);
-    };
-
-    // Store cleanup function for later use
-    (e.target as any).dragCleanup = cleanup;
+    // Add global mouse up listener immediately
+    document.addEventListener("mouseup", handleMouseUp, { once: true });
 
     e.preventDefault();
   };
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
+      // Track if mouse has moved significantly (mark as moved to prevent click)
+      if (!hasMoved) {
+        setHasMoved(true);
+      }
+
       if (!isDragging) return;
+
       const newX = e.clientX - dragStart.x;
       const newY = e.clientY - dragStart.y;
 
@@ -74,36 +81,57 @@ const FloatingThemeToggle: React.FC = () => {
         y: Math.max(0, Math.min(newY, maxY)),
       });
     },
-    [dragStart, isDragging]
+    [dragStart, isDragging, hasMoved]
   );
 
   const handleMouseUp = useCallback(() => {
+    // Clear the drag timeout
+    if (dragTimeoutRef.current) {
+      clearTimeout(dragTimeoutRef.current);
+      dragTimeoutRef.current = null;
+    }
+
     const wasJustDragging = isDragging;
+
     setIsDragging(false);
 
-    // If we weren't dragging and it was a quick release, treat as click
-    if (!wasJustDragging && Date.now() - dragStartTime < 200) {
+    // If we weren't dragging and didn't move, treat as click
+    if (!wasJustDragging && !hasMoved) {
+      console.log('Toggle theme triggered!'); // Debug log
       toggleTheme();
     }
-  }, [isDragging, dragStartTime, toggleTheme]);
+
+    // Reset movement tracking
+    setHasMoved(false);
+  }, [isDragging, hasMoved, toggleTheme]);
 
 
 
   useEffect(() => {
     if (isDragging) {
       document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
       document.body.style.userSelect = "none";
       document.body.style.cursor = "grabbing";
+    } else {
+      document.body.style.userSelect = "";
+      document.body.style.cursor = "";
     }
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
       document.body.style.userSelect = "";
       document.body.style.cursor = "";
     };
-  }, [isDragging, handleMouseMove, handleMouseUp]);
+  }, [isDragging, handleMouseMove]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dragTimeoutRef.current) {
+        clearTimeout(dragTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div
@@ -126,9 +154,17 @@ const FloatingThemeToggle: React.FC = () => {
           size="large"
           icon={isDark ? <SafeIcon icon={FaSun} /> : <SafeIcon icon={FaMoon} />}
           onMouseDown={handleMouseDown}
+          onClick={(e) => {
+            // Fallback click handler
+            e.stopPropagation();
+            if (!isDragging && !hasMoved) {
+              console.log('Fallback click triggered!');
+              toggleTheme();
+            }
+          }}
           className={`
             shadow-lg hover:shadow-xl transition-all duration-300 border-2
-            ${isDragging ? 'cursor-grabbing scale-105' : 'cursor-grab'}
+            ${isDragging ? 'cursor-grabbing scale-105' : 'cursor-pointer'}
             ${
               isDark
                 ? "bg-yellow-500 hover:bg-yellow-400 border-yellow-400 hover:border-yellow-300 text-gray-900"
@@ -148,22 +184,6 @@ const FloatingThemeToggle: React.FC = () => {
                   : "0 4px 14px 0 rgba(79, 70, 229, 0.4), 0 0 20px rgba(79, 70, 229, 0.2)")
           }}
         />
-
-        {/* Tooltip */}
-        <div
-          className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 ${
-            isDark
-              ? "bg-slate-800 text-slate-100 border border-slate-600"
-              : "bg-gray-900 text-white"
-          } text-xs rounded-lg transition-opacity shadow-lg ${
-            isHovered ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          {isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-          <div className={`absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
-            isDark ? "border-t-slate-800" : "border-t-gray-900"
-          }`}></div>
-        </div>
       </div>
     </div>
   );

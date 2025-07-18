@@ -2641,7 +2641,7 @@ html:not([data-theme='dark']) #blog {
 
 /* Enhanced Dark Theme Floating Theme Toggle */
 [data-theme='dark'] .floating-theme-toggle {
-  box-shadow: var(--shadow-glow-strong);
+  /* Removed box-shadow to prevent rectangular background appearance */
 }
 
 [data-theme='dark'] .floating-theme-toggle .ant-btn-primary {

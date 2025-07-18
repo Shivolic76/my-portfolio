@@ -319,6 +319,89 @@
 }
 
 /* ============================================================================ */
+/* LIGHT MODE MOBILE CERTIFICATION ID STYLES */
+/* ============================================================================ */
+
+/* Mobile light mode certificate ID container styling */
+@media (max-width: 768px) {
+  [data-theme='light'] .certification-card .bg-gray-50,
+  html:not([data-theme='dark']) .certification-card .bg-gray-50 {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    border-radius: 12px !important;
+  }
+
+  [data-theme='light'] .certification-card .dark\:bg-gray-800,
+  html:not([data-theme='dark']) .certification-card .dark\:bg-gray-800 {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    border-radius: 12px !important;
+  }
+
+  /* Mobile light mode certificate ID text styling */
+  [data-theme='light'] .certification-card .text-gray-600,
+  html:not([data-theme='dark']) .certification-card .text-gray-600 {
+    color: #374151 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  [data-theme='light'] .certification-card .dark\:text-gray-400,
+  html:not([data-theme='dark']) .certification-card .dark\:text-gray-400 {
+    color: #374151 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Mobile light mode certificate ID font styling */
+  [data-theme='light'] .certification-card .font-mono,
+  html:not([data-theme='dark']) .certification-card .font-mono {
+    color: #1f2937 !important;
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    padding: 10px 12px !important;
+    font-weight: 600 !important;
+    word-break: break-all !important;
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  [data-theme='light'] .certification-card .font-mono.font-medium,
+  html:not([data-theme='dark']) .certification-card .font-mono.font-medium {
+    color: #1f2937 !important;
+    padding: 10px 12px !important;
+    font-weight: 600 !important;
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Extra small mobile devices - Certificate ID adjustments */
+@media (max-width: 480px) {
+  [data-theme='light'] .certification-card .font-mono,
+  html:not([data-theme='dark']) .certification-card .font-mono {
+    font-size: 12px !important;
+    padding: 8px 10px !important;
+    line-height: 1.4 !important;
+  }
+
+  [data-theme='light'] .certification-card .bg-gray-50,
+  [data-theme='light'] .certification-card .dark\:bg-gray-800,
+  html:not([data-theme='dark']) .certification-card .bg-gray-50,
+  html:not([data-theme='dark']) .certification-card .dark\:bg-gray-800 {
+    padding: 8px !important;
+    margin: 8px 0 !important;
+  }
+}
+
+/* ============================================================================ */
 /* DARK MODE CERTIFICATION ID TEXT FIXES */
 /* ============================================================================ */
 
