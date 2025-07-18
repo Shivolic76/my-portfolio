@@ -9,7 +9,7 @@ export type { PortfolioData } from '../services/portfolioService';
 export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Shivam Chudasama",
-    title: "Frontend Developer",
+    title: "Software Engineer",
     location: "Gujarat, India",
     email: "shivam.chudasama@rapidops.com",
     phone: "+91 9876543210",
@@ -17,7 +17,7 @@ export const portfolioData: PortfolioData = {
     github: "https://github.com/shivam-chudasama",
     portfolio: "https://shivam-porfolio.netlify.app",
     avatar: "/src/assets/shivam-profile.jpg",
-    description: "Passionate Frontend Developer from Gujarat, India 🇮🇳 specializing in React.js, Next.js, and modern web technologies. I create dynamic, user-friendly applications with clean, maintainable code that delivers exceptional user experiences.",
+    description: "Passionate Software Engineer from Gujarat, India 🇮🇳 specializing in React.js, Next.js, and modern web technologies. I create dynamic, user-friendly applications with clean, maintainable code that delivers exceptional user experiences.",
     yearsOfExperience: "3+",
     projectsCompleted: "50+",
     resumeUrl: "/files/shivam-resume.pdf"
@@ -29,7 +29,7 @@ export const portfolioData: PortfolioData = {
     commits: 700
   },
   about: {
-    professionalJourney: "As a Frontend Developer with 2.5 years of experience from Gujarat, India 🇮🇳, I have a strong background in building dynamic and scalable web applications using ReactJS. I specialize in modern technologies like React.js, Next.js, Redux, TypeScript, and Ant Design, ensuring seamless user experiences.",
+    professionalJourney: "As a Software Engineer with 2.5 years of experience from Gujarat, India 🇮🇳, I have a strong background in building dynamic and scalable web applications using ReactJS. I specialize in modern technologies like React.js, Next.js, Redux, TypeScript, and Ant Design, ensuring seamless user experiences.",
     passion: "Passionate about writing clean, maintainable code, I continuously explore new technologies to enhance performance and deliver high-quality solutions. I'm skilled in working with Formik, Yup, and other modern libraries for form handling and validation.",
     achievements: [
       "Built 50+ responsive React components with TypeScript",
@@ -195,7 +195,7 @@ export const portfolioData: PortfolioData = {
   },
   experiences: [
     {
-      title: "Frontend Developer",
+      title: "Software Engineer",
       company: "RapidOps Inc.",
       duration: "June 2022 - Present (2+ Years)",
       location: "Ahmedabad, Gujarat, India",
@@ -222,7 +222,7 @@ export const portfolioData: PortfolioData = {
       technologies: ["React.js", "TypeScript", "Next.js", "Redux Toolkit", "Ant Design", "Material-UI", "Tailwind CSS", "Jest", "Git"]
     },
     {
-      title: "Junior Frontend Developer",
+      title: "Junior Software Engineer",
       company: "Freelance & Contract Work",
       duration: "January 2021 - May 2022 (1.5 Years)",
       location: "Remote",
@@ -353,7 +353,7 @@ export const portfolioData: PortfolioData = {
       name: "Rajesh Patel",
       role: "Senior Developer",
       company: "RapidOps Inc.",
-      content: "Shivam is an exceptional frontend developer with strong React.js skills. His attention to detail and ability to deliver clean, maintainable code is impressive.",
+      content: "Shivam is an exceptional Software Engineer with strong React.js skills. His attention to detail and ability to deliver clean, maintainable code is impressive.",
       rating: 5,
       avatar: "/assets/images/testimonials/rajesh.jpg"
     },
@@ -423,8 +423,8 @@ export const portfolioData: PortfolioData = {
   blogs: [
     {
       id: 1,
-      title: "My Journey as a Frontend Developer at RapidOps",
-      excerpt: "Sharing my experience, growth, and learnings during my 2+ years as a Frontend Developer at RapidOps Inc.",
+      title: "My Journey as a Software Engineer at RapidOps",
+      excerpt: "Sharing my experience, growth, and learnings during my 2+ years as a Software Engineer at RapidOps Inc.",
       content: "<h2>Starting My Journey</h2><p>When I joined RapidOps Inc. in June 2022, I was excited but nervous about working in a professional development environment. Coming from freelance work, I knew I had the technical skills, but I wasn't sure how I'd adapt to working in a team.</p><h3>The Learning Curve</h3><p>The first few months were intense. I had to quickly adapt to:</p><ul><li>Working with larger codebases</li><li>Following strict coding standards</li><li>Collaborating with backend developers</li><li>Participating in code reviews</li></ul><h3>Key Learnings</h3><p>Over the past 2+ years, I've learned invaluable lessons:</p><h4>1. Code Reviews Are Gold</h4><p>Initially, I was nervous about code reviews. Now I see them as opportunities to learn and improve. Every review taught me something new about best practices, performance optimization, or cleaner code structure.</p><h4>2. Communication is Key</h4><p>Technical skills are important, but communication makes or breaks a project. Learning to explain complex technical concepts to non-technical stakeholders has been crucial.</p><h4>3. Continuous Learning</h4><p>The frontend landscape evolves rapidly. Staying updated with React updates, new libraries, and best practices is essential. I dedicate time each week to learning something new.</p><h3>Advice for New Developers</h3><p>If you're starting your frontend development journey:</p><ul><li>Focus on fundamentals first</li><li>Build projects, not just tutorials</li><li>Don't be afraid to ask questions</li><li>Embrace code reviews</li><li>Stay curious and keep learning</li></ul><p>My journey at RapidOps has been incredible, and I'm excited for what's ahead!</p>",
       date: "2024-01-15",
       readTime: "5 min read",

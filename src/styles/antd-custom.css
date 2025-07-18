@@ -1,7 +1,9 @@
 /* Ant Design Custom Styles */
 
-/* Custom theme variables */
-:root {
+/* Custom theme variables - Light theme (default) */
+:root,
+[data-theme='light'],
+html:not([data-theme='dark']) {
   --primary-color: #3b82f6;
   --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   --secondary-color: #d946ef;
@@ -14,9 +16,13 @@
   --error-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   --text-color: #111827;
   --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
   --background-color: #ffffff;
   --background-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   --border-color: #e5e7eb;
+  --border-light: #f3f4f6;
+  --card-bg: #ffffff;
+  --card-bg-hover: #f9fafb;
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -52,7 +58,6 @@
   --border-light: #475569;
   --border-lighter: #64748b;
   --portfolio-bg-gradient: linear-gradient(135deg, #020617 0%, #0f172a 25%, #1e293b 75%, #0f172a 100%);
-  --portfolio-section-bg: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
   --card-bg: rgba(30, 41, 59, 0.9);
   --card-bg-hover: rgba(51, 65, 85, 0.95);
   --card-bg-elevated: rgba(51, 65, 85, 0.8);
@@ -1105,6 +1110,32 @@
   color: var(--text-muted) !important;
 }
 
+/* Ensure light theme text colors are preserved in responsive view */
+[data-theme='light'] .text-gray-800,
+html:not([data-theme='dark']) .text-gray-800 {
+  color: #1f2937 !important;
+}
+
+[data-theme='light'] .text-gray-600,
+html:not([data-theme='dark']) .text-gray-600 {
+  color: #4b5563 !important;
+}
+
+[data-theme='light'] .text-gray-500,
+html:not([data-theme='dark']) .text-gray-500 {
+  color: #6b7280 !important;
+}
+
+[data-theme='light'] .text-gray-400,
+html:not([data-theme='dark']) .text-gray-400 {
+  color: #9ca3af !important;
+}
+
+[data-theme='light'] .text-gray-300,
+html:not([data-theme='dark']) .text-gray-300 {
+  color: #d1d5db !important;
+}
+
 /* Portfolio Responsive Card Enhancements */
 @media (max-width: 640px) {
   .portfolio-card,
@@ -1609,21 +1640,75 @@
   background: var(--portfolio-bg-gradient) !important;
 }
 
-[data-theme='dark'] .min-h-screen {
+/* Ensure light theme background is preserved */
+[data-theme='light'] .portfolio-main-bg,
+[data-theme='light'] .portfolio-main-bg.min-h-screen,
+[data-theme='light'] .portfolio-main-bg.bg-gradient-to-br {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+}
+
+/* Specific portfolio background overrides for dark theme only */
+[data-theme='dark'] .portfolio-main-bg.min-h-screen {
   background: var(--portfolio-bg-gradient) !important;
 }
 
-/* Override Tailwind dark theme classes */
-[data-theme='dark'] .dark\:from-slate-900 {
+/* Override Tailwind dark theme classes - more specific */
+[data-theme='dark'] .portfolio-main-bg.dark\:from-slate-900 {
   background: var(--portfolio-bg-gradient) !important;
 }
 
-[data-theme='dark'] .bg-gradient-to-br.from-blue-50 {
+[data-theme='dark'] .portfolio-main-bg.bg-gradient-to-br {
   background: var(--portfolio-bg-gradient) !important;
 }
 
-[data-theme='dark'] .portfolio-section-bg {
-  background: var(--portfolio-section-bg);
+/* Ensure light theme Ant Design components are preserved */
+[data-theme='light'] .ant-card,
+html:not([data-theme='dark']) .ant-card {
+  background: #ffffff !important;
+  border-color: #e5e7eb !important;
+  color: #111827 !important;
+}
+
+[data-theme='light'] .ant-typography,
+html:not([data-theme='dark']) .ant-typography {
+  color: #111827 !important;
+}
+
+[data-theme='light'] .ant-btn-primary,
+html:not([data-theme='dark']) .ant-btn-primary {
+  background: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+/* Responsive view fixes for light theme */
+@media (max-width: 768px) {
+  [data-theme='light'] .portfolio-main-bg,
+  html:not([data-theme='dark']) .portfolio-main-bg {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  }
+
+  [data-theme='light'] .glass-effect,
+  html:not([data-theme='dark']) .glass-effect {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+}
+
+/* Clean section backgrounds for both themes */
+[data-theme='light'] #testimonials,
+[data-theme='light'] #experience,
+[data-theme='light'] #blog,
+html:not([data-theme='dark']) #testimonials,
+html:not([data-theme='dark']) #experience,
+html:not([data-theme='dark']) #blog {
+  background: transparent !important;
+}
+
+[data-theme='dark'] #testimonials,
+[data-theme='dark'] #experience,
+[data-theme='dark'] #blog {
+  background: transparent !important;
 }
 
 /* Enhanced Gradient Text for Dark Theme */
@@ -1825,20 +1910,12 @@
 /* PROFESSIONAL EXPERIENCE SECTION - DARK THEME ENHANCEMENTS */
 /* ============================================================================ */
 
-/* Experience Section Background */
+/* Experience Section Background - Removed extra backgrounds */
 [data-theme='dark'] #experience {
-  /* background: var(--portfolio-section-bg); */
   position: relative;
 }
 
-[data-theme='dark'] #experience::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(96, 165, 250, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-}
+/* Removed extra background patterns for cleaner UI */
 
 /* Experience Timeline Line */
 [data-theme='dark'] .experience-timeline-line {
@@ -2093,22 +2170,7 @@
   background: transparent !important;
 }
 
-/* Experience Section Background Pattern */
-[data-theme='dark'] #experience::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 25% 25%, rgba(96, 165, 250, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(52, 211, 153, 0.05) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-[data-theme='dark'] #experience > * {
-  position: relative;
-  z-index: 1;
-}
+/* Removed background patterns for cleaner UI */
 
 /* Experience Timeline Enhancements */
 [data-theme='dark'] .experience-timeline-line::before {

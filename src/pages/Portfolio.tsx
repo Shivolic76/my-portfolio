@@ -494,7 +494,7 @@ const Portfolio: React.FC = () => {
             </motion.div>
 
             <motion.div
-              className="flex flex-col xs:flex-row justify-center items-center gap-2 xs:gap-3 sm:gap-4 mb-4 sm:mb-6 px-2"
+              className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 px-2"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.8, duration: 0.6 }}
@@ -1328,7 +1328,7 @@ const Portfolio: React.FC = () => {
         {/* Testimonials Section - Enhanced Responsive */}
         <section
           id="testimonials"
-          className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-blue-50/50 to-purple-50/50 dark:from-slate-800/30 dark:to-slate-900/50 portfolio-section-bg"
+          className="py-12 sm:py-16 md:py-20"
         >
           <div className="text-center mb-8 sm:mb-12 md:mb-16 fade-in-up px-4">
             <Title
@@ -1450,7 +1450,7 @@ const Portfolio: React.FC = () => {
         {/* Blog Section - Enhanced Responsive */}
         <section
           id="blog"
-          className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-purple-50/50 to-pink-50/50 dark:from-slate-800/30 dark:to-slate-900/50 portfolio-section-bg"
+          className="py-12 sm:py-16 md:py-20"
         >
           <div className="text-center mb-8 sm:mb-12 md:mb-16 fade-in-up px-4">
             <Title
