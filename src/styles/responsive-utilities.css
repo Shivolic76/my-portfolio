@@ -1,0 +1,410 @@
+/* Enhanced Responsive Utilities for Portfolio */
+
+/* Extra Small Breakpoint (xs) - Custom breakpoint for very small devices */
+@media (min-width: 475px) {
+  .xs\:w-48 { width: 12rem; }
+  .xs\:h-48 { height: 12rem; }
+  .xs\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+  .xs\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+  .xs\:flex-row { flex-direction: row; }
+  .xs\:gap-3 { gap: 0.75rem; }
+  .xs\:px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+  .xs\:py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
+  .xs\:top-3 { top: 0.75rem; }
+  .xs\:right-3 { right: 0.75rem; }
+  .xs\:w-5 { width: 1.25rem; }
+  .xs\:h-5 { height: 1.25rem; }
+}
+
+/* Portfolio-specific responsive classes */
+.portfolio-responsive {
+  /* Base mobile styles */
+  padding: 1rem;
+  margin: 0.5rem 0;
+}
+
+@media (min-width: 475px) {
+  .portfolio-responsive {
+    padding: 1.25rem;
+    margin: 0.75rem 0;
+  }
+}
+
+@media (min-width: 640px) {
+  .portfolio-responsive {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .portfolio-responsive {
+    padding: 2rem;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-responsive {
+    padding: 2.5rem;
+    margin: 2rem 0;
+  }
+}
+
+/* Responsive image containers */
+.responsive-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.responsive-image-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+/* Profile image responsive sizes */
+.profile-image-responsive {
+  width: 10rem;
+  height: 10rem;
+}
+
+@media (min-width: 475px) {
+  .profile-image-responsive {
+    width: 12rem;
+    height: 12rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .profile-image-responsive {
+    width: 14rem;
+    height: 14rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .profile-image-responsive {
+    width: 16rem;
+    height: 16rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile-image-responsive {
+    width: 18rem;
+    height: 18rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .profile-image-responsive {
+    width: 20rem;
+    height: 20rem;
+  }
+}
+
+/* Responsive button groups */
+.button-group-responsive {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .button-group-responsive {
+    flex-direction: row;
+    gap: 1rem;
+    width: auto;
+  }
+}
+
+.button-group-responsive .ant-btn {
+  width: 100%;
+  min-height: 44px;
+}
+
+@media (min-width: 640px) {
+  .button-group-responsive .ant-btn {
+    width: auto;
+    min-width: 140px;
+  }
+}
+
+/* Responsive social icons */
+.social-icons-responsive {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  .social-icons-responsive {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .social-icons-responsive {
+    gap: 2rem;
+  }
+}
+
+/* Responsive statistics grid */
+.stats-grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .stats-grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .stats-grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Responsive skills grid */
+.skills-grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .skills-grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .skills-grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .skills-grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Responsive projects grid */
+.projects-grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .projects-grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Responsive text scaling */
+.text-scale-responsive {
+  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  line-height: 1.6;
+}
+
+.heading-scale-responsive {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  line-height: 1.2;
+}
+
+.subheading-scale-responsive {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  line-height: 1.4;
+}
+
+/* Responsive spacing */
+.section-spacing-responsive {
+  padding-top: clamp(2rem, 8vw, 5rem);
+  padding-bottom: clamp(2rem, 8vw, 5rem);
+}
+
+.container-spacing-responsive {
+  padding-left: clamp(1rem, 4vw, 2rem);
+  padding-right: clamp(1rem, 4vw, 2rem);
+}
+
+/* Responsive animations - Reduce motion on mobile */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-card,
+  .cartoon-card,
+  .hover-lift,
+  .hover-lift-light,
+  .hover-scale {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .portfolio-card,
+  .cartoon-card {
+    /* Increase touch targets */
+    min-height: 44px;
+  }
+  
+  .ant-btn {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .hover-lift:hover,
+  .hover-lift-light:hover,
+  .hover-scale:hover {
+    transform: none !important;
+  }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .profile-image-responsive img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-section {
+    min-height: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .profile-image-responsive {
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 640px) {
+  /* Ensure proper spacing on very small screens */
+  .ant-row {
+    margin-left: -8px !important;
+    margin-right: -8px !important;
+  }
+
+  .ant-col {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  /* Mobile-specific button styles */
+  .ant-btn-group .ant-btn {
+    margin-bottom: 8px;
+  }
+
+  /* Improve readability on mobile */
+  .ant-typography {
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  /* Mobile-friendly modals */
+  .ant-modal {
+    margin: 16px !important;
+    max-width: calc(100vw - 32px) !important;
+  }
+
+  .ant-modal-content {
+    border-radius: 12px !important;
+  }
+}
+
+/* Extra small devices (phones in portrait) */
+@media (max-width: 375px) {
+  .container {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .ant-card {
+    margin-bottom: 12px;
+  }
+
+  .ant-btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .ant-typography h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .ant-typography h2 {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .portfolio-card {
+    padding: 20px;
+  }
+
+  .ant-row {
+    margin-left: -12px !important;
+    margin-right: -12px !important;
+  }
+
+  .ant-col {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .portfolio-card {
+    padding: 32px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .portfolio-card,
+  .cartoon-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .hover-lift,
+  .hover-lift-light,
+  .hover-scale {
+    transform: none !important;
+  }
+
+  .ant-btn {
+    display: none !important;
+  }
+}

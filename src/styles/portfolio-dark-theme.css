@@ -1,0 +1,233 @@
+/* ============================================================================ */
+/* PORTFOLIO DARK THEME ENHANCEMENTS */
+/* ============================================================================ */
+
+/* Enhanced Dark Theme Animations */
+[data-theme='dark'] .cartoon-wave {
+  filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.3));
+}
+
+[data-theme='dark'] .cartoon-bounce {
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.2));
+}
+
+[data-theme='dark'] .cartoon-pulse {
+  filter: drop-shadow(0 0 12px rgba(96, 165, 250, 0.4));
+}
+
+[data-theme='dark'] .cartoon-fire {
+  filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.5));
+}
+
+[data-theme='dark'] .cartoon-lightning {
+  filter: drop-shadow(0 0 15px rgba(96, 165, 250, 0.6));
+}
+
+/* Enhanced Dark Theme Scroll Indicators */
+[data-theme='dark'] .scroll-indicator {
+  border-color: var(--border-light);
+  background: var(--card-bg);
+}
+
+[data-theme='dark'] .scroll-indicator .scroll-dot {
+  background: var(--primary-color);
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+}
+
+/* Enhanced Dark Theme Project Cards */
+[data-theme='dark'] .project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+
+[data-theme='dark'] .project-card:hover {
+  background: var(--card-bg-hover);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-8px) scale(1.02);
+}
+
+[data-theme='dark'] .project-card .project-cover {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%);
+}
+
+/* Enhanced Dark Theme Skill Cards */
+[data-theme='dark'] .skill-card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme='dark'] .skill-card:hover {
+  background: var(--card-bg-hover);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-glow);
+}
+
+[data-theme='dark'] .skill-icon {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .skill-icon:hover {
+  box-shadow: 0 8px 30px rgba(96, 165, 250, 0.4);
+}
+
+/* Enhanced Dark Theme Experience Timeline */
+[data-theme='dark'] .experience-timeline .ant-timeline-item-tail {
+  border-left: 2px solid var(--border-color);
+}
+
+[data-theme='dark'] .experience-timeline .ant-timeline-item-head {
+  background: var(--card-bg);
+  border: 3px solid var(--primary-color);
+  box-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
+}
+
+[data-theme='dark'] .experience-card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-left: 24px;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Enhanced Dark Theme Contact Section */
+[data-theme='dark'] .contact-card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme='dark'] .contact-card:hover {
+  background: var(--card-bg-hover);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-5px);
+}
+
+/* Enhanced Dark Theme Certification Cards */
+[data-theme='dark'] .certification-card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme='dark'] .certification-card:hover {
+  background: var(--card-bg-hover);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-glow);
+}
+
+[data-theme='dark'] .certification-icon {
+  background: var(--card-bg-hover);
+  border: 2px solid var(--glass-border);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced Dark Theme Modal Styles */
+[data-theme='dark'] .portfolio-modal .ant-modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-xl);
+}
+
+[data-theme='dark'] .portfolio-modal .ant-modal-header {
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme='dark'] .portfolio-modal .ant-modal-body {
+  background: var(--card-bg);
+  color: var(--text-color);
+}
+
+[data-theme='dark'] .portfolio-modal .ant-modal-footer {
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Enhanced Dark Theme Blog Modal */
+[data-theme='dark'] .blog-modal .prose {
+  color: var(--text-color);
+}
+
+[data-theme='dark'] .blog-modal .prose h1,
+[data-theme='dark'] .blog-modal .prose h2,
+[data-theme='dark'] .blog-modal .prose h3,
+[data-theme='dark'] .blog-modal .prose h4 {
+  color: var(--text-color);
+}
+
+[data-theme='dark'] .blog-modal .prose p {
+  color: var(--text-secondary);
+}
+
+[data-theme='dark'] .blog-modal .prose strong {
+  color: var(--text-color);
+}
+
+[data-theme='dark'] .blog-modal .prose ul li {
+  color: var(--text-secondary);
+}
+
+[data-theme='dark'] .blog-modal .prose pre {
+  background: rgba(51, 65, 85, 0.8);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+[data-theme='dark'] .blog-modal .prose code {
+  background: rgba(51, 65, 85, 0.6);
+  color: var(--primary-color);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Enhanced Dark Theme Responsive Adjustments */
+@media (max-width: 768px) {
+  [data-theme='dark'] .portfolio-card,
+  [data-theme='dark'] .stats-card,
+  [data-theme='dark'] .testimonial-card,
+  [data-theme='dark'] .blog-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+  }
+  
+  [data-theme='dark'] .social-icon {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+  }
+}
+
+/* Enhanced Dark Theme Loading States */
+[data-theme='dark'] .loading-skeleton {
+  background: linear-gradient(90deg, rgba(51, 65, 85, 0.8) 25%, rgba(71, 85, 105, 0.8) 50%, rgba(51, 65, 85, 0.8) 75%);
+  background-size: 200px 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+/* Enhanced Dark Theme Focus States */
+[data-theme='dark'] .portfolio-card:focus,
+[data-theme='dark'] .stats-card:focus,
+[data-theme='dark'] .testimonial-card:focus,
+[data-theme='dark'] .blog-card:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Enhanced Dark Theme Print Styles */
+@media print {
+  [data-theme='dark'] * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+}
