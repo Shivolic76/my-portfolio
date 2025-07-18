@@ -23,24 +23,47 @@ import type { Blog, Skill } from "../services/portfolioService";
 
 // React Icons imports
 import {
-  FaReact, FaGithub, FaLinkedin, FaUser, FaDownload, FaTrophy, FaEye,
-  FaCode, FaMobile, FaDesktop, FaGlobe, FaDatabase, FaCloud, FaShieldAlt,
-  FaPaperPlane, FaFileAlt, FaBolt, FaTools, FaCheckCircle, FaCalendarAlt,
-  FaBook, FaHeart, FaNodeJs,
-  FaMapMarkerAlt
-} from 'react-icons/fa';
+  FaReact,
+  FaGithub,
+  FaLinkedin,
+  FaUser,
+  FaDownload,
+  FaTrophy,
+  FaEye,
+  FaCode,
+  FaMobile,
+  FaDesktop,
+  FaGlobe,
+  FaDatabase,
+  FaCloud,
+  FaShieldAlt,
+  FaPaperPlane,
+  FaFileAlt,
+  FaBolt,
+  FaTools,
+  FaCheckCircle,
+  FaCalendarAlt,
+  FaBook,
+  FaHeart,
+  FaNodeJs,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
+
+import { SiTypescript, SiNextdotjs, SiAntdesign } from "react-icons/si";
 
 import {
-  SiTypescript, SiNextdotjs, SiAntdesign
-} from 'react-icons/si';
-
-import {
-  MdEmail, MdWork, MdDashboard, MdShoppingCart, MdVideoLibrary, MdLibraryBooks
-} from 'react-icons/md';
+  MdEmail,
+  MdWork,
+  MdDashboard,
+  MdShoppingCart,
+  MdVideoLibrary,
+  MdLibraryBooks,
+} from "react-icons/md";
 
 import { SafeIcon } from "../utils/IconWrapper";
 
 const { Title, Text, Paragraph } = Typography;
+import profileImg from "../assets/shivam-profile.jpg";
 
 const Portfolio: React.FC = () => {
   const { data: portfolioData, loading, error } = usePortfolioData();
@@ -190,23 +213,23 @@ const Portfolio: React.FC = () => {
   // Icon mapping function to convert string icons to React components
   const getIconComponent = (iconName: string): React.ReactNode => {
     const iconMap: { [key: string]: React.ReactNode } = {
-      'CodeOutlined': <SafeIcon icon={FaCode} size={24} />,
-      'RocketOutlined': <SafeIcon icon={SiNextdotjs} size={24} />,
-      'ThunderboltOutlined': <SafeIcon icon={FaBolt} size={24} />,
-      'DesktopOutlined': <SafeIcon icon={FaDesktop} size={24} />,
-      'BulbOutlined': <SafeIcon icon={FaReact} size={24} />,
-      'DatabaseOutlined': <SafeIcon icon={FaDatabase} size={24} />,
-      'ToolOutlined': <SafeIcon icon={FaTools} size={24} />,
-      'CrownOutlined': <SafeIcon icon={SiAntdesign} size={24} />,
-      'SafetyOutlined': <SafeIcon icon={FaShieldAlt} size={24} />,
-      'GlobalOutlined': <SafeIcon icon={FaGlobe} size={24} />,
-      'ApiOutlined': <SafeIcon icon={FaCloud} size={24} />,
-      'LaptopOutlined': <SafeIcon icon={FaCode} size={24} />,
-      'CloudOutlined': <SafeIcon icon={FaNodeJs} size={24} />,
-      'ExperimentOutlined': <SafeIcon icon={FaTools} size={24} />,
-      'MobileOutlined': <SafeIcon icon={FaMobile} size={24} />,
-      'AwardOutlined': <SafeIcon icon={FaReact} size={24} />,
-      'BookOutlined': <SafeIcon icon={SiTypescript} size={24} />,
+      CodeOutlined: <SafeIcon icon={FaCode} size={24} />,
+      RocketOutlined: <SafeIcon icon={SiNextdotjs} size={24} />,
+      ThunderboltOutlined: <SafeIcon icon={FaBolt} size={24} />,
+      DesktopOutlined: <SafeIcon icon={FaDesktop} size={24} />,
+      BulbOutlined: <SafeIcon icon={FaReact} size={24} />,
+      DatabaseOutlined: <SafeIcon icon={FaDatabase} size={24} />,
+      ToolOutlined: <SafeIcon icon={FaTools} size={24} />,
+      CrownOutlined: <SafeIcon icon={SiAntdesign} size={24} />,
+      SafetyOutlined: <SafeIcon icon={FaShieldAlt} size={24} />,
+      GlobalOutlined: <SafeIcon icon={FaGlobe} size={24} />,
+      ApiOutlined: <SafeIcon icon={FaCloud} size={24} />,
+      LaptopOutlined: <SafeIcon icon={FaCode} size={24} />,
+      CloudOutlined: <SafeIcon icon={FaNodeJs} size={24} />,
+      ExperimentOutlined: <SafeIcon icon={FaTools} size={24} />,
+      MobileOutlined: <SafeIcon icon={FaMobile} size={24} />,
+      AwardOutlined: <SafeIcon icon={FaReact} size={24} />,
+      BookOutlined: <SafeIcon icon={SiTypescript} size={24} />,
     };
     return iconMap[iconName] || <SafeIcon icon={FaCode} size={24} />;
   };
@@ -216,7 +239,7 @@ const Portfolio: React.FC = () => {
     frontend: [],
     libraries: [],
     tools: [],
-    concepts: []
+    concepts: [],
   };
 
   // Get experiences from JSON data
@@ -229,11 +252,12 @@ const Portfolio: React.FC = () => {
   const testimonials = portfolioData?.testimonials || [];
 
   // Get certifications from JSON data and add icons
-  const staticCertifications = portfolioData?.certifications ?
-    portfolioData.certifications.map(cert => ({
-      ...cert,
-      icon: getIconComponent(cert.icon)
-    })) : [];
+  const staticCertifications = portfolioData?.certifications
+    ? portfolioData.certifications.map((cert) => ({
+        ...cert,
+        icon: getIconComponent(cert.icon),
+      }))
+    : [];
 
   // Get blog posts from JSON data
   const blogPosts = portfolioData?.blogs || [];
@@ -287,7 +311,10 @@ const Portfolio: React.FC = () => {
           animate="visible"
           variants={containerVariants}
         >
-          <motion.div className="text-center max-w-6xl mx-auto w-full" variants={itemVariants}>
+          <motion.div
+            className="text-center max-w-6xl mx-auto w-full"
+            variants={itemVariants}
+          >
             <motion.div
               className="mb-6 sm:mb-8 lg:mb-12 relative flex justify-center items-center"
               variants={fadeInUpVariants}
@@ -336,7 +363,7 @@ const Portfolio: React.FC = () => {
                 }}
                 whileHover={{
                   scale: 1.03,
-                  transition: { duration: 0.3, ease: "easeOut" }
+                  transition: { duration: 0.3, ease: "easeOut" },
                 }}
               >
                 <div className="relative">
@@ -346,8 +373,9 @@ const Portfolio: React.FC = () => {
                     <div
                       className="w-full h-full rounded-2xl sm:rounded-[2.5rem] md:rounded-[3rem] transform rotate-3"
                       style={{
-                        background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.06) 50%, rgba(236, 72, 153, 0.04) 100%)',
-                        filter: 'blur(0.5px)'
+                        background:
+                          "linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.06) 50%, rgba(236, 72, 153, 0.04) 100%)",
+                        filter: "blur(0.5px)",
                       }}
                     ></div>
 
@@ -355,8 +383,9 @@ const Portfolio: React.FC = () => {
                     <div
                       className="absolute top-2 left-2 sm:top-4 sm:left-4 w-4/5 h-4/5 rounded-xl sm:rounded-2xl md:rounded-[2.5rem] transform -rotate-6"
                       style={{
-                        background: 'linear-gradient(45deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.03) 100%)',
-                        opacity: 0.7
+                        background:
+                          "linear-gradient(45deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.03) 100%)",
+                        opacity: 0.7,
                       }}
                     ></div>
                   </div>
@@ -369,20 +398,27 @@ const Portfolio: React.FC = () => {
                       <div className="w-full h-full rounded-xl sm:rounded-2xl bg-white p-1 sm:p-2 shadow-inner">
                         {/* Profile image */}
                         <img
-                          src={portfolioData?.personalInfo?.avatar}
+                          // src={portfolioData?.personalInfo?.avatar}
+                          src={profileImg}
                           alt={portfolioData?.personalInfo?.name}
                           className="w-full h-full rounded-lg sm:rounded-xl object-cover shadow-sm"
                           style={{
-                            objectPosition: 'center top',
-                            backgroundColor: "#f8fafc"
+                            objectPosition: "center top",
+                            backgroundColor: "#f8fafc",
                           }}
                         />
                       </div>
                     </div>
 
                     {/* Minimal decorative dots - Responsive */}
-                    <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-2 h-2 sm:w-3 sm:h-3 bg-blue-400 rounded-full opacity-60 animate-pulse" style={{ animationDuration: '2s' }}></div>
-                    <div className="absolute -bottom-0.5 -left-0.5 sm:-bottom-1 sm:-left-1 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-400 rounded-full opacity-50 animate-pulse" style={{ animationDelay: '1s', animationDuration: '2s' }}></div>
+                    <div
+                      className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-2 h-2 sm:w-3 sm:h-3 bg-blue-400 rounded-full opacity-60 animate-pulse"
+                      style={{ animationDuration: "2s" }}
+                    ></div>
+                    <div
+                      className="absolute -bottom-0.5 -left-0.5 sm:-bottom-1 sm:-left-1 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-400 rounded-full opacity-50 animate-pulse"
+                      style={{ animationDelay: "1s", animationDuration: "2s" }}
+                    ></div>
                   </div>
 
                   {/* Very subtle glow */}
@@ -419,7 +455,9 @@ const Portfolio: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1, duration: 0.6 }}
               >
-                <div className="cartoon-wave text-2xl sm:text-3xl md:text-4xl mr-2 sm:mr-3">👋</div>
+                <div className="cartoon-wave text-2xl sm:text-3xl md:text-4xl mr-2 sm:mr-3">
+                  👋
+                </div>
                 <Text className="text-base sm:text-lg md:text-xl font-semibold text-blue-600 dark:text-blue-400">
                   Hello, I'm
                 </Text>
@@ -432,7 +470,7 @@ const Portfolio: React.FC = () => {
                 <Title
                   level={1}
                   className="!text-3xl xs:!text-4xl sm:!text-5xl md:!text-6xl lg:!text-7xl xl:!text-8xl font-bold mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent gradient-text typewriter px-2"
-                  style={{ lineHeight: '1.1' }}
+                  style={{ lineHeight: "1.1" }}
                 >
                   {personalInfo.name}
                 </Title>
@@ -447,7 +485,7 @@ const Portfolio: React.FC = () => {
               <Title
                 level={2}
                 className="!text-lg xs:!text-xl sm:!text-2xl md:!text-3xl lg:!text-4xl mb-4 sm:mb-6 text-gray-700 dark:text-gray-300 font-light px-2"
-                style={{ lineHeight: '1.2' }}
+                style={{ lineHeight: "1.2" }}
               >
                 <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent gradient-text">
                   {personalInfo.title}
@@ -470,7 +508,9 @@ const Portfolio: React.FC = () => {
                   className="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-full cartoon-bounce"
                 >
                   <div className="cartoon-fire">🔥</div>
-                  <span className="ml-1">{personalInfo.yearsOfExperience} Years Experience</span>
+                  <span className="ml-1">
+                    {personalInfo.yearsOfExperience} Years Experience
+                  </span>
                 </Tag>
               </motion.div>
               <motion.div
@@ -483,7 +523,9 @@ const Portfolio: React.FC = () => {
                   style={{ animationDelay: "0.2s" }}
                 >
                   <div className="cartoon-lightning">⚡</div>
-                  <span className="ml-1">{personalInfo.projectsCompleted} Projects Completed</span>
+                  <span className="ml-1">
+                    {personalInfo.projectsCompleted} Projects Completed
+                  </span>
                 </Tag>
               </motion.div>
             </motion.div>
@@ -496,7 +538,9 @@ const Portfolio: React.FC = () => {
               <Paragraph className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-6 sm:mb-8 leading-relaxed px-4 sm:px-6">
                 {personalInfo.description}
                 <br />
-                <div className="cartoon-computer mt-2 sm:mt-4 text-xl sm:text-2xl">💻✨</div>
+                <div className="cartoon-computer mt-2 sm:mt-4 text-xl sm:text-2xl">
+                  💻✨
+                </div>
               </Paragraph>
             </motion.div>
 
@@ -558,7 +602,7 @@ const Portfolio: React.FC = () => {
               transition={{
                 delay: 2.8,
                 duration: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94]
+                ease: [0.25, 0.46, 0.45, 0.94],
               }}
             >
               <motion.div
@@ -569,7 +613,7 @@ const Portfolio: React.FC = () => {
                   scale: 1.15,
                   rotate: 5,
                   y: -3,
-                  transition: { duration: 0.3, ease: "easeOut" }
+                  transition: { duration: 0.3, ease: "easeOut" },
                 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -589,7 +633,7 @@ const Portfolio: React.FC = () => {
                   scale: 1.15,
                   rotate: -5,
                   y: -3,
-                  transition: { duration: 0.3, ease: "easeOut" }
+                  transition: { duration: 0.3, ease: "easeOut" },
                 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -609,7 +653,7 @@ const Portfolio: React.FC = () => {
                   scale: 1.15,
                   rotate: 5,
                   y: -3,
-                  transition: { duration: 0.3, ease: "easeOut" }
+                  transition: { duration: 0.3, ease: "easeOut" },
                 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -645,7 +689,11 @@ const Portfolio: React.FC = () => {
         </motion.section>
 
         {/* Statistics Section - Enhanced Responsive */}
-        <section id="stats" ref={statsRef} className="py-8 sm:py-12 md:py-16 fade-in-up">
+        <section
+          id="stats"
+          ref={statsRef}
+          className="py-8 sm:py-12 md:py-16 fade-in-up"
+        >
           <div className="text-center mb-8 sm:mb-12 md:mb-16 fade-in-up px-4">
             <Title
               level={2}
@@ -655,7 +703,11 @@ const Portfolio: React.FC = () => {
             </Title>
           </div>
 
-          <Row gutter={[16, 16]} justify="center" className="max-w-full mx-auto px-4">
+          <Row
+            gutter={[16, 16]}
+            justify="center"
+            className="max-w-full mx-auto px-4"
+          >
             <Col xs={24} sm={12} md={6}>
               <div className="hover-lift-light transition-all duration-300">
                 <Card className="glass-effect border-0 shadow-xl rounded-2xl sm:rounded-3xl cartoon-card stats-card text-center p-4 sm:p-6 hover:shadow-lg transition-all duration-300 h-full">
@@ -742,12 +794,20 @@ const Portfolio: React.FC = () => {
             </Title>
           </div>
 
-          <Row gutter={[16, 24]} className="items-stretch max-w-full mx-auto px-4">
+          <Row
+            gutter={[16, 24]}
+            className="items-stretch max-w-full mx-auto px-4"
+          >
             <Col xs={24} lg={12}>
               <Card className="glass-effect border-0 shadow-xl rounded-2xl sm:rounded-3xl hover-lift-light fade-in-scale cartoon-card p-4 sm:p-6 md:p-8 h-full">
                 <div className="flex flex-col h-full">
-                  <Title level={3} className="mb-4 sm:mb-6 text-gray-800 dark:text-white text-lg sm:text-xl md:text-2xl">
-                    <div className="cartoon-bounce inline-block mr-2 sm:mr-3">🚀</div>
+                  <Title
+                    level={3}
+                    className="mb-4 sm:mb-6 text-gray-800 dark:text-white text-lg sm:text-xl md:text-2xl"
+                  >
+                    <div className="cartoon-bounce inline-block mr-2 sm:mr-3">
+                      🚀
+                    </div>
                     Professional Journey
                   </Title>
                   <div className="flex-1">
@@ -756,7 +816,9 @@ const Portfolio: React.FC = () => {
                     </Paragraph>
                     <Paragraph className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                       {portfolioData?.about?.passion}
-                      <div className="cartoon-computer mt-2 text-xl sm:text-2xl">💡✨</div>
+                      <div className="cartoon-computer mt-2 text-xl sm:text-2xl">
+                        💡✨
+                      </div>
                     </Paragraph>
                   </div>
                 </div>
@@ -766,19 +828,31 @@ const Portfolio: React.FC = () => {
             <Col xs={24} lg={12}>
               <Card className="glass-effect border-0 shadow-xl rounded-2xl sm:rounded-3xl hover-lift-light fade-in-scale cartoon-card p-4 sm:p-6 md:p-8 h-full">
                 <div className="flex flex-col h-full">
-                  <Title level={3} className="mb-4 sm:mb-6 text-gray-800 dark:text-white text-lg sm:text-xl md:text-2xl">
-                    <div className="cartoon-pulse inline-block mr-2 sm:mr-3">🏆</div>
+                  <Title
+                    level={3}
+                    className="mb-4 sm:mb-6 text-gray-800 dark:text-white text-lg sm:text-xl md:text-2xl"
+                  >
+                    <div className="cartoon-pulse inline-block mr-2 sm:mr-3">
+                      🏆
+                    </div>
                     Key Achievements
                   </Title>
                   <div className="flex-1 space-y-3 sm:space-y-4">
-                    {(portfolioData?.about?.achievements || []).map((achievement, index) => (
-                      <div key={index} className="flex items-start space-x-2 sm:space-x-3">
-                        <div className="text-green-500 text-base sm:text-lg flex-shrink-0 mt-0.5">✅</div>
-                        <Text className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
-                          {achievement}
-                        </Text>
-                      </div>
-                    ))}
+                    {(portfolioData?.about?.achievements || []).map(
+                      (achievement, index) => (
+                        <div
+                          key={index}
+                          className="flex items-start space-x-2 sm:space-x-3"
+                        >
+                          <div className="text-green-500 text-base sm:text-lg flex-shrink-0 mt-0.5">
+                            ✅
+                          </div>
+                          <Text className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+                            {achievement}
+                          </Text>
+                        </div>
+                      )
+                    )}
                   </div>
                 </div>
               </Card>
@@ -787,7 +861,10 @@ const Portfolio: React.FC = () => {
         </section>
 
         {/* Skills Section - Enhanced Responsive */}
-        <section id="skills" className="py-8 sm:py-12 md:py-16 lg:py-20 fade-in-up">
+        <section
+          id="skills"
+          className="py-8 sm:py-12 md:py-16 lg:py-20 fade-in-up"
+        >
           <div className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 fade-in-up px-4">
             <Title
               level={2}
@@ -802,7 +879,10 @@ const Portfolio: React.FC = () => {
 
           <div className="max-w-full mx-auto px-4 lg:px-8">
             {Object.entries(skillCategories).map(([category, skills]) => (
-              <div key={category} className="mb-8 sm:mb-12 md:mb-16 lg:mb-20 fade-in-up">
+              <div
+                key={category}
+                className="mb-8 sm:mb-12 md:mb-16 lg:mb-20 fade-in-up"
+              >
                 <div>
                   <Title
                     level={3}
@@ -890,7 +970,10 @@ const Portfolio: React.FC = () => {
           <div className="text-center mb-8 sm:mb-12 md:mb-16 px-4">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg flex items-center justify-center shadow-lg">
-                <SafeIcon icon={MdWork} className="text-white text-xl sm:text-2xl" />
+                <SafeIcon
+                  icon={MdWork}
+                  className="text-white text-xl sm:text-2xl"
+                />
               </div>
               <Title
                 level={2}
@@ -910,7 +993,11 @@ const Portfolio: React.FC = () => {
               <div className="absolute left-4 sm:left-6 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green-500 via-blue-500 to-purple-500 shadow-sm hidden md:block"></div>
 
               {experiences.map((exp, index) => (
-                <div key={index} className="relative mb-8 sm:mb-10 md:mb-12 last:mb-0 fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
+                <div
+                  key={index}
+                  className="relative mb-8 sm:mb-10 md:mb-12 last:mb-0 fade-in-up"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
                   {/* Timeline Dot - Responsive positioning */}
                   <div className="absolute left-2 sm:left-4 md:left-6 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-green-500 to-teal-600 rounded-full border-2 sm:border-3 md:border-4 border-white dark:border-gray-900 shadow-lg z-10 hover:scale-110 transition-transform duration-300 hidden md:block"></div>
 
@@ -922,13 +1009,22 @@ const Portfolio: React.FC = () => {
                         <div className="flex flex-col gap-4 sm:gap-6">
                           <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 flex-1">
                             <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0 mx-auto sm:mx-0">
-                              <SafeIcon icon={MdWork} className="text-white text-xl sm:text-2xl" />
+                              <SafeIcon
+                                icon={MdWork}
+                                className="text-white text-xl sm:text-2xl"
+                              />
                             </div>
                             <div className="flex-1 min-w-0 text-center sm:text-left">
-                              <Title level={3} className="!mb-2 sm:!mb-3 text-gray-800 dark:text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+                              <Title
+                                level={3}
+                                className="!mb-2 sm:!mb-3 text-gray-800 dark:text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold"
+                              >
                                 {exp.title}
                               </Title>
-                              <Title level={4} className="!mb-3 sm:!mb-4 text-teal-600 dark:text-teal-400 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold">
+                              <Title
+                                level={4}
+                                className="!mb-3 sm:!mb-4 text-teal-600 dark:text-teal-400 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold"
+                              >
                                 {exp.company}
                               </Title>
                               <Text className="text-gray-600 dark:text-gray-400 text-sm sm:text-base lg:text-lg leading-relaxed">
@@ -945,12 +1041,22 @@ const Portfolio: React.FC = () => {
                             </Tag>
                             <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
                               <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                                <SafeIcon icon={FaCalendarAlt} className="text-blue-500 text-base sm:text-lg" />
-                                <span className="font-semibold">{exp.duration}</span>
+                                <SafeIcon
+                                  icon={FaCalendarAlt}
+                                  className="text-blue-500 text-base sm:text-lg"
+                                />
+                                <span className="font-semibold">
+                                  {exp.duration}
+                                </span>
                               </div>
                               <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                                <SafeIcon icon={FaMapMarkerAlt} className="text-red-500 text-base sm:text-lg" />
-                                <span className="font-semibold">{exp.location}</span>
+                                <SafeIcon
+                                  icon={FaMapMarkerAlt}
+                                  className="text-red-500 text-base sm:text-lg"
+                                />
+                                <span className="font-semibold">
+                                  {exp.location}
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -963,17 +1069,29 @@ const Portfolio: React.FC = () => {
                         <div className="mb-6 sm:mb-8">
                           <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
                             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-                              <SafeIcon icon={FaTrophy} className="text-white text-sm sm:text-lg" />
+                              <SafeIcon
+                                icon={FaTrophy}
+                                className="text-white text-sm sm:text-lg"
+                              />
                             </div>
-                            <Text strong className="text-gray-800 dark:text-white text-base sm:text-lg md:text-xl lg:text-2xl font-bold">
+                            <Text
+                              strong
+                              className="text-gray-800 dark:text-white text-base sm:text-lg md:text-xl lg:text-2xl font-bold"
+                            >
                               Key Achievements
                             </Text>
                           </div>
                           <div className="grid gap-3 sm:gap-4 sm:ml-2">
                             {exp.achievements.map((achievement, i) => (
-                              <div key={i} className="flex items-start gap-3 sm:gap-4 p-3 rounded-lg bg-green-50 dark:bg-green-900/10 border-l-4 border-green-500 hover:bg-green-100 dark:hover:bg-green-900/20 transition-colors duration-200">
+                              <div
+                                key={i}
+                                className="flex items-start gap-3 sm:gap-4 p-3 rounded-lg bg-green-50 dark:bg-green-900/10 border-l-4 border-green-500 hover:bg-green-100 dark:hover:bg-green-900/20 transition-colors duration-200"
+                              >
                                 <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                  <SafeIcon icon={FaCheckCircle} className="text-white text-xs" />
+                                  <SafeIcon
+                                    icon={FaCheckCircle}
+                                    className="text-white text-xs"
+                                  />
                                 </div>
                                 <Text className="text-gray-700 dark:text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed">
                                   {achievement}
@@ -987,9 +1105,15 @@ const Portfolio: React.FC = () => {
                         <div>
                           <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
                             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                              <SafeIcon icon={FaCode} className="text-white text-sm sm:text-lg" />
+                              <SafeIcon
+                                icon={FaCode}
+                                className="text-white text-sm sm:text-lg"
+                              />
                             </div>
-                            <Text strong className="text-gray-800 dark:text-white text-base sm:text-lg md:text-xl lg:text-2xl font-bold">
+                            <Text
+                              strong
+                              className="text-gray-800 dark:text-white text-base sm:text-lg md:text-xl lg:text-2xl font-bold"
+                            >
                               Technologies Used
                             </Text>
                           </div>
@@ -1037,18 +1161,28 @@ const Portfolio: React.FC = () => {
                       cover={
                         <div className="relative h-40 sm:h-48 bg-gradient-to-br from-blue-400 to-purple-500 project-cover flex items-center justify-center overflow-hidden hover:scale-102 transition-transform duration-300">
                           <div className="text-4xl sm:text-5xl md:text-6xl text-white opacity-80">
-                            {project.category === "Web Application" ? <SafeIcon icon={FaDesktop} /> :
-                             project.category === "E-Commerce" ? <SafeIcon icon={MdShoppingCart} /> :
-                             project.category === "Media Application" ? <SafeIcon icon={MdVideoLibrary} /> :
-                             project.category === "Dashboard" ? <SafeIcon icon={MdDashboard} /> :
-                             project.category === "Library" ? <SafeIcon icon={MdLibraryBooks} /> :
-                             project.category === "Personal Project" ? <SafeIcon icon={FaUser} /> :
-                             <SafeIcon icon={FaCode} />}
+                            {project.category === "Web Application" ? (
+                              <SafeIcon icon={FaDesktop} />
+                            ) : project.category === "E-Commerce" ? (
+                              <SafeIcon icon={MdShoppingCart} />
+                            ) : project.category === "Media Application" ? (
+                              <SafeIcon icon={MdVideoLibrary} />
+                            ) : project.category === "Dashboard" ? (
+                              <SafeIcon icon={MdDashboard} />
+                            ) : project.category === "Library" ? (
+                              <SafeIcon icon={MdLibraryBooks} />
+                            ) : project.category === "Personal Project" ? (
+                              <SafeIcon icon={FaUser} />
+                            ) : (
+                              <SafeIcon icon={FaCode} />
+                            )}
                           </div>
                           <div className="absolute top-2 right-2 sm:top-4 sm:right-4">
                             <Tag
                               color={
-                                project.status === "Completed" ? "green" : "blue"
+                                project.status === "Completed"
+                                  ? "green"
+                                  : "blue"
                               }
                               className="font-medium text-xs sm:text-sm"
                             >
@@ -1056,129 +1190,138 @@ const Portfolio: React.FC = () => {
                             </Tag>
                           </div>
                           <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4">
-                            <Tag color="purple" className="font-medium text-xs sm:text-sm">
+                            <Tag
+                              color="purple"
+                              className="font-medium text-xs sm:text-sm"
+                            >
                               {project.category}
                             </Tag>
                           </div>
                         </div>
                       }
                     >
-                    <div className="p-4 sm:p-6">
-                      <div>
-                        <Title
-                          level={4}
-                          className="!mb-2 sm:!mb-3 text-gray-800 dark:text-white text-base sm:text-lg md:text-xl"
-                        >
-                          {project.title}
-                        </Title>
+                      <div className="p-4 sm:p-6">
+                        <div>
+                          <Title
+                            level={4}
+                            className="!mb-2 sm:!mb-3 text-gray-800 dark:text-white text-base sm:text-lg md:text-xl"
+                          >
+                            {project.title}
+                          </Title>
 
-                        <Paragraph className="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 line-clamp-3 text-sm sm:text-base">
-                          {project.description}
-                        </Paragraph>
-                      </div>
-
-                      <div className="mb-3 sm:mb-4">
-                        <Text
-                          strong
-                          className="text-gray-800 dark:text-white block mb-2 text-sm sm:text-base"
-                        >
-                          Tech Stack:
-                        </Text>
-                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                          {project.technologies.slice(0, 4).map((tech, i) => (
-                            <div
-                              key={i}
-                              className="hover:scale-105 transition-transform duration-200"
-                            >
-                              <Tag
-                                color="blue"
-                                className="rounded-full text-xs"
-                              >
-                                {tech}
-                              </Tag>
-                            </div>
-                          ))}
-                          {project.technologies.length > 4 && (
-                            <Tag className="rounded-full text-xs">
-                              +{project.technologies.length - 4} more
-                            </Tag>
-                          )}
+                          <Paragraph className="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 line-clamp-3 text-sm sm:text-base">
+                            {project.description}
+                          </Paragraph>
                         </div>
-                      </div>
 
-                      <div className="mb-3 sm:mb-4">
-                        <Text
-                          strong
-                          className="text-gray-800 dark:text-white block mb-2 text-sm sm:text-base"
-                        >
-                          Key Features:
-                        </Text>
-                        <div className="space-y-1">
-                          {project.features.slice(0, 3).map((feature, i) => (
-                            <div
-                              key={i}
-                              className="flex items-start space-x-2"
-                            >
-                              <SafeIcon icon={FaCheckCircle} className="text-green-500 text-xs flex-shrink-0 mt-0.5" />
-                              <Text className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
-                                {feature}
-                              </Text>
-                            </div>
-                          ))}
-                          {project.features.length > 3 && (
-                            <Text className="text-gray-500 text-xs">
-                              +{project.features.length - 3} more features
-                            </Text>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
-                        <div className="flex items-center space-x-2 mb-2">
-                          <SafeIcon icon={FaTrophy} className="text-yellow-500 text-sm" />
+                        <div className="mb-3 sm:mb-4">
                           <Text
                             strong
-                            className="text-gray-800 dark:text-white text-sm sm:text-base"
+                            className="text-gray-800 dark:text-white block mb-2 text-sm sm:text-base"
                           >
-                            Impact
+                            Tech Stack:
+                          </Text>
+                          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                            {project.technologies.slice(0, 4).map((tech, i) => (
+                              <div
+                                key={i}
+                                className="hover:scale-105 transition-transform duration-200"
+                              >
+                                <Tag
+                                  color="blue"
+                                  className="rounded-full text-xs"
+                                >
+                                  {tech}
+                                </Tag>
+                              </div>
+                            ))}
+                            {project.technologies.length > 4 && (
+                              <Tag className="rounded-full text-xs">
+                                +{project.technologies.length - 4} more
+                              </Tag>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="mb-3 sm:mb-4">
+                          <Text
+                            strong
+                            className="text-gray-800 dark:text-white block mb-2 text-sm sm:text-base"
+                          >
+                            Key Features:
+                          </Text>
+                          <div className="space-y-1">
+                            {project.features.slice(0, 3).map((feature, i) => (
+                              <div
+                                key={i}
+                                className="flex items-start space-x-2"
+                              >
+                                <SafeIcon
+                                  icon={FaCheckCircle}
+                                  className="text-green-500 text-xs flex-shrink-0 mt-0.5"
+                                />
+                                <Text className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
+                                  {feature}
+                                </Text>
+                              </div>
+                            ))}
+                            {project.features.length > 3 && (
+                              <Text className="text-gray-500 text-xs">
+                                +{project.features.length - 3} more features
+                              </Text>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <SafeIcon
+                              icon={FaTrophy}
+                              className="text-yellow-500 text-sm"
+                            />
+                            <Text
+                              strong
+                              className="text-gray-800 dark:text-white text-sm sm:text-base"
+                            >
+                              Impact
+                            </Text>
+                          </div>
+                          <Text className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
+                            {project.impact}
                           </Text>
                         </div>
-                        <Text className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
-                          {project.impact}
-                        </Text>
-                      </div>
 
-                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                        <div className="hover:scale-102 transition-transform duration-200 flex-1">
-                          <Button
-                            type="primary"
-                            icon={<SafeIcon icon={FaEye} />}
-                            size="small"
-                            className="w-full rounded-lg"
-                            href={project.live}
-                            target="_blank"
-                          >
-                            Live Demo
-                          </Button>
-                        </div>
-                        <div className="hover:scale-102 transition-transform duration-200 flex-1">
-                          <Button
-                            icon={<SafeIcon icon={FaGithub} />}
-                            size="small"
-                            className="w-full rounded-lg"
-                            href={project.github}
-                            target="_blank"
-                          >
-                            Code
-                          </Button>
+                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                          <div className="hover:scale-102 transition-transform duration-200 flex-1">
+                            <Button
+                              type="primary"
+                              icon={<SafeIcon icon={FaEye} />}
+                              size="small"
+                              className="w-full rounded-lg"
+                              href={project.live}
+                              target="_blank"
+                            >
+                              Live Demo
+                            </Button>
+                          </div>
+                          <div className="hover:scale-102 transition-transform duration-200 flex-1">
+                            <Button
+                              icon={<SafeIcon icon={FaGithub} />}
+                              size="small"
+                              className="w-full rounded-lg"
+                              href={project.github}
+                              target="_blank"
+                            >
+                              Code
+                            </Button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Card>
-                </div>
-              </Col>
-            ))}
-          </Row>
+                    </Card>
+                  </div>
+                </Col>
+              ))}
+            </Row>
           </div>
         </section>
 
@@ -1451,43 +1594,49 @@ const Portfolio: React.FC = () => {
                       Connect
                     </Button>
                   </div>
-              </Card>
-            </Col>
-            <Col xs={24} sm={12} md={8}>
-              <Card className="glass-effect border-0 shadow-xl rounded-2xl sm:rounded-3xl hover-lift-light fade-in-scale cartoon-card contact-card text-center p-4 sm:p-6 md:p-8 h-full">
-                <div className="flex flex-col h-full justify-between">
-                  <div>
-                    <div className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 cartoon-pulse">
-                      <SafeIcon icon={FaGithub} className="text-gray-700" />
+                </Card>
+              </Col>
+              <Col xs={24} sm={12} md={8}>
+                <Card className="glass-effect border-0 shadow-xl rounded-2xl sm:rounded-3xl hover-lift-light fade-in-scale cartoon-card contact-card text-center p-4 sm:p-6 md:p-8 h-full">
+                  <div className="flex flex-col h-full justify-between">
+                    <div>
+                      <div className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 cartoon-pulse">
+                        <SafeIcon icon={FaGithub} className="text-gray-700" />
+                      </div>
+                      <Title
+                        level={4}
+                        className="text-gray-800 dark:text-white cartoon-text text-base sm:text-lg md:text-xl"
+                      >
+                        GitHub
+                      </Title>
+                      <Text className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm md:text-base">
+                        View Source Code
+                      </Text>
                     </div>
-                    <Title
-                      level={4}
-                      className="text-gray-800 dark:text-white cartoon-text text-base sm:text-lg md:text-xl"
+                    <Button
+                      type="primary"
+                      className="mt-3 sm:mt-4 cartoon-button w-full"
+                      icon={<SafeIcon icon={FaGithub} />}
+                      size="large"
                     >
-                      GitHub
-                    </Title>
-                    <Text className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm md:text-base">
-                      View Source Code
-                    </Text>
+                      Follow
+                    </Button>
                   </div>
-                  <Button
-                    type="primary"
-                    className="mt-3 sm:mt-4 cartoon-button w-full"
-                    icon={<SafeIcon icon={FaGithub} />}
-                    size="large"
-                  >
-                    Follow
-                  </Button>
-                </div>
-              </Card>
-            </Col>
-          </Row>
+                </Card>
+              </Col>
+            </Row>
           </div>
 
           <div className="text-center mt-8 sm:mt-12 md:mt-16 px-4">
             <Card className="glass-effect border-0 shadow-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 max-w-5xl mx-auto">
-              <Title level={3} className="mb-4 sm:mb-6 text-gray-800 dark:text-white text-lg sm:text-xl md:text-2xl">
-                <SafeIcon icon={FaHeart} className="text-red-500 mr-2 sm:mr-3" />
+              <Title
+                level={3}
+                className="mb-4 sm:mb-6 text-gray-800 dark:text-white text-lg sm:text-xl md:text-2xl"
+              >
+                <SafeIcon
+                  icon={FaHeart}
+                  className="text-red-500 mr-2 sm:mr-3"
+                />
                 Available for Freelance Projects
               </Title>
               <Paragraph className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">
