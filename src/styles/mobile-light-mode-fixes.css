@@ -340,10 +340,7 @@
 /* Force override for all certification text elements */
 [data-theme='dark'] .certification-card .font-mono.font-medium {
   color: #ffffff !important;
-  background: rgba(96, 165, 250, 0.25) !important;
   padding: 8px 12px !important;
-  border-radius: 8px !important;
-  border: 1px solid rgba(96, 165, 250, 0.5) !important;
   font-weight: 700 !important;
 }
 

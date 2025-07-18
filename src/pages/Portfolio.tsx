@@ -594,74 +594,49 @@ const Portfolio: React.FC = () => {
               </motion.div>
             </motion.div>
 
-            {/* Social Icons with Enhanced Animation - Responsive */}
+            {/* Social Icons - Simple without animations */}
             <motion.div
-              className="flex justify-center space-x-4 sm:space-x-6 md:space-x-8 px-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 2.8,
-                duration: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
+              className="flex justify-center space-x-4 mt-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.7, duration: 0.6 }}
             >
+              {/* GitHub */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ delay: 3.0, duration: 0.6, ease: "easeOut" }}
-                whileHover={{
-                  scale: 1.15,
-                  rotate: 5,
-                  y: -3,
-                  transition: { duration: 0.3, ease: "easeOut" },
-                }}
+                whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
                 <Button
                   type="text"
-                  size="large"
                   icon={<SafeIcon icon={FaGithub} />}
-                  className="hover-scale text-xl sm:text-2xl md:text-3xl p-3 sm:p-4 rounded-full social-icon hover:bg-gray-100 dark:hover:bg-gray-800 hover:shadow-lg transition-all duration-300"
+                  className="text-white bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-300 
+                p-2 text-xl rounded-full shadow-md transition-all duration-300"
                 />
               </motion.div>
 
+              {/* LinkedIn */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.5, rotate: 90 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ delay: 3.2, duration: 0.6, ease: "easeOut" }}
-                whileHover={{
-                  scale: 1.15,
-                  rotate: -5,
-                  y: -3,
-                  transition: { duration: 0.3, ease: "easeOut" },
-                }}
+                whileHover={{ scale: 1.2, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
               >
                 <Button
                   type="text"
-                  size="large"
                   icon={<SafeIcon icon={FaLinkedin} />}
-                  className="hover-scale text-xl sm:text-2xl md:text-3xl p-3 sm:p-4 rounded-full social-icon hover:bg-blue-50 dark:hover:bg-blue-900 text-blue-600 hover:shadow-lg transition-all duration-300"
+                  className="text-white bg-[#0A66C2] hover:bg-[#004182] 
+                p-2 text-xl rounded-full shadow-md transition-all duration-300"
                 />
               </motion.div>
 
+              {/* Email */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ delay: 3.4, duration: 0.6, ease: "easeOut" }}
-                whileHover={{
-                  scale: 1.15,
-                  rotate: 5,
-                  y: -3,
-                  transition: { duration: 0.3, ease: "easeOut" },
-                }}
+                whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
                 <Button
                   type="text"
-                  size="large"
                   icon={<SafeIcon icon={MdEmail} />}
-                  className="hover-scale text-xl sm:text-2xl md:text-3xl p-3 sm:p-4 rounded-full social-icon hover:bg-red-50 dark:hover:bg-red-900 text-red-500 hover:shadow-lg transition-all duration-300"
+                  className="text-white bg-[#EA4335] hover:bg-[#c5221f] 
+                p-2 text-xl rounded-full shadow-md transition-all duration-300"
                   onClick={() => setIsContactModalOpen(true)}
                 />
               </motion.div>
@@ -1328,10 +1303,7 @@ const Portfolio: React.FC = () => {
         </section>
 
         {/* Testimonials Section - Enhanced Responsive */}
-        <section
-          id="testimonials"
-          className="py-12 sm:py-16 md:py-20"
-        >
+        <section id="testimonials" className="py-12 sm:py-16 md:py-20">
           <div className="text-center mb-8 sm:mb-12 md:mb-16 fade-in-up px-4">
             <Title
               level={2}
@@ -1433,13 +1405,16 @@ const Portfolio: React.FC = () => {
                       <Text className="text-blue-600 dark:text-blue-400 font-medium block mb-3 text-sm sm:text-base">
                         {cert.issuer}
                       </Text>
-                      <Tag color="green" className="mb-4 text-sm sm:text-base px-3 py-1">
+                      <Tag
+                        color="green"
+                        className="mb-4 text-sm sm:text-base px-3 py-1"
+                      >
                         {cert.date}
                       </Tag>
-                      <div className="bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-xl border border-gray-200 dark:border-gray-700">
-                        <Text className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-mono font-medium">
+                      <div className="bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-700 w-full">
+                        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-mono font-medium text-center whitespace-nowrap overflow-hidden text-ellipsis">
                           ID: {cert.credentialId}
-                        </Text>
+                        </p>
                       </div>
                     </div>
                   </Card>
@@ -1450,10 +1425,7 @@ const Portfolio: React.FC = () => {
         </section>
 
         {/* Blog Section - Enhanced Responsive */}
-        <section
-          id="blog"
-          className="py-12 sm:py-16 md:py-20"
-        >
+        <section id="blog" className="py-12 sm:py-16 md:py-20">
           <div className="text-center mb-8 sm:mb-12 md:mb-16 fade-in-up px-4">
             <Title
               level={2}
