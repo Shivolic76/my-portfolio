@@ -1681,18 +1681,686 @@ html:not([data-theme='dark']) .ant-btn-primary {
   color: #ffffff !important;
 }
 
-/* Responsive view fixes for light theme */
+/* ============================================================================ */
+/* MOBILE LIGHT MODE FIXES */
+/* ============================================================================ */
+
+/* Enhanced Mobile Light Mode Card Styling */
 @media (max-width: 768px) {
+  /* Light theme background fixes */
   [data-theme='light'] .portfolio-main-bg,
   html:not([data-theme='dark']) .portfolio-main-bg {
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
   }
 
+  /* Enhanced glass effect for light theme mobile */
   [data-theme='light'] .glass-effect,
   html:not([data-theme='dark']) .glass-effect {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(229, 231, 235, 0.8) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    backdrop-filter: none !important;
   }
+
+  /* Enhanced card styling for light theme mobile */
+  [data-theme='light'] .portfolio-card,
+  [data-theme='light'] .cartoon-card,
+  [data-theme='light'] .stats-card,
+  [data-theme='light'] .skill-card,
+  [data-theme='light'] .project-card,
+  [data-theme='light'] .testimonial-card,
+  [data-theme='light'] .blog-card,
+  [data-theme='light'] .experience-card,
+  html:not([data-theme='dark']) .portfolio-card,
+  html:not([data-theme='dark']) .cartoon-card,
+  html:not([data-theme='dark']) .stats-card,
+  html:not([data-theme='dark']) .skill-card,
+  html:not([data-theme='dark']) .project-card,
+  html:not([data-theme='dark']) .testimonial-card,
+  html:not([data-theme='dark']) .blog-card,
+  html:not([data-theme='dark']) .experience-card {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    color: #111827 !important;
+  }
+
+  /* Enhanced hover effects for light theme mobile */
+  [data-theme='light'] .portfolio-card:hover,
+  [data-theme='light'] .cartoon-card:hover,
+  [data-theme='light'] .stats-card:hover,
+  [data-theme='light'] .skill-card:hover,
+  [data-theme='light'] .project-card:hover,
+  [data-theme='light'] .testimonial-card:hover,
+  [data-theme='light'] .blog-card:hover,
+  [data-theme='light'] .experience-card:hover,
+  html:not([data-theme='dark']) .portfolio-card:hover,
+  html:not([data-theme='dark']) .cartoon-card:hover,
+  html:not([data-theme='dark']) .stats-card:hover,
+  html:not([data-theme='dark']) .skill-card:hover,
+  html:not([data-theme='dark']) .project-card:hover,
+  html:not([data-theme='dark']) .testimonial-card:hover,
+  html:not([data-theme='dark']) .blog-card:hover,
+  html:not([data-theme='dark']) .experience-card:hover {
+    background: #f9fafb !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    transform: translateY(-2px) scale(1.005) !important;
+  }
+
+  /* Enhanced text contrast for light theme mobile */
+  [data-theme='light'] .ant-typography,
+  [data-theme='light'] .ant-typography h1,
+  [data-theme='light'] .ant-typography h2,
+  [data-theme='light'] .ant-typography h3,
+  [data-theme='light'] .ant-typography h4,
+  [data-theme='light'] .ant-typography h5,
+  [data-theme='light'] .ant-typography h6,
+  html:not([data-theme='dark']) .ant-typography,
+  html:not([data-theme='dark']) .ant-typography h1,
+  html:not([data-theme='dark']) .ant-typography h2,
+  html:not([data-theme='dark']) .ant-typography h3,
+  html:not([data-theme='dark']) .ant-typography h4,
+  html:not([data-theme='dark']) .ant-typography h5,
+  html:not([data-theme='dark']) .ant-typography h6 {
+    color: #111827 !important;
+  }
+
+  /* Enhanced button styling for light theme mobile */
+  [data-theme='light'] .ant-btn,
+  html:not([data-theme='dark']) .ant-btn {
+    border-radius: 12px !important;
+    font-weight: 500 !important;
+    min-height: 44px !important;
+  }
+
+  [data-theme='light'] .ant-btn-primary,
+  html:not([data-theme='dark']) .ant-btn-primary {
+    background: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3) !important;
+  }
+
+  [data-theme='light'] .ant-btn-primary:hover,
+  html:not([data-theme='dark']) .ant-btn-primary:hover {
+    background: #2563eb !important;
+    border-color: #2563eb !important;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  [data-theme='light'] .ant-btn-default,
+  html:not([data-theme='dark']) .ant-btn-default {
+    background: #ffffff !important;
+    border-color: #d1d5db !important;
+    color: #374151 !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  }
+
+  [data-theme='light'] .ant-btn-default:hover,
+  html:not([data-theme='dark']) .ant-btn-default:hover {
+    background: #f9fafb !important;
+    border-color: #3b82f6 !important;
+    color: #3b82f6 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-1px) !important;
+  }
+}
+
+/* Extra small mobile devices - Enhanced light mode */
+@media (max-width: 480px) {
+  [data-theme='light'] .portfolio-card,
+  [data-theme='light'] .cartoon-card,
+  [data-theme='light'] .stats-card,
+  [data-theme='light'] .skill-card,
+  [data-theme='light'] .project-card,
+  [data-theme='light'] .testimonial-card,
+  [data-theme='light'] .blog-card,
+  [data-theme='light'] .experience-card,
+  html:not([data-theme='dark']) .portfolio-card,
+  html:not([data-theme='dark']) .cartoon-card,
+  html:not([data-theme='dark']) .stats-card,
+  html:not([data-theme='dark']) .skill-card,
+  html:not([data-theme='dark']) .project-card,
+  html:not([data-theme='dark']) .testimonial-card,
+  html:not([data-theme='dark']) .blog-card,
+  html:not([data-theme='dark']) .experience-card {
+    border-radius: 16px !important;
+    padding: 16px !important;
+    margin-bottom: 16px !important;
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Enhanced container padding for light theme */
+  [data-theme='light'] .container,
+  html:not([data-theme='dark']) .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Enhanced typography for light theme mobile */
+  [data-theme='light'] .ant-typography h1,
+  html:not([data-theme='dark']) .ant-typography h1 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+    color: #111827 !important;
+    font-weight: 700 !important;
+  }
+
+  [data-theme='light'] .ant-typography h2,
+  html:not([data-theme='dark']) .ant-typography h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+    line-height: 1.3 !important;
+    color: #111827 !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme='light'] .ant-typography h3,
+  html:not([data-theme='dark']) .ant-typography h3 {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+    line-height: 1.4 !important;
+    color: #111827 !important;
+    font-weight: 600 !important;
+  }
+
+  /* Enhanced profile image container for light theme mobile */
+  [data-theme='light'] .profile-image-container,
+  html:not([data-theme='dark']) .profile-image-container {
+    background: #ffffff !important;
+    border: 2px solid #e5e7eb !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* Enhanced tag styling for light theme mobile */
+  [data-theme='light'] .ant-tag,
+  html:not([data-theme='dark']) .ant-tag {
+    background: #f3f4f6 !important;
+    border: 1px solid #d1d5db !important;
+    color: #374151 !important;
+    border-radius: 12px !important;
+    padding: 4px 12px !important;
+    font-weight: 500 !important;
+  }
+
+  /* Enhanced progress bars for light theme mobile */
+  [data-theme='light'] .ant-progress-bg,
+  html:not([data-theme='dark']) .ant-progress-bg {
+    background: #e5e7eb !important;
+  }
+
+  /* Enhanced modal styling for light theme mobile */
+  [data-theme='light'] .ant-modal-content,
+  html:not([data-theme='dark']) .ant-modal-content {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  [data-theme='light'] .ant-modal-header,
+  html:not([data-theme='dark']) .ant-modal-header {
+    background: #f9fafb !important;
+    border-bottom: 1px solid #e5e7eb !important;
+  }
+
+  [data-theme='light'] .ant-modal-title,
+  html:not([data-theme='dark']) .ant-modal-title {
+    color: #111827 !important;
+    font-weight: 600 !important;
+  }
+}
+
+/* ============================================================================ */
+/* LIGHT MODE GRADIENT TEXT FIXES */
+/* ============================================================================ */
+
+/* Enhanced gradient text for light theme */
+[data-theme='light'] .gradient-text,
+html:not([data-theme='dark']) .gradient-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Enhanced light theme specific overrides */
+[data-theme='light'] .bg-gradient-to-r.from-blue-600,
+html:not([data-theme='dark']) .bg-gradient-to-r.from-blue-600 {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Enhanced social icons for light theme */
+[data-theme='light'] .social-icon,
+html:not([data-theme='dark']) .social-icon {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  color: #374151 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme='light'] .social-icon:hover,
+html:not([data-theme='dark']) .social-icon:hover {
+  background: #f9fafb !important;
+  border: 1px solid #3b82f6 !important;
+  color: #3b82f6 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-2px) scale(1.05) !important;
+}
+
+/* ============================================================================ */
+/* LIGHT MODE EXPERIENCE SECTION FIXES */
+/* ============================================================================ */
+
+/* Enhanced experience cards for light theme */
+[data-theme='light'] .experience-card,
+html:not([data-theme='dark']) .experience-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme='light'] .experience-card:hover,
+html:not([data-theme='dark']) .experience-card:hover {
+  background: #f9fafb !important;
+  border: 1px solid #d1d5db !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  transform: translateY(-4px) scale(1.01) !important;
+}
+
+/* Enhanced experience card headers for light theme */
+[data-theme='light'] .experience-card .bg-gradient-to-r.from-gray-50,
+html:not([data-theme='dark']) .experience-card .bg-gradient-to-r.from-gray-50 {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%) !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+/* Enhanced experience achievement sections for light theme */
+[data-theme='light'] .experience-card .bg-green-50,
+html:not([data-theme='dark']) .experience-card .bg-green-50 {
+  background: #f0fdf4 !important;
+  border-left: 4px solid #10b981 !important;
+}
+
+[data-theme='light'] .experience-card .bg-green-50:hover,
+html:not([data-theme='dark']) .experience-card .bg-green-50:hover {
+  background: #ecfdf5 !important;
+}
+
+[data-theme='light'] .experience-card .text-green-700,
+html:not([data-theme='dark']) .experience-card .text-green-700 {
+  color: #047857 !important;
+}
+
+/* Enhanced technology tags for light theme */
+[data-theme='light'] .experience-card .from-blue-50,
+html:not([data-theme='dark']) .experience-card .from-blue-50 {
+  background: #eff6ff !important;
+  border: 1px solid #dbeafe !important;
+}
+
+[data-theme='light'] .experience-card .text-blue-700,
+html:not([data-theme='dark']) .experience-card .text-blue-700 {
+  color: #1d4ed8 !important;
+}
+
+[data-theme='light'] .experience-card .border-blue-200,
+html:not([data-theme='dark']) .experience-card .border-blue-200 {
+  border-color: #bfdbfe !important;
+}
+
+/* ============================================================================ */
+/* LIGHT MODE STATISTICS SECTION FIXES */
+/* ============================================================================ */
+
+/* Enhanced statistics cards for light theme */
+[data-theme='light'] .stats-card .ant-statistic-content-value,
+html:not([data-theme='dark']) .stats-card .ant-statistic-content-value {
+  color: #1f2937 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme='light'] .stats-card .ant-statistic-title,
+html:not([data-theme='dark']) .stats-card .ant-statistic-title {
+  color: #6b7280 !important;
+  font-weight: 500 !important;
+}
+
+/* ============================================================================ */
+/* LIGHT MODE SKILL SECTION FIXES */
+/* ============================================================================ */
+
+/* Enhanced skill cards for light theme */
+[data-theme='light'] .skill-card,
+html:not([data-theme='dark']) .skill-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme='light'] .skill-card:hover,
+html:not([data-theme='dark']) .skill-card:hover {
+  background: #f9fafb !important;
+  border: 1px solid #d1d5db !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* Enhanced skill progress bars for light theme */
+[data-theme='light'] .skill-progress .ant-progress-inner,
+html:not([data-theme='dark']) .skill-progress .ant-progress-inner {
+  background: #f3f4f6 !important;
+}
+
+/* ============================================================================ */
+/* LIGHT MODE PROJECT SECTION FIXES */
+/* ============================================================================ */
+
+/* Enhanced project cards for light theme */
+[data-theme='light'] .project-card,
+html:not([data-theme='dark']) .project-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme='light'] .project-card:hover,
+html:not([data-theme='dark']) .project-card:hover {
+  background: #f9fafb !important;
+  border: 1px solid #d1d5db !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  transform: translateY(-4px) scale(1.02) !important;
+}
+
+/* ============================================================================ */
+/* LIGHT MODE TESTIMONIAL SECTION FIXES */
+/* ============================================================================ */
+
+/* Enhanced testimonial cards for light theme */
+[data-theme='light'] .testimonial-card,
+html:not([data-theme='dark']) .testimonial-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme='light'] .testimonial-card:hover,
+html:not([data-theme='dark']) .testimonial-card:hover {
+  background: #f9fafb !important;
+  border: 1px solid #d1d5db !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  transform: translateY(-3px) scale(1.01) !important;
+}
+
+/* ============================================================================ */
+/* LIGHT MODE BLOG SECTION FIXES */
+/* ============================================================================ */
+
+/* Enhanced blog cards for light theme */
+[data-theme='light'] .blog-card,
+html:not([data-theme='dark']) .blog-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme='light'] .blog-card:hover,
+html:not([data-theme='dark']) .blog-card:hover {
+  background: #f9fafb !important;
+  border: 1px solid #d1d5db !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  transform: translateY(-4px) scale(1.02) !important;
+}
+
+/* ============================================================================ */
+/* LIGHT MODE TEXT CONTRAST ENHANCEMENTS */
+/* ============================================================================ */
+
+/* Ensure proper text contrast for all text elements in light mode */
+[data-theme='light'] .text-gray-800,
+[data-theme='light'] .text-gray-700,
+[data-theme='light'] .text-gray-600,
+html:not([data-theme='dark']) .text-gray-800,
+html:not([data-theme='dark']) .text-gray-700,
+html:not([data-theme='dark']) .text-gray-600 {
+  color: #111827 !important;
+}
+
+[data-theme='light'] .text-gray-500,
+[data-theme='light'] .text-gray-400,
+html:not([data-theme='dark']) .text-gray-500,
+html:not([data-theme='dark']) .text-gray-400 {
+  color: #6b7280 !important;
+}
+
+/* Enhanced paragraph text for light theme */
+[data-theme='light'] .ant-typography p,
+html:not([data-theme='dark']) .ant-typography p {
+  color: #374151 !important;
+  line-height: 1.7 !important;
+}
+
+/* Enhanced list text for light theme */
+[data-theme='light'] .ant-typography li,
+html:not([data-theme='dark']) .ant-typography li {
+  color: #374151 !important;
+}
+
+/* Enhanced link styling for light theme */
+[data-theme='light'] .ant-typography a,
+html:not([data-theme='dark']) .ant-typography a {
+  color: #3b82f6 !important;
+}
+
+[data-theme='light'] .ant-typography a:hover,
+html:not([data-theme='dark']) .ant-typography a:hover {
+  color: #2563eb !important;
+}
+
+/* ============================================================================ */
+/* LIGHT MODE FORM ENHANCEMENTS */
+/* ============================================================================ */
+
+/* Enhanced form inputs for light theme */
+[data-theme='light'] .ant-input,
+[data-theme='light'] .ant-input-affix-wrapper,
+[data-theme='light'] .ant-textarea,
+html:not([data-theme='dark']) .ant-input,
+html:not([data-theme='dark']) .ant-input-affix-wrapper,
+html:not([data-theme='dark']) .ant-textarea {
+  background: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+  color: #111827 !important;
+  border-radius: 8px !important;
+}
+
+[data-theme='light'] .ant-input:focus,
+[data-theme='light'] .ant-input-affix-wrapper:focus-within,
+[data-theme='light'] .ant-textarea:focus,
+html:not([data-theme='dark']) .ant-input:focus,
+html:not([data-theme='dark']) .ant-input-affix-wrapper:focus-within,
+html:not([data-theme='dark']) .ant-textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+[data-theme='light'] .ant-input::placeholder,
+[data-theme='light'] .ant-textarea::placeholder,
+html:not([data-theme='dark']) .ant-input::placeholder,
+html:not([data-theme='dark']) .ant-textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Enhanced form labels for light theme */
+[data-theme='light'] .ant-form-item-label > label,
+html:not([data-theme='dark']) .ant-form-item-label > label {
+  color: #374151 !important;
+  font-weight: 500 !important;
+}
+
+/* ============================================================================ */
+/* DARK MODE PROJECT IMPACT SECTION FIXES */
+/* ============================================================================ */
+
+/* Enhanced Dark Theme Project Impact Section Background */
+[data-theme='dark'] .project-card .from-blue-50 {
+  background: rgba(96, 165, 250, 0.2) !important;
+}
+
+[data-theme='dark'] .project-card .to-purple-50 {
+  background: rgba(168, 85, 247, 0.2) !important;
+}
+
+[data-theme='dark'] .project-card .bg-gradient-to-r.from-blue-50.to-purple-50 {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%) !important;
+  border: 1px solid rgba(96, 165, 250, 0.4) !important;
+  backdrop-filter: none !important;
+}
+
+/* Enhanced Dark Theme Project Impact Text Contrast */
+[data-theme='dark'] .project-card .text-gray-700 {
+  color: #f1f5f9 !important;
+  font-weight: 500 !important;
+}
+
+[data-theme='dark'] .project-card .text-gray-600 {
+  color: #e2e8f0 !important;
+}
+
+[data-theme='dark'] .project-card .text-gray-300 {
+  color: #f8fafc !important;
+}
+
+/* Enhanced Dark Theme Project Features Text */
+[data-theme='dark'] .project-card .text-xs,
+[data-theme='dark'] .project-card .text-sm {
+  color: #e2e8f0 !important;
+}
+
+/* Enhanced Dark Theme Project Tech Stack Tags */
+[data-theme='dark'] .project-card .ant-tag {
+  background: rgba(96, 165, 250, 0.15) !important;
+  border: 1px solid rgba(96, 165, 250, 0.3) !important;
+  color: #93c5fd !important;
+}
+
+/* Enhanced Dark Theme Project Title and Description */
+[data-theme='dark'] .project-card .ant-card-meta-title {
+  color: #f8fafc !important;
+}
+
+[data-theme='dark'] .project-card .ant-card-meta-description {
+  color: #cbd5e1 !important;
+}
+
+/* ============================================================================ */
+/* SPECIFIC TAILWIND CLASS OVERRIDES FOR DARK MODE */
+/* ============================================================================ */
+
+/* Override specific Tailwind classes used in project impact section */
+[data-theme='dark'] .bg-gradient-to-r.from-blue-50.to-purple-50 {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.25) 0%, rgba(168, 85, 247, 0.25) 100%) !important;
+  border: 1px solid rgba(96, 165, 250, 0.4) !important;
+}
+
+[data-theme='dark'] .text-gray-700.dark\:text-gray-300 {
+  color: #f8fafc !important;
+}
+
+[data-theme='dark'] .text-gray-800.dark\:text-white {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .text-gray-600.dark\:text-gray-300 {
+  color: #e2e8f0 !important;
+}
+
+/* Force override for impact text specifically */
+[data-theme='dark'] #projects .text-gray-700,
+[data-theme='dark'] #projects .dark\:text-gray-300 {
+  color: #f8fafc !important;
+  font-weight: 500 !important;
+}
+
+/* Force override for project section text */
+[data-theme='dark'] #projects .text-gray-800,
+[data-theme='dark'] #projects .dark\:text-white {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] #projects .text-gray-600,
+[data-theme='dark'] #projects .dark\:text-gray-300 {
+  color: #e2e8f0 !important;
+}
+
+/* ============================================================================ */
+/* DARK MODE CERTIFICATION SECTION FIXES */
+/* ============================================================================ */
+
+/* Enhanced Dark Theme Certification Cards */
+[data-theme='dark'] .certification-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+[data-theme='dark'] .certification-card:hover {
+  background: var(--card-bg-hover) !important;
+  border: 1px solid var(--border-light) !important;
+  box-shadow: var(--shadow-glow) !important;
+  transform: translateY(-4px) scale(1.01) !important;
+}
+
+/* Enhanced Dark Theme Certification ID Section */
+[data-theme='dark'] .certification-card .bg-gray-50 {
+  background: rgba(96, 165, 250, 0.15) !important;
+  border: 1px solid rgba(96, 165, 250, 0.3) !important;
+}
+
+[data-theme='dark'] .certification-card .dark\:bg-gray-800 {
+  background: rgba(96, 165, 250, 0.15) !important;
+  border: 1px solid rgba(96, 165, 250, 0.3) !important;
+}
+
+[data-theme='dark'] .certification-card .border-gray-200 {
+  border-color: rgba(96, 165, 250, 0.3) !important;
+}
+
+[data-theme='dark'] .certification-card .dark\:border-gray-700 {
+  border-color: rgba(96, 165, 250, 0.3) !important;
+}
+
+/* Enhanced Dark Theme Certification ID Text */
+[data-theme='dark'] .certification-card .text-gray-600 {
+  color: #f8fafc !important;
+  font-weight: 600 !important;
+}
+
+[data-theme='dark'] .certification-card .dark\:text-gray-400 {
+  color: #f8fafc !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Enhanced Dark Theme Certification Text Elements */
+[data-theme='dark'] .certification-card .text-gray-800 {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .certification-card .dark\:text-white {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .certification-card .text-blue-600 {
+  color: #93c5fd !important;
+}
+
+[data-theme='dark'] .certification-card .dark\:text-blue-400 {
+  color: #93c5fd !important;
 }
 
 /* Clean section backgrounds for both themes */

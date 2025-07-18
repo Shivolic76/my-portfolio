@@ -8,6 +8,7 @@ import { ThemeContextProvider } from './ThemeContext';
 import { useThemeMode } from './themeHooks';
 import { getAntdTheme } from './antdTheme';
 import '../styles/antd-custom.css';
+import '../styles/mobile-light-mode-fixes.css';
 
 // Theme mode type
 export type ThemeMode = 'light' | 'dark';
