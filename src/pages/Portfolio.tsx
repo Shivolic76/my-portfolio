@@ -990,7 +990,7 @@ const Portfolio: React.FC = () => {
           <div className="max-w-full mx-auto px-4">
             <div className="relative">
               {/* Timeline Line - Hidden on mobile */}
-              <div className="absolute left-4 sm:left-6 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green-500 via-blue-500 to-purple-500 shadow-sm hidden md:block"></div>
+              <div className="absolute left-4 sm:left-6 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green-500 via-blue-500 to-purple-500 shadow-sm hidden md:block experience-timeline-line"></div>
 
               {experiences.map((exp, index) => (
                 <div
@@ -999,7 +999,7 @@ const Portfolio: React.FC = () => {
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >
                   {/* Timeline Dot - Responsive positioning */}
-                  <div className="absolute left-2 sm:left-4 md:left-6 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-green-500 to-teal-600 rounded-full border-2 sm:border-3 md:border-4 border-white dark:border-gray-900 shadow-lg z-10 hover:scale-110 transition-transform duration-300 hidden md:block"></div>
+                  <div className="absolute left-2 sm:left-4 md:left-6 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-green-500 to-teal-600 rounded-full border-2 sm:border-3 md:border-4 border-white dark:border-gray-900 shadow-lg z-10 hover:scale-110 transition-transform duration-300 hidden md:block experience-timeline-dot"></div>
 
                   {/* Experience Card - Enhanced Responsive */}
                   <div className="md:ml-16 lg:ml-20 xl:ml-24">

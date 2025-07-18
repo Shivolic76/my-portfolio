@@ -91,7 +91,7 @@ const FloatingThemeToggle: React.FC = () => {
   return (
     <div
       ref={buttonRef}
-      className="fixed z-50"
+      className="fixed z-50 floating-theme-toggle"
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
@@ -105,9 +105,13 @@ const FloatingThemeToggle: React.FC = () => {
         {/* Drag Button */}
         <div
           onMouseDown={handleMouseDown}
-          className={`absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gray-500 flex items-center justify-center cursor-grab ${
+          className={`absolute -top-2 -right-2 w-6 h-6 rounded-full ${
+            isDark
+              ? "bg-slate-600 hover:bg-slate-500"
+              : "bg-gray-500 hover:bg-gray-400"
+          } flex items-center justify-center cursor-grab ${
             isHovered ? "opacity-70" : "opacity-0"
-          } transition-opacity`}
+          } transition-all duration-300`}
         >
           <SafeIcon icon={MdDragIndicator} className="text-white text-xs" />
         </div>
@@ -120,23 +124,37 @@ const FloatingThemeToggle: React.FC = () => {
           icon={isDark ? <SafeIcon icon={FaSun} /> : <SafeIcon icon={FaMoon} />}
           onClick={handleClick}
           className={`
-            shadow-lg hover:shadow-xl transition-all duration-300
+            shadow-lg hover:shadow-xl transition-all duration-300 border-2
             ${
               isDark
-                ? "bg-yellow-500 hover:bg-yellow-400 border-yellow-500 hover:border-yellow-400"
-                : "bg-indigo-600 hover:bg-indigo-500 border-indigo-600 hover:border-indigo-500"
+                ? "bg-yellow-500 hover:bg-yellow-400 border-yellow-400 hover:border-yellow-300 text-gray-900"
+                : "bg-indigo-600 hover:bg-indigo-500 border-indigo-500 hover:border-indigo-400 text-white"
             }
           `}
-          style={{ width: "60px", height: "60px", fontSize: "24px" }}
+          style={{
+            width: "60px",
+            height: "60px",
+            fontSize: "24px",
+            boxShadow: isDark
+              ? "0 4px 14px 0 rgba(251, 191, 36, 0.4), 0 0 20px rgba(251, 191, 36, 0.2)"
+              : "0 4px 14px 0 rgba(79, 70, 229, 0.4), 0 0 20px rgba(79, 70, 229, 0.2)"
+          }}
         />
 
         {/* Tooltip */}
         <div
-          className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-black text-white text-xs rounded-lg transition-opacity ${
+          className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 ${
+            isDark
+              ? "bg-slate-800 text-slate-100 border border-slate-600"
+              : "bg-gray-900 text-white"
+          } text-xs rounded-lg transition-opacity shadow-lg ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
         >
-          {isDark ? "Light Mode" : "Dark Mode"}
+          {isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          <div className={`absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
+            isDark ? "border-t-slate-800" : "border-t-gray-900"
+          }`}></div>
         </div>
       </div>
     </div>
