@@ -185,10 +185,10 @@
 /* Force override for certification ID text */
 [data-theme='dark'] .certification-card .font-mono {
   color: #ffffff !important;
-  background: rgba(96, 165, 250, 0.2) !important;
+  background: rgba(96, 165, 250, 0.2) ;
   padding: 8px 12px !important;
   border-radius: 8px !important;
-  border: 1px solid rgba(96, 165, 250, 0.4) !important;
+  border: 1px solid rgba(96, 165, 250, 0.4);
 }
 
 /* Enhanced Dark Theme Modal Styles */

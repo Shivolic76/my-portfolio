@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Button } from "antd";
 import { useTheme } from "../theme/themeHooks";
 import { FaSun, FaMoon } from "react-icons/fa";
-import { MdDragIndicator } from "react-icons/md";
 import { SafeIcon } from "../utils/IconWrapper";
 
 // ✅ Use SafeIcon wrapper to avoid TS2786 issues
@@ -18,6 +17,7 @@ const FloatingThemeToggle: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState<Position>({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [dragStartTime, setDragStartTime] = useState(0);
   const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,11 +38,25 @@ const FloatingThemeToggle: React.FC = () => {
   }, []);
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
+    const startTime = Date.now();
+    setDragStartTime(startTime);
     setDragStart({
       x: e.clientX - position.x,
       y: e.clientY - position.y,
     });
+
+    // Start dragging after a short delay to distinguish from click
+    const dragTimeout = setTimeout(() => {
+      setIsDragging(true);
+    }, 150); // 150ms delay before starting drag
+
+    const cleanup = () => {
+      clearTimeout(dragTimeout);
+    };
+
+    // Store cleanup function for later use
+    (e.target as any).dragCleanup = cleanup;
+
     e.preventDefault();
   };
 
@@ -64,13 +78,16 @@ const FloatingThemeToggle: React.FC = () => {
   );
 
   const handleMouseUp = useCallback(() => {
+    const wasJustDragging = isDragging;
     setIsDragging(false);
-  }, []);
 
-  const handleClick = (e: React.MouseEvent) => {
-    if (!isDragging) toggleTheme();
-    e.stopPropagation();
-  };
+    // If we weren't dragging and it was a quick release, treat as click
+    if (!wasJustDragging && Date.now() - dragStartTime < 200) {
+      toggleTheme();
+    }
+  }, [isDragging, dragStartTime, toggleTheme]);
+
+
 
   useEffect(() => {
     if (isDragging) {
@@ -102,29 +119,16 @@ const FloatingThemeToggle: React.FC = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative group">
-        {/* Drag Button */}
-        <div
-          onMouseDown={handleMouseDown}
-          className={`absolute -top-2 -right-2 w-6 h-6 rounded-full ${
-            isDark
-              ? "bg-slate-600 hover:bg-slate-500"
-              : "bg-gray-500 hover:bg-gray-400"
-          } flex items-center justify-center cursor-grab ${
-            isHovered ? "opacity-70" : "opacity-0"
-          } transition-all duration-300`}
-        >
-          <SafeIcon icon={MdDragIndicator} className="text-white text-xs" />
-        </div>
-
-        {/* Toggle Theme */}
+        {/* Toggle Theme Button - Now draggable */}
         <Button
           type="primary"
           shape="circle"
           size="large"
           icon={isDark ? <SafeIcon icon={FaSun} /> : <SafeIcon icon={FaMoon} />}
-          onClick={handleClick}
+          onMouseDown={handleMouseDown}
           className={`
             shadow-lg hover:shadow-xl transition-all duration-300 border-2
+            ${isDragging ? 'cursor-grabbing scale-105' : 'cursor-grab'}
             ${
               isDark
                 ? "bg-yellow-500 hover:bg-yellow-400 border-yellow-400 hover:border-yellow-300 text-gray-900"
@@ -135,9 +139,13 @@ const FloatingThemeToggle: React.FC = () => {
             width: "60px",
             height: "60px",
             fontSize: "24px",
-            boxShadow: isDark
-              ? "0 4px 14px 0 rgba(251, 191, 36, 0.4), 0 0 20px rgba(251, 191, 36, 0.2)"
-              : "0 4px 14px 0 rgba(79, 70, 229, 0.4), 0 0 20px rgba(79, 70, 229, 0.2)"
+            boxShadow: isDragging
+              ? (isDark
+                  ? "0 8px 25px 0 rgba(251, 191, 36, 0.6), 0 0 30px rgba(251, 191, 36, 0.4)"
+                  : "0 8px 25px 0 rgba(79, 70, 229, 0.6), 0 0 30px rgba(79, 70, 229, 0.4)")
+              : (isDark
+                  ? "0 4px 14px 0 rgba(251, 191, 36, 0.4), 0 0 20px rgba(251, 191, 36, 0.2)"
+                  : "0 4px 14px 0 rgba(79, 70, 229, 0.4), 0 0 20px rgba(79, 70, 229, 0.2)")
           }}
         />
 
