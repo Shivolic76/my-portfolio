@@ -37,10 +37,8 @@ export interface Skill {
 }
 
 export interface SkillCategories {
-  frontend: Skill[];
-  libraries: Skill[];
+  allSkills: Skill[];
   tools: Skill[];
-  concepts: Skill[];
 }
 
 export interface Experience {

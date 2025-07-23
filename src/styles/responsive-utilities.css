@@ -318,6 +318,69 @@
     margin-bottom: 8px;
   }
 
+  /* Enhanced button mobile optimizations */
+  .enhanced-primary-btn,
+  .enhanced-secondary-btn,
+  .enhanced-tertiary-btn {
+    min-height: 48px !important;
+    height: 48px !important;
+    font-size: 14px !important;
+    padding: 12px 20px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .enhanced-social-btn {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 18px !important;
+  }
+
+  /* Remove transform effects on mobile for better performance */
+  .enhanced-primary-btn:hover,
+  .enhanced-secondary-btn:hover,
+  .enhanced-tertiary-btn:hover,
+  .enhanced-social-btn:hover {
+    transform: none !important;
+  }
+
+  /* Theme toggle button mobile optimizations */
+  .theme-toggle-btn {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+    font-size: 18px !important;
+    border-width: 2px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+  }
+
+  .theme-toggle-btn:hover {
+    transform: none !important;
+  }
+
+  .theme-toggle-btn:active {
+    transform: scale(0.95) !important;
+  }
+
+  /* Mobile-specific overrides for circular shape */
+  .theme-toggle-btn.ant-btn,
+  .theme-toggle-btn.ant-btn-circle,
+  .theme-toggle-btn.ant-btn-primary,
+  .theme-toggle-btn.ant-btn-large {
+    border-radius: 50% !important;
+    padding: 0 !important;
+  }
+
+  /* Adjust fixed positioning for mobile */
+  .floating-theme-toggle {
+    top: 16px !important;
+    right: 16px !important;
+  }
+
   /* Improve readability on mobile */
   .ant-typography {
     word-break: break-word;

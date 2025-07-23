@@ -47,6 +47,29 @@
     font-size: 16px !important; /* Prevents zoom on iOS */
   }
 
+  /* Override for theme toggle button to maintain circular shape */
+  [data-theme='light'] .theme-toggle-btn,
+  html:not([data-theme='dark']) .theme-toggle-btn {
+    border-radius: 50% !important;
+    padding: 0 !important;
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+  }
+
+  [data-theme='light'] .theme-toggle-btn.ant-btn,
+  [data-theme='light'] .theme-toggle-btn.ant-btn-circle,
+  [data-theme='light'] .theme-toggle-btn.ant-btn-primary,
+  [data-theme='light'] .theme-toggle-btn.ant-btn-large,
+  html:not([data-theme='dark']) .theme-toggle-btn.ant-btn,
+  html:not([data-theme='dark']) .theme-toggle-btn.ant-btn-circle,
+  html:not([data-theme='dark']) .theme-toggle-btn.ant-btn-primary,
+  html:not([data-theme='dark']) .theme-toggle-btn.ant-btn-large {
+    border-radius: 50% !important;
+    padding: 0 !important;
+  }
+
   /* Enhanced mobile typography */
   [data-theme='light'] .ant-typography,
   html:not([data-theme='dark']) .ant-typography {
