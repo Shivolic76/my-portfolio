@@ -548,7 +548,7 @@ const Portfolio: React.FC = () => {
             </motion.div>
 
             <motion.div
-              className="flex flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 px-2"
+              className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 px-2"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.8, duration: 0.6 }}
@@ -649,7 +649,7 @@ const Portfolio: React.FC = () => {
                   type="text"
                   icon={<SafeIcon icon={FaGithub} />}
                   className="enhanced-social-btn text-white bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-300
-                p-3 text-xl rounded-full shadow-md transition-all duration-300"
+                p-3 text-xl !rounded-full shadow-md transition-all duration-300"
                 />
               </div>
 
@@ -659,7 +659,7 @@ const Portfolio: React.FC = () => {
                   type="text"
                   icon={<SafeIcon icon={FaLinkedin} />}
                   className="enhanced-social-btn text-white bg-[#0A66C2] hover:bg-[#004182]
-                p-3 text-xl rounded-full shadow-md transition-all duration-300"
+                p-3 text-xl !rounded-full shadow-md transition-all duration-300"
                 />
               </div>
 

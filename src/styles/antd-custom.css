@@ -2076,7 +2076,7 @@ html:not([data-theme='dark']) .ant-btn-primary {
   /* Enhanced button styling for light theme mobile */
   [data-theme='light'] .ant-btn,
   html:not([data-theme='dark']) .ant-btn {
-    border-radius: 12px !important;
+    /* border-radius: 12px !important; */
     font-weight: 500 !important;
     min-height: 44px !important;
   }
