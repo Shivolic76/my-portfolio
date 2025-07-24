@@ -381,28 +381,18 @@
     line-height: 1.5 !important;
   }
 
-  /* Mobile light mode certificate ID font styling */
-  [data-theme="light"] .certification-card .font-mono,
+  Mobile
+    light
+    mode
+    certificate
+    ID
+    font
+    styling
+    [data-theme="light"]
+    .certification-card
+    .font-mono,
   html:not([data-theme="dark"]) .certification-card .font-mono {
-    color: #1f2937 !important;
-    font-size: 13px !important;
-    line-height: 1.6 !important;
-    padding: 10px 12px !important;
-    font-weight: 600 !important;
-    word-break: break-all !important;
-    background: #ffffff !important;
-    border: 1px solid #e5e7eb !important;
-    border-radius: 8px !important;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05) !important;
-  }
-
-  [data-theme="light"] .certification-card .font-mono.font-medium,
-  html:not([data-theme="dark"]) .certification-card .font-mono.font-medium {
-    color: #1f2937 !important;
-    padding: 10px 12px !important;
-    font-weight: 600 !important;
-    background: #ffffff !important;
-    border: 1px solid #e5e7eb !important;
+    padding: 8px 12px !important;
     border-radius: 8px !important;
   }
 }
