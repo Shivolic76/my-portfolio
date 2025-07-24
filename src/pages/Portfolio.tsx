@@ -65,9 +65,16 @@ import {
   SiEslint,
   SiApacheecharts,
   SiChartdotjs,
+  SiHtml5,
+  SiReact,
 } from "react-icons/si";
 
-import { MdDevices, MdManageAccounts, MdSpeed, MdSearch } from "react-icons/md";
+import {
+  MdDevices,
+  MdManageAccounts,
+  MdSpeed,
+  MdSearch
+} from "react-icons/md";
 
 import { BiCloudDownload, BiLogoCss3 } from "react-icons/bi";
 
@@ -274,10 +281,13 @@ const Portfolio: React.FC = () => {
       BiLogoCss3: <SafeIcon icon={BiLogoCss3} size={24} />,
 
       // Legacy Outlined icons (for certifications)
-      CodeOutlined: <SafeIcon icon={FaCode} size={24} />,
+      CodeOutlined: <SafeIcon icon={SiJavascript} size={24} />,
       DesktopOutlined: <SafeIcon icon={FaDesktop} size={24} />,
       BookOutlined: <SafeIcon icon={FaBook} size={24} />,
       TrophyOutlined: <SafeIcon icon={FaTrophy} size={24} />,
+      Html5Outlined: <SafeIcon icon={SiHtml5} size={24} />,
+      AppstoreAddOutlined: <SafeIcon icon={SiBootstrap} size={24} />,
+      ThunderboltOutlined: <SafeIcon icon={SiReact} size={24} />,
     };
     return iconMap[iconName] || <SafeIcon icon={FaCode} size={24} />;
   };
