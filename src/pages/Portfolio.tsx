@@ -310,9 +310,9 @@ const Portfolio: React.FC = () => {
   // Get certifications from JSON data and add icons
   const staticCertifications = portfolioData?.certifications
     ? portfolioData.certifications.map((cert) => ({
-        ...cert,
-        icon: getIconComponent(cert.icon),
-      }))
+      ...cert,
+      icon: getIconComponent(cert.icon),
+    }))
     : [];
 
   // Get blog posts from JSON data
@@ -622,6 +622,7 @@ const Portfolio: React.FC = () => {
                   size="middle"
                   icon={<SafeIcon icon={FaDownload} />}
                   className="enhanced-secondary-btn w-full sm:w-auto text-base font-semibold"
+                  onClick={() => window.open(personalInfo.resumeUrl, "_blank")}
                 >
                   Download Resume
                 </Button>
@@ -652,6 +653,7 @@ const Portfolio: React.FC = () => {
                   icon={<SafeIcon icon={FaGithub} />}
                   className="enhanced-social-btn text-white bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-300
                 p-3 text-xl !rounded-full shadow-md transition-all duration-300"
+                  onClick={() => window.open(personalInfo.github, "_blank")}
                 />
               </div>
 
@@ -662,6 +664,7 @@ const Portfolio: React.FC = () => {
                   icon={<SafeIcon icon={FaLinkedin} />}
                   className="enhanced-social-btn text-white bg-[#0A66C2] hover:bg-[#004182]
                 p-3 text-xl !rounded-full shadow-md transition-all duration-300"
+                  onClick={() => window.open(personalInfo.linkedin, "_blank")}
                 />
               </div>
 
@@ -964,16 +967,16 @@ const Portfolio: React.FC = () => {
                                   skill.level >= 90
                                     ? "green"
                                     : skill.level >= 80
-                                    ? "blue"
-                                    : "orange"
+                                      ? "blue"
+                                      : "orange"
                                 }
                                 className="text-xs"
                               >
                                 {skill.level >= 90
                                   ? "Expert"
                                   : skill.level >= 80
-                                  ? "Advanced"
-                                  : "Intermediate"}
+                                    ? "Advanced"
+                                    : "Intermediate"}
                               </Tag>
                             </div>
                           </div>
@@ -1571,8 +1574,7 @@ const Portfolio: React.FC = () => {
                         Send Message
                       </Title>
                       <Text className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm md:text-base">
-                        shivam.chudasama@rapidops.com
-                      </Text>
+                        shivamchudasama.official@gmail.com                      </Text>
                     </div>
                     <Button
                       type="primary"
@@ -1607,6 +1609,7 @@ const Portfolio: React.FC = () => {
                       className="mt-3 sm:mt-4 cartoon-button w-full"
                       icon={<SafeIcon icon={FaLinkedin} />}
                       size="large"
+                      onClick={() => window.open(personalInfo.linkedin, "_blank")}
                     >
                       Connect
                     </Button>
@@ -1635,6 +1638,7 @@ const Portfolio: React.FC = () => {
                       className="mt-3 sm:mt-4 cartoon-button w-full"
                       icon={<SafeIcon icon={FaGithub} />}
                       size="large"
+                      onClick={() => window.open(personalInfo.github, "_blank")}
                     >
                       Follow
                     </Button>
@@ -1676,6 +1680,7 @@ const Portfolio: React.FC = () => {
                   size="large"
                   icon={<SafeIcon icon={FaDownload} />}
                   className="px-8 py-6 h-auto text-lg font-semibold rounded-2xl"
+                  onClick={() => window.open(personalInfo.resumeUrl, "_blank")}
                 >
                   Download Resume
                 </Button>
