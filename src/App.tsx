@@ -4,18 +4,13 @@ import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from './theme';
 import { TOAST_CONFIG } from './constants';
 import Portfolio from './pages/Portfolio';
-import FloatingThemeToggle from './components/FloatingThemeToggle';
 import "react-toastify/dist/ReactToastify.css";
 
-/**
- * Main App component - Direct Portfolio Display with Floating Theme Toggle
- */
 const App: React.FC = () => {
   return (
     <ThemeProvider>
       <div className="App min-h-screen">
         <Portfolio />
-        <FloatingThemeToggle />
         <ToastContainer
           position={TOAST_CONFIG.POSITION}
           autoClose={TOAST_CONFIG.AUTO_CLOSE}

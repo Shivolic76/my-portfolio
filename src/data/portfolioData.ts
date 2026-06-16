@@ -19,7 +19,7 @@ export const portfolioData: PortfolioData = {
     description:
       "Frontend Engineer with 4+ years of experience building scalable SaaS, analytics, and real-time web applications using React.js, Next.js, and TypeScript. Skilled in frontend architecture, reusable design systems, and performance optimization for high-traffic applications.",
     yearsOfExperience: "4+",
-    projectsCompleted: "50+",
+    projectsCompleted: "17+",
     resumeUrl: "https://drive.google.com/file/d/1Pdki-nBdUxkmMcJHK-lltp01BGF5EZnd/view?usp=sharing",
   },
   statistics: {
