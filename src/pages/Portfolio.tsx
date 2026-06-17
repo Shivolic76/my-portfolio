@@ -367,19 +367,6 @@ const fadeUp = {
                   <motion.div className="absolute inset-0 pointer-events-none" style={{ background: heroGlare }} />
                 </div>
 
-                {/* Floating "currently at" chip on the photo */}
-                <motion.div
-                  className="absolute -bottom-4 -left-4 flex items-center gap-2 px-3 py-2 bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-100 dark:border-slate-700"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9, duration: 0.5 }}
-                >
-                  <img src={COMPANY_LOGOS["RapidOps Inc."]} alt="RapidOps" className="w-6 h-6 rounded-md object-contain" />
-                  <div className="text-left leading-tight">
-                    <p className="text-[10px] text-gray-400 dark:text-gray-500">Currently at</p>
-                    <p className="text-xs font-bold text-gray-800 dark:text-gray-200">RapidOps Inc.</p>
-                  </div>
-                </motion.div>
 
               </motion.div>
             </motion.div>
@@ -935,7 +922,6 @@ const fadeUp = {
                 { border: "border-l-blue-500",   accent: "bg-blue-500",   badge: "bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300" },
               ];
               const style = EDU_STYLES[index % EDU_STYLES.length];
-              const passingYear = edu.duration.split("–")[1]?.trim() ?? edu.duration;
 
               return (
                 <motion.div
