@@ -924,7 +924,7 @@ const fadeUp = {
                       <div key={index} style={{ width: `${100 / total}%` }} className="px-3">
                         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-slate-700/50 shadow-sm h-full flex flex-col">
                           <SafeIcon icon={FaQuoteLeft} size={28} className="text-indigo-200 dark:text-indigo-700 mb-4" />
-                          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed flex-1 mb-6">
+                          <p className="text-gray-600 text-left dark:text-gray-300 text-sm sm:text-base leading-relaxed flex-1 mb-6">
                             {t.content}
                           </p>
                           <div>
