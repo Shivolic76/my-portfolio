@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { label: "Skills", id: "skills" },
   { label: "Experience", id: "experience" },
   { label: "Projects", id: "projects" },
+  { label: "Education", id: "education" },
   { label: "Contact", id: "contact" },
 ];
 
@@ -25,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-      const sections = ["hero", "about", "skills", "experience", "projects", "contact"];
+      const sections = ["hero", "about", "skills", "experience", "projects", "testimonials", "education", "certifications", "contact"];
       let current = "hero";
       for (const section of sections) {
         const el = document.getElementById(section);

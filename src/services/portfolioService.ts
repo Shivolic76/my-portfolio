@@ -85,6 +85,15 @@ export interface Certification {
   url: string;
 }
 
+export interface Education {
+  degree: string;
+  field: string;
+  institution: string;
+  location: string;
+  duration: string;
+  type: string;
+}
+
 export interface Blog {
   id: number;
   title: string;
@@ -118,6 +127,7 @@ export interface PortfolioData {
   experiences: Experience[];
   projects: Project[];
   testimonials: Testimonial[];
+  education: Education[];
   certifications: Certification[];
   blogs: Blog[];
   contact: Contact;

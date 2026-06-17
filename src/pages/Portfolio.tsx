@@ -18,6 +18,8 @@ import {
   FaExternalLinkAlt,
   FaQuoteLeft,
   FaStar,
+  FaGraduationCap,
+  FaChevronDown,
 } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { SafeIcon } from "../utils/IconWrapper";
@@ -134,6 +136,12 @@ const COMPANY_LOGOS: Record<string, string> = {
   "RapidOps Inc.": "https://media.licdn.com/dms/image/v2/D4D0BAQEHptyZSMEPFw/company-logo_200_200/company-logo_200_200/0/1735732229357/rapidops_inc_logo?e=1782950400&v=beta&t=hFwGYleQARNSdMwsAEMWd0Ip8CLMRNAFPVGwkJUn4fw",
   "Incipient Infotech": "https://media.licdn.com/dms/image/v2/C4D0BAQHtkPNSOPwiMA/company-logo_200_200/company-logo_200_200/0/1671175097160/incipientinfo_logo?e=1782950400&v=beta&t=EJ6umzGFqK9SKhnoGJm2esqXXhGpJAyWqiGWwqSowgI",
   "Quantex Solutions": "https://media.licdn.com/dms/image/v2/D4D0BAQEWvoOiyTGodA/company-logo_200_200/company-logo_200_200/0/1703399544913/quantex_solutions_logo?e=1782950400&v=beta&t=kTVNlmp4Uiv1VQHZbjdZ37ekac3VezNflZXgFmc0MUw",
+};
+
+const EDUCATION_LOGOS: Record<string, string> = {
+  "L.D. College of Engineering": "https://ldce.ac.in/LDCE_Logo.png",
+  "C.U. Shah University": "https://www.cushahuniversity.ac.in/img/culogo_new.png",
+  "GSEB Board": "https://www.gseb.org/assets/images/gseb-english-logo.png",
 };
 
 const CERT_ICONS: Record<string, React.ReactNode> = {
@@ -322,8 +330,9 @@ const fadeUp = {
       <Navbar resumeUrl={personalInfo.resumeUrl} />
 
       {/* ── Hero ───────────────────────────────────────────────── */}
-      <section id="hero" className="pt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 sm:py-12">
+      <section id="hero" className="pt-16 relative overflow-hidden">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-14 sm:py-20 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
             {/* Photo — 3D tilt card */}
@@ -347,25 +356,30 @@ const fadeUp = {
                 className="relative"
                 style={{ rotateX: heroRotateX, rotateY: heroRotateY, transformStyle: "preserve-3d" }}
               >
-                {/* Ambient glow behind the card */}
                 <div className="absolute -inset-6 bg-gradient-to-br from-indigo-400/25 via-purple-400/20 to-pink-400/15 dark:from-indigo-500/20 dark:via-purple-500/15 dark:to-pink-500/10 rounded-3xl blur-2xl -z-10" />
-
-                {/* Tilted background plate */}
                 <div className="absolute -inset-3 sm:-inset-4 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/30 rounded-3xl transform rotate-3 -z-[5]" />
-
-                {/* Image + glare wrapper */}
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
                   <img
                     src={profileImg}
                     alt="Shivam Chudasama"
                     className="w-52 h-52 xs:w-60 xs:h-60 sm:w-72 sm:h-72 lg:w-[22rem] lg:h-[22rem] object-cover object-top block"
                   />
-                  {/* Mouse-tracked glare */}
-                  <motion.div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{ background: heroGlare }}
-                  />
+                  <motion.div className="absolute inset-0 pointer-events-none" style={{ background: heroGlare }} />
                 </div>
+
+                {/* Floating "currently at" chip on the photo */}
+                <motion.div
+                  className="absolute -bottom-4 -left-4 flex items-center gap-2 px-3 py-2 bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-100 dark:border-slate-700"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9, duration: 0.5 }}
+                >
+                  <img src={COMPANY_LOGOS["RapidOps Inc."]} alt="RapidOps" className="w-6 h-6 rounded-md object-contain" />
+                  <div className="text-left leading-tight">
+                    <p className="text-[10px] text-gray-400 dark:text-gray-500">Currently at</p>
+                    <p className="text-xs font-bold text-gray-800 dark:text-gray-200">RapidOps Inc.</p>
+                  </div>
+                </motion.div>
 
               </motion.div>
             </motion.div>
@@ -377,12 +391,15 @@ const fadeUp = {
               animate="visible"
               variants={stagger}
             >
-              <motion.div variants={fadeUp}>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/40 rounded-full mb-6 sm:mb-8">
+              {/* Status badges */}
+              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2 mb-6 sm:mb-8 justify-center lg:justify-start">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/40 rounded-full">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse flex-shrink-0" />
-                  <span className="text-xs sm:text-sm text-green-700 dark:text-green-400 font-medium">
-                    Available for freelance & full-time
-                  </span>
+                  <span className="text-xs text-green-700 dark:text-green-400 font-medium">Available for opportunities</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700/50 rounded-full">
+                  <img src={COMPANY_LOGOS["RapidOps Inc."]} alt="RapidOps" className="w-4 h-4 rounded object-contain" />
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">RapidOps Inc.</span>
                 </div>
               </motion.div>
 
@@ -390,14 +407,17 @@ const fadeUp = {
                 variants={fadeUp}
                 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-3 sm:mb-4 text-center lg:text-left"
               >
-                Shivam <span className="text-indigo-600">Chudasama</span>
+                Shivam{" "}
+                <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent">
+                  Chudasama
+                </span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
                 className="text-lg sm:text-xl lg:text-2xl text-gray-500 dark:text-gray-400 font-light mb-4 sm:mb-6 text-center lg:text-left"
               >
-                Frontend Engineer
+                {personalInfo.title}
               </motion.p>
 
               <motion.p
@@ -459,6 +479,7 @@ const fadeUp = {
             </motion.div>
           </div>
         </div>
+
       </section>
 
       {/* ── Stats ─────────────────────────────────────────────── */}
@@ -481,6 +502,20 @@ const fadeUp = {
           </div>
         </div>
       </section>
+
+      {/* ── Scroll indicator ──────────────────────────────────── */}
+      <motion.div
+        className="hidden sm:flex flex-col items-center gap-1.5 cursor-pointer py-5"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
+        onClick={() => scrollToSection("about")}
+      >
+        <span className="text-[11px] font-medium text-gray-400 dark:text-gray-600 tracking-widest uppercase">Scroll</span>
+        <motion.div animate={{ y: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}>
+          <SafeIcon icon={FaChevronDown} size={13} className="text-gray-400 dark:text-gray-600" />
+        </motion.div>
+      </motion.div>
 
       {/* ── About ─────────────────────────────────────────────── */}
       <section id="about" className="py-12 sm:py-16 lg:py-24">
@@ -810,7 +845,7 @@ const fadeUp = {
 
       {/* ── Testimonials ──────────────────────────────────────── */}
       <section id="testimonials" className="py-12 sm:py-16 lg:py-24 bg-gray-50 dark:bg-slate-800/30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader eyebrow="Social Proof" title="What People Say" subtitle="Feedback from colleagues I've had the pleasure of working with" />
 
           {(() => {
@@ -884,6 +919,78 @@ const fadeUp = {
               </div>
             );
           })()}
+        </div>
+      </section>
+
+      {/* ── Education ─────────────────────────────────────────── */}
+      <section id="education" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-slate-50 via-white to-indigo-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader eyebrow="Academic Background" title="Education" subtitle="My academic foundation in computer engineering" />
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
+            {portfolioData.education.map((edu, index) => {
+              const EDU_STYLES = [
+                { border: "border-l-violet-500", accent: "bg-violet-500", badge: "bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300" },
+                { border: "border-l-indigo-500", accent: "bg-indigo-500", badge: "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300" },
+                { border: "border-l-blue-500",   accent: "bg-blue-500",   badge: "bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300" },
+              ];
+              const style = EDU_STYLES[index % EDU_STYLES.length];
+              const passingYear = edu.duration.split("–")[1]?.trim() ?? edu.duration;
+
+              return (
+                <motion.div
+                  key={index}
+                  initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
+                  className="flex flex-col"
+                >
+                  <div className={`bg-white dark:bg-slate-800/70 rounded-2xl border border-gray-100 dark:border-slate-700/50 border-l-4 ${style.border} overflow-hidden hover:shadow-xl dark:hover:shadow-slate-900/40 transition-all duration-300 hover:-translate-y-1 flex flex-col h-full`}>
+
+                    <div className="p-4 sm:p-5 flex flex-col flex-1 text-left">
+
+                      {/* Logo + Degree row */}
+                      <div className="flex items-start gap-3 mb-3">
+                        <div className="w-11 h-11 rounded-xl bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 flex items-center justify-center p-1.5 flex-shrink-0 shadow-sm overflow-hidden">
+                          {EDUCATION_LOGOS[edu.institution] ? (
+                            <img src={EDUCATION_LOGOS[edu.institution]} alt={edu.institution} className="w-full h-full object-contain" />
+                          ) : (
+                            <SafeIcon icon={FaGraduationCap} size={20} className="text-indigo-400" />
+                          )}
+                        </div>
+
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white leading-snug">
+                            {edu.degree}
+                          </h3>
+                          <p className="text-xs sm:text-sm font-semibold text-indigo-600 dark:text-indigo-400 text-left mt-0.5">
+                            {edu.field}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Duration + Location */}
+                      <div className="space-y-1.5 mb-3">
+                        <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                          <SafeIcon icon={FaCalendarAlt} size={10} className="text-indigo-400 flex-shrink-0" />
+                          {edu.duration}
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                          <SafeIcon icon={FaMapMarkerAlt} size={10} className="text-rose-400 flex-shrink-0" />
+                          {edu.location}
+                        </div>
+                      </div>
+
+                      {/* Institution — bottom */}
+                      <div className="mt-auto pt-2.5 border-t border-gray-100 dark:border-slate-700/40">
+                        <p className="text-xs sm:text-sm font-bold text-gray-700 dark:text-gray-300">
+                          {edu.institution}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -1019,7 +1126,7 @@ const fadeUp = {
       <footer className="border-t border-gray-100 dark:border-slate-800/60 py-6 sm:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">
-            © 2025 Shivam Chudasama.
+            © 2026 Shivam Chudasama.
           </p>
           <div className="flex items-center gap-4">
             <button onClick={() => window.open(personalInfo.github, "_blank")} className="text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors p-1">

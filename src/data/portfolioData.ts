@@ -8,7 +8,7 @@ export type { PortfolioData } from "../services/portfolioService";
 export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Shivam Chudasama",
-    title: "Software Engineer",
+    title: "Frontend Engineer",
     location: "Ahmedabad, Gujarat",
     email: "shivamchudasama.official@gmail.com",
     phone: "+91 7698723169",
@@ -503,6 +503,32 @@ export const portfolioData: PortfolioData = {
         "I had the pleasure of working with Shivam at Quantex Solutions. He's a dedicated and skilled frontend developer who takes ownership of his work. His knowledge of React and modern JavaScript made a real impact on the projects we collaborated on.",
       rating: 5,
       avatar: "",
+    },
+  ],
+  education: [
+    {
+      degree: "Bachelor of Engineering",
+      field: "Computer Engineering",
+      institution: "L.D. College of Engineering",
+      location: "Ahmedabad, Gujarat",
+      duration: "2016 – 2019",
+      type: "B.E.",
+    },
+    {
+      degree: "Diploma in Computer Engineering",
+      field: "Computer Engineering",
+      institution: "C.U. Shah University",
+      location: "Wadhwan, Gujarat",
+      duration: "2013 – 2016",
+      type: "Diploma",
+    },
+    {
+      degree: "Secondary School Certificate (SSC)",
+      field: "General Studies",
+      institution: "GSEB Board",
+      location: "Gujarat",
+      duration: "2012 – 2013",
+      type: "SSC",
     },
   ],
   certifications: [
