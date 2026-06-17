@@ -347,7 +347,7 @@ const fadeUp = {
                 </button>
                 <button
                   onClick={() => setIsContactModalOpen(true)}
-                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 text-indigo-600 dark:text-indigo-400 font-semibold hover:bg-indigo-50 dark:hover:bg-indigo-900/20 rounded-xl transition-all duration-200 text-sm sm:text-base"
+                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 text-indigo-600 dark:text-indigo-400 font-semibold border border-indigo-400 dark:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 rounded-xl transition-all duration-200 text-sm sm:text-base"
                 >
                   Let's Talk
                 </button>
