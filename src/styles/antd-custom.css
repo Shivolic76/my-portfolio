@@ -1762,6 +1762,39 @@ html:not([data-theme='dark']) .text-gray-300 {
   color: var(--text-color);
 }
 
+/* Portfolio contact modal */
+.portfolio-modal .ant-modal-content {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.portfolio-modal .ant-modal-close {
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.portfolio-modal .ant-modal-close:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.30) !important;
+}
+
+.portfolio-modal .ant-modal-close .ant-modal-close-icon,
+.portfolio-modal .ant-modal-close .ant-modal-close-x {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
 /* Custom drawer styles */
 .ant-drawer-content {
   background: var(--background-color);

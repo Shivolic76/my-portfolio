@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Modal, Form, Input, message, Spin, Alert, Tag } from "antd";
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { usePortfolioData } from "../hooks/usePortfolioData";
 
 import {
@@ -20,8 +20,11 @@ import {
   FaStar,
   FaGraduationCap,
   FaChevronDown,
+  FaArrowUp,
+  FaUsers,
+  FaCodeBranch,
 } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { MdEmail, MdClose } from "react-icons/md";
 import { SafeIcon } from "../utils/IconWrapper";
 import {
   SiHtml5, SiCss3, SiJavascript, SiTypescript, SiReact, SiNextdotjs,
@@ -152,6 +155,7 @@ const CERT_ICONS: Record<string, React.ReactNode> = {
   TrophyOutlined: <SafeIcon icon={FaTrophy} size={30} />,
 };
 
+
 const SectionHeader = ({
   eyebrow,
   title,
@@ -185,6 +189,7 @@ const Portfolio: React.FC = () => {
   const [cardsPerView, setCardsPerView] = useState(1);
   const [certCardsPerView, setCertCardsPerView] = useState(3);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const [form] = Form.useForm();
   const statsRef = useRef<HTMLDivElement>(null);
 
@@ -253,6 +258,7 @@ const Portfolio: React.FC = () => {
     const onScroll = () => {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       setScrollProgress(total > 0 ? window.scrollY / total : 0);
+      setShowBackToTop(window.scrollY > 400);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -323,7 +329,7 @@ const fadeUp = {
     <div className="min-h-screen bg-white dark:bg-slate-950 text-gray-900 dark:text-white overflow-x-hidden">
       {/* ── Scroll progress bar ───────────────────────────────── */}
       <div
-        className="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-[9999]"
+        className="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-blue-900 via-blue-600 to-cyan-400 z-[9999]"
         style={{ width: `${scrollProgress * 100}%` }}
       />
 
@@ -332,7 +338,7 @@ const fadeUp = {
       {/* ── Hero ───────────────────────────────────────────────── */}
       <section id="hero" className="pt-16 relative overflow-hidden">
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-14 sm:py-20 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 sm:py-12 lg:py-20">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
             {/* Photo — 3D tilt card */}
@@ -356,8 +362,8 @@ const fadeUp = {
                 className="relative"
                 style={{ rotateX: heroRotateX, rotateY: heroRotateY, transformStyle: "preserve-3d" }}
               >
-                <div className="absolute -inset-6 bg-gradient-to-br from-indigo-400/25 via-purple-400/20 to-pink-400/15 dark:from-indigo-500/20 dark:via-purple-500/15 dark:to-pink-500/10 rounded-3xl blur-2xl -z-10" />
-                <div className="absolute -inset-3 sm:-inset-4 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/30 rounded-3xl transform rotate-3 -z-[5]" />
+                <div className="absolute -inset-6 bg-gradient-to-br from-blue-400/25 via-blue-500/20 to-blue-600/15 dark:from-blue-600/20 dark:via-blue-700/15 dark:to-blue-800/10 rounded-3xl blur-2xl -z-10" />
+                <div className="absolute -inset-3 sm:-inset-4 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/30 rounded-3xl transform rotate-3 -z-[5]" />
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
                   <img
                     src={profileImg}
@@ -395,7 +401,7 @@ const fadeUp = {
                 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-3 sm:mb-4 text-center lg:text-left"
               >
                 Shivam{" "}
-                <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 bg-clip-text text-transparent">
                   Chudasama
                 </span>
               </motion.h1>
@@ -415,6 +421,24 @@ const fadeUp = {
                 I care about clean architecture, performance, and shipping work teams are proud of.
               </motion.p>
 
+              {/* Primary CTA buttons */}
+              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 mb-5 justify-center lg:justify-start">
+                <button
+                  onClick={() => scrollToSection("projects")}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white font-semibold rounded-xl shadow-lg shadow-blue-800/30 transition-all duration-200 hover:-translate-y-0.5 text-sm"
+                >
+                  <SafeIcon icon={FaCode} size={13} />
+                  View My Projects
+                </button>
+                <button
+                  onClick={() => setIsContactModalOpen(true)}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 font-semibold rounded-xl border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all duration-200 hover:-translate-y-0.5 text-sm shadow-sm"
+                >
+                  <SafeIcon icon={MdEmail} size={14} />
+                  Let's Talk
+                </button>
+              </motion.div>
+
               {/* Social icons */}
               <motion.div variants={fadeUp} className="flex items-center gap-3 mb-6 sm:mb-8 justify-center lg:justify-start">
                 {/* Social links */}
@@ -433,7 +457,7 @@ const fadeUp = {
                   <SafeIcon icon={FaLinkedin} size={15} />
                 </button>
                 <button
-                  onClick={() => setIsContactModalOpen(true)}
+                  onClick={() => { window.location.href = `mailto:${personalInfo.email}`; }}
                   title="Email"
                   className="w-9 h-9 flex items-center justify-center rounded-full bg-rose-500 hover:bg-rose-600 text-white transition-all duration-200"
                 >
@@ -472,17 +496,20 @@ const fadeUp = {
       </section>
 
       {/* ── Stats ─────────────────────────────────────────────── */}
-      <section id="stats" ref={statsRef} className="py-10 sm:py-14 border-t border-b border-gray-100 dark:border-slate-800/60 bg-gray-50/80 dark:bg-slate-900/40">
+      <section id="stats" ref={statsRef} className="py-6 sm:py-8 border-t border-b border-gray-100 dark:border-slate-800/60 bg-gray-50/80 dark:bg-slate-900/40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-6">
             {[
-              { value: animatedStats.projects, suffix: "+", label: "Projects Completed", color: "text-indigo-600 dark:text-indigo-400" },
-              { value: animatedStats.experience, suffix: "+", label: "Years Experience", color: "text-emerald-600 dark:text-emerald-400" },
-              { value: animatedStats.clients, suffix: "+", label: "Happy Clients", color: "text-violet-600 dark:text-violet-400" },
-              { value: animatedStats.commits, suffix: "+", label: "Code Commits", color: "text-orange-600 dark:text-orange-400" },
+              { value: animatedStats.projects,  suffix: "+", label: "Projects Completed", color: "text-indigo-600 dark:text-indigo-400",  icon: FaCode,       iconBg: "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400"  },
+              { value: animatedStats.experience, suffix: "+", label: "Years Experience",   color: "text-emerald-600 dark:text-emerald-400", icon: FaBriefcase,  iconBg: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400" },
+              { value: animatedStats.clients,    suffix: "+", label: "Happy Clients",      color: "text-violet-600 dark:text-violet-400",  icon: FaUsers,      iconBg: "bg-violet-100 dark:bg-violet-900/40 text-violet-600 dark:text-violet-400"    },
+              { value: animatedStats.commits,    suffix: "+", label: "Code Commits",       color: "text-orange-600 dark:text-orange-400",  icon: FaCodeBranch, iconBg: "bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400"   },
             ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className={`text-3xl sm:text-4xl lg:text-5xl font-bold mb-1.5 sm:mb-2 ${stat.color}`}>
+              <div key={i} className="text-center flex flex-col items-center group cursor-default">
+                <div className={`w-11 h-11 sm:w-13 sm:h-13 rounded-xl ${stat.iconBg} flex items-center justify-center mb-3 transition-transform duration-200 group-hover:scale-110`}>
+                  <SafeIcon icon={stat.icon} size={18} />
+                </div>
+                <div className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 ${stat.color}`}>
                   {stat.value}{stat.suffix}
                 </div>
                 <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium leading-snug">{stat.label}</div>
@@ -494,7 +521,7 @@ const fadeUp = {
 
       {/* ── Scroll indicator ──────────────────────────────────── */}
       <motion.div
-        className="hidden sm:flex flex-col items-center gap-1.5 cursor-pointer py-5"
+        className="hidden sm:flex flex-col items-center gap-1.5 cursor-pointer pt-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.6 }}
@@ -609,7 +636,7 @@ const fadeUp = {
 
           <div className="relative">
             {/* Vertical gradient timeline line — aligned to center of 48px node */}
-            <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-gradient-to-b from-indigo-500 via-violet-500 to-purple-300 dark:to-purple-800 hidden sm:block" />
+            <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-gradient-to-b from-blue-900 via-blue-700 to-blue-400 hidden sm:block" />
 
             <div className="space-y-8 sm:space-y-10">
               {portfolioData.experiences.map((exp, index) => (
@@ -1055,7 +1082,7 @@ const fadeUp = {
 
       {/* ── Contact ───────────────────────────────────────────── */}
       <section id="contact" className="py-12 sm:py-16 lg:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader eyebrow="Get In Touch" title="Let's Work Together" subtitle="Have a project in mind? I'd love to hear about it." />
 
           <motion.div
@@ -1072,7 +1099,7 @@ const fadeUp = {
             <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center">
               <button
                 onClick={() => setIsContactModalOpen(true)}
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg shadow-indigo-600/20 transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white font-semibold rounded-xl shadow-lg shadow-blue-800/25 transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
               >
                 <SafeIcon icon={MdEmail} size={16} />
                 Send a Message
@@ -1111,66 +1138,139 @@ const fadeUp = {
       </section>
 
       {/* ── Footer ────────────────────────────────────────────── */}
-      <footer className="border-t border-gray-100 dark:border-slate-800/60 py-6 sm:py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">
-            © 2026 Shivam Chudasama.
+      <footer className="border-t border-gray-100 dark:border-slate-800/60 bg-gray-50/50 dark:bg-slate-900/40 py-5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-gray-400 dark:text-gray-600">
+            © 2026 Shivam Chudasama. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <button onClick={() => window.open(personalInfo.github, "_blank")} className="text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors p-1">
-              <SafeIcon icon={FaGithub} size={18} />
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => window.open(personalInfo.github, "_blank")}
+              title="GitHub"
+              className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-gray-400 hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-200"
+            >
+              <SafeIcon icon={FaGithub} size={14} />
             </button>
-            <button onClick={() => window.open(personalInfo.linkedin, "_blank")} className="text-gray-400 hover:text-[#0A66C2] transition-colors p-1">
-              <SafeIcon icon={FaLinkedin} size={18} />
+            <button
+              onClick={() => window.open(personalInfo.linkedin, "_blank")}
+              title="LinkedIn"
+              className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-gray-400 hover:bg-[#0A66C2] hover:text-white transition-all duration-200"
+            >
+              <SafeIcon icon={FaLinkedin} size={14} />
             </button>
-            <button onClick={() => setIsContactModalOpen(true)} className="text-gray-400 hover:text-red-500 transition-colors p-1">
-              <SafeIcon icon={MdEmail} size={20} />
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              title="Email"
+              className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-gray-400 hover:bg-rose-500 hover:text-white transition-all duration-200"
+            >
+              <SafeIcon icon={MdEmail} size={15} />
             </button>
           </div>
         </div>
       </footer>
 
+      {/* ── Back to top ───────────────────────────────────────── */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 12 }}
+            transition={{ duration: 0.22 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-6 right-6 z-50 w-11 h-11 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white shadow-lg shadow-blue-800/30 transition-all duration-200"
+            aria-label="Back to top"
+          >
+            <SafeIcon icon={FaArrowUp} size={14} />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
       {/* ── Contact Modal ─────────────────────────────────────── */}
       <Modal
-        title={
-          <div className="pt-2">
-            <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Get In Touch</h3>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 font-normal">Let's discuss your project or opportunity</p>
-          </div>
-        }
         open={isContactModalOpen}
         onCancel={() => setIsContactModalOpen(false)}
         footer={null}
+        title={null}
+        closable={false}
         width="min(560px, 95vw)"
         className="portfolio-modal"
-        style={{ top: 20 }}
+        centered
+        styles={{ body: { padding: 0 } }}
       >
-        <Form form={form} layout="vertical" onFinish={handleContactSubmit} className="mt-3 sm:mt-4">
-          {/* Stacked on mobile, side-by-side on sm+ */}
-          <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4">
-            <Form.Item name="name" label="Full Name" rules={[{ required: true, message: "Please enter your name" }]}>
-              <Input size="large" placeholder="John Doe" />
-            </Form.Item>
-            <Form.Item name="email" label="Email" rules={[{ required: true, type: "email", message: "Valid email required" }]}>
-              <Input size="large" placeholder="john@example.com" />
-            </Form.Item>
+        {/* Gradient header */}
+        <div className="relative bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 px-6 pt-7 pb-6 overflow-hidden">
+          <div className="absolute -top-8 -right-8 w-32 h-32 bg-white/10 rounded-full pointer-events-none" />
+          <div className="absolute -bottom-10 -left-8 w-40 h-40 bg-white/5 rounded-full pointer-events-none" />
+          {/* Close button in header corner */}
+          <button
+            onClick={() => setIsContactModalOpen(false)}
+            className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-lg bg-white/15 hover:bg-white/30 text-white/80 hover:text-white transition-all duration-200 z-10"
+          >
+            <SafeIcon icon={MdClose} size={18} />
+          </button>
+          <div className="relative flex items-center gap-3">
+            <div className="w-11 h-11 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
+              <SafeIcon icon={FaPaperPlane} size={18} className="text-white" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white leading-tight">Get In Touch</h3>
+              <p className="text-xs text-white/70 mt-0.5">I'll respond within 24 hours</p>
+            </div>
           </div>
-          <Form.Item name="subject" label="Subject" rules={[{ required: true, message: "Please add a subject" }]}>
-            <Input size="large" placeholder="Project discussion, collaboration..." />
-          </Form.Item>
-          <Form.Item name="message" label="Message" rules={[{ required: true, message: "Please write a message" }]}>
-            <Input.TextArea rows={4} placeholder="Tell me about your project, timeline, and requirements..." size="large" />
-          </Form.Item>
-          <Form.Item className="mb-0">
-            <button
-              type="submit"
-              className="w-full flex items-center justify-center gap-2 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition-colors text-sm sm:text-base"
-            >
-              <SafeIcon icon={FaPaperPlane} size={13} />
-              Send Message
-            </button>
-          </Form.Item>
-        </Form>
+        </div>
+
+        {/* Form body */}
+        <div className="px-6 pt-5 pb-6">
+          <Form form={form} layout="vertical" onFinish={handleContactSubmit}>
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-x-4">
+              <Form.Item name="name" label="Full Name" rules={[{ required: true, message: "Please enter your name" }]}>
+                <Input size="large" placeholder="John Doe" />
+              </Form.Item>
+              <Form.Item name="email" label="Email" rules={[{ required: true, type: "email", message: "Valid email required" }]}>
+                <Input size="large" placeholder="john@example.com" />
+              </Form.Item>
+            </div>
+            <Form.Item name="subject" label="Subject" rules={[{ required: true, message: "Please add a subject" }]}>
+              <Input size="large" placeholder="Project discussion, collaboration..." />
+            </Form.Item>
+            <Form.Item name="message" label="Message" rules={[{ required: true, message: "Please write a message" }]}>
+              <Input.TextArea rows={4} placeholder="Tell me about your project, timeline, and requirements..." size="large" style={{ resize: "none" }} />
+            </Form.Item>
+            <Form.Item className="mb-0">
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 py-3 sm:py-3.5 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-blue-800/30 text-sm sm:text-base"
+              >
+                <SafeIcon icon={FaPaperPlane} size={13} />
+                Send Message
+              </button>
+            </Form.Item>
+          </Form>
+
+          {/* Quick contact row */}
+          <div className="mt-5 pt-4 border-t border-gray-100 dark:border-slate-700/50">
+            <p className="text-[10px] font-bold tracking-widest uppercase text-center text-gray-400 dark:text-gray-600 mb-3">Or reach out directly</p>
+            <div className="flex flex-col xs:flex-row items-stretch xs:items-center justify-center gap-2">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-600 dark:hover:text-rose-400 bg-rose-50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800/50 hover:opacity-75 no-underline rounded-lg transition-opacity duration-200 truncate"
+              >
+                <SafeIcon icon={MdEmail} size={13} className="flex-shrink-0" />
+                <span className="truncate">{personalInfo.email}</span>
+              </a>
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-[#0A66C2] dark:text-blue-400 hover:text-[#0A66C2] dark:hover:text-blue-400 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50 hover:opacity-75 no-underline rounded-lg transition-opacity duration-200 flex-shrink-0"
+              >
+                <SafeIcon icon={FaLinkedin} size={13} />
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
       </Modal>
 
     </div>
