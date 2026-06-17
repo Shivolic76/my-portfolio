@@ -576,10 +576,10 @@ const fadeUp = {
                 </span>
                 Professional Journey
               </h3>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4 sm:mb-5">
+              <p className="text-sm text-left sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4 sm:mb-5">
                 {portfolioData.about.professionalJourney}
               </p>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="text-sm text-left sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
                 {portfolioData.about.passion}
               </p>
             </motion.div>
