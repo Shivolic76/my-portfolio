@@ -8,7 +8,7 @@ export type { PortfolioData } from "../services/portfolioService";
 export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Shivam Chudasama",
-    title: "Frontend Engineer",
+    title: "AI-Augmented Frontend Engineer",
     location: "Ahmedabad, Gujarat",
     email: "shivamchudasama.official@gmail.com",
     phone: "+91 7698723169",
@@ -17,7 +17,7 @@ export const portfolioData: PortfolioData = {
     portfolio: "https://shivam-porfolio.netlify.app",
     avatar: "/src/assets/shivam-profile.jpg",
     description:
-      "Frontend Engineer with 4+ years of experience building scalable SaaS, analytics, and real-time web applications using React.js, Next.js, and TypeScript. Skilled in frontend architecture, reusable design systems, and performance optimization for high-traffic applications.",
+      "AI-Augmented Frontend Engineer with 4+ years of experience building scalable SaaS, analytics, and real-time web applications. I combine React.js, Next.js, and TypeScript expertise with AI tools like GitHub Copilot, Claude AI, and Cursor to ship production-grade features faster and smarter.",
     yearsOfExperience: "4+",
     projectsCompleted: "17+",
     resumeUrl: "https://drive.google.com/file/d/1Pdki-nBdUxkmMcJHK-lltp01BGF5EZnd/view?usp=sharing",
@@ -518,7 +518,7 @@ export const portfolioData: PortfolioData = {
       degree: "Diploma in Computer Engineering",
       field: "Computer Engineering",
       institution: "C.U. Shah University",
-      location: "Wadhwan, Gujarat",
+      location: "Surendranagar, Gujarat",
       duration: "2013 – 2016",
       type: "Diploma",
     },

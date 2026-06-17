@@ -33,7 +33,7 @@ import {
   SiGit, SiGithub, SiFigma, SiVite, SiWebpack, SiEslint,
   SiChartdotjs, SiChromewebstore,
 } from "react-icons/si";
-import { FaMobileAlt, FaBolt, FaSearch, FaMagic, FaDatabase } from "react-icons/fa";
+import { FaMobileAlt, FaBolt, FaSearch, FaMagic, FaDatabase, FaRobot } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import profileImg from "../assets/shivam-profile.jpg";
 
@@ -115,7 +115,20 @@ const SKILL_GROUPS = [
       { name: "Performance Optimization", icon: FaBolt,      color: "#F59E0B" },
       { name: "State Management",         icon: FaDatabase,  color: "#10B981" },
       { name: "SEO Optimization",         icon: FaSearch,    color: "#EF4444" },
-      { name: "AI Prompt Engineering",    icon: FaMagic,     color: "#8B5CF6" },
+    ],
+  },
+  {
+    title: "AI & Automation",
+    eyebrow: "AI Copilots & Tools",
+    gradient: "from-violet-600 to-fuchsia-600",
+    titleColor: "text-violet-600 dark:text-violet-400",
+    skills: [
+      { name: "GitHub Copilot",     icon: FaRobot,  color: "#6366F1" },
+      { name: "Claude AI",          icon: FaRobot,  color: "#C084FC" },
+      { name: "ChatGPT / GPT-4",    icon: FaRobot,  color: "#10B981" },
+      { name: "Cursor IDE",         icon: FaMagic,  color: "#7C3AED" },
+      { name: "Augment AI",         icon: FaBolt,   color: "#F59E0B" },
+      { name: "Prompt Engineering", icon: FaMagic,  color: "#EC4899" },
     ],
   },
 ];
@@ -337,6 +350,20 @@ const fadeUp = {
 
       {/* ── Hero ───────────────────────────────────────────────── */}
       <section id="hero" className="pt-16 relative overflow-hidden">
+
+        {/* AI-themed grid background */}
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          <div
+            className="absolute inset-0 opacity-40 dark:opacity-60"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(99,102,241,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.08) 1px, transparent 1px)",
+              backgroundSize: "48px 48px",
+            }}
+          />
+          <div className="absolute -top-40 -left-32 w-[28rem] h-[28rem] bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-20 -right-24 w-[22rem] h-[22rem] bg-violet-400/10 dark:bg-violet-600/10 rounded-full blur-3xl" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 sm:py-12 lg:py-20">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
@@ -717,7 +744,7 @@ const fadeUp = {
                           </span>
                         </div>
 
-                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                        <p className="text-sm text-gray-500 text-left dark:text-gray-400 leading-relaxed">
                           {exp.description}
                         </p>
                       </div>
@@ -793,7 +820,7 @@ const fadeUp = {
                       )}
                     </div>
                   </div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-3 flex-1 mb-4">{project.description}</p>
+                  <p className="text-sm text-left text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-3 flex-1 mb-4">{project.description}</p>
                   <div className="flex items-start gap-2.5 p-3 sm:p-4 mb-4 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-xl">
                     <SafeIcon icon={FaTrophy} size={13} className="text-amber-500 flex-shrink-0 mt-0.5" />
                     <p className="text-xs text-amber-800 dark:text-amber-400 font-medium leading-relaxed">{project.impact}</p>
