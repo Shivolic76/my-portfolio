@@ -7,7 +7,7 @@ import {
   FaGithub,
   FaLinkedin,
   FaDownload,
-  FaEye,
+  FaBriefcase,
   FaCode,
   FaPaperPlane,
   FaCheckCircle,
@@ -415,52 +415,54 @@ const fadeUp = {
                 I care about clean architecture, performance, and shipping work teams are proud of.
               </motion.p>
 
-              {/* CTA buttons */}
-              <motion.div variants={fadeUp} className="flex flex-col xs:flex-row flex-wrap gap-3 mb-6 sm:mb-8 justify-center lg:justify-start">
-                <button
-                  onClick={() => scrollToSection("projects")}
-                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg shadow-indigo-600/20 transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
-                >
-                  <SafeIcon icon={FaEye} size={14} />
-                  View My Work
-                </button>
-                <button
-                  onClick={() => window.open(personalInfo.resumeUrl, "_blank")}
-                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 font-semibold rounded-xl border border-gray-200 dark:border-slate-700 hover:bg-gray-200 dark:hover:bg-slate-700 transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
-                >
-                  <SafeIcon icon={FaDownload} size={13} />
-                  Download Resume
-                </button>
-                <button
-                  onClick={() => setIsContactModalOpen(true)}
-                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 text-indigo-600 dark:text-indigo-400 font-semibold border border-indigo-400 dark:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 rounded-xl transition-all duration-200 text-sm sm:text-base"
-                >
-                  Let's Talk
-                </button>
-              </motion.div>
-
-              {/* Social links */}
-              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2 sm:gap-3 justify-center lg:justify-start">
+              {/* Social icons */}
+              <motion.div variants={fadeUp} className="flex items-center gap-3 mb-6 sm:mb-8 justify-center lg:justify-start">
+                {/* Social links */}
                 <button
                   onClick={() => window.open(personalInfo.github, "_blank")}
-                  className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs sm:text-sm font-semibold hover:bg-gray-700 dark:hover:bg-gray-200 transition-colors"
+                  title="GitHub"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-900 dark:bg-gray-800 text-white hover:bg-gray-700 transition-all duration-200"
                 >
                   <SafeIcon icon={FaGithub} size={15} />
-                  GitHub
                 </button>
                 <button
                   onClick={() => window.open(personalInfo.linkedin, "_blank")}
-                  className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-[#0A66C2] hover:bg-[#004182] text-white text-xs sm:text-sm font-semibold transition-colors"
+                  title="LinkedIn"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-[#0A66C2] hover:bg-[#004182] text-white transition-all duration-200"
                 >
                   <SafeIcon icon={FaLinkedin} size={15} />
-                  LinkedIn
                 </button>
                 <button
                   onClick={() => setIsContactModalOpen(true)}
-                  className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 text-xs sm:text-sm font-semibold border border-gray-200 dark:border-slate-700 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors"
+                  title="Email"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-rose-500 hover:bg-rose-600 text-white transition-all duration-200"
                 >
                   <SafeIcon icon={MdEmail} size={15} />
-                  Email
+                </button>
+
+                <div className="w-px h-7 bg-gray-200 dark:bg-slate-700" />
+
+                {/* Section shortcuts */}
+                <button
+                  onClick={() => window.open(personalInfo.resumeUrl, "_blank")}
+                  title="Download Resume"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 text-white transition-all duration-200"
+                >
+                  <SafeIcon icon={FaDownload} size={14} />
+                </button>
+                <button
+                  onClick={() => scrollToSection("experience")}
+                  title="Experience"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-amber-500 hover:bg-amber-600 text-white transition-all duration-200"
+                >
+                  <SafeIcon icon={FaBriefcase} size={14} />
+                </button>
+                <button
+                  onClick={() => scrollToSection("education")}
+                  title="Education"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-violet-500 hover:bg-violet-600 text-white transition-all duration-200"
+                >
+                  <SafeIcon icon={FaGraduationCap} size={15} />
                 </button>
               </motion.div>
             </motion.div>

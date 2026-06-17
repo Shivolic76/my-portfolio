@@ -105,7 +105,7 @@ const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
 
             <button
               onClick={() => window.open(resumeUrl, "_blank")}
-              className="hidden sm:flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
+              className="hidden sm:flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded-full transition-colors shadow-sm"
             >
               <SafeIcon icon={FaDownload} size={12} />
               Resume
@@ -143,7 +143,7 @@ const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
               ))}
               <button
                 onClick={() => window.open(resumeUrl, "_blank")}
-                className="flex items-center gap-2 w-full px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors mt-2"
+                className="flex items-center gap-2 w-full px-4 py-2.5 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded-full transition-colors mt-2"
               >
                 <SafeIcon icon={FaDownload} size={12} />
                 Download Resume
