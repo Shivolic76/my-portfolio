@@ -766,7 +766,7 @@ const fadeUp = {
                           ))}
                         </ul>
 
-                        <p className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
+                        <p className="text-xs text-left font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
                           Tech Stack
                         </p>
                         <div className="flex flex-wrap gap-2">
