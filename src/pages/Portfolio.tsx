@@ -176,6 +176,7 @@ const Portfolio: React.FC = () => {
   const [certIndex, setCertIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(1);
   const [certCardsPerView, setCertCardsPerView] = useState(3);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [form] = Form.useForm();
   const statsRef = useRef<HTMLDivElement>(null);
 
@@ -241,6 +242,24 @@ const Portfolio: React.FC = () => {
   }, [certCardsPerView]);
 
   useEffect(() => {
+    const onScroll = () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(total > 0 ? window.scrollY / total : 0);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Hide native scrollbar without affecting scroll behaviour
+    const style = document.createElement("style");
+    style.textContent = "html,body{scrollbar-width:none;}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;}";
+    document.head.appendChild(style);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.head.removeChild(style);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!portfolioData) return;
     const total = portfolioData.testimonials.length;
     const timer = setInterval(() => {
@@ -294,6 +313,12 @@ const fadeUp = {
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 text-gray-900 dark:text-white overflow-x-hidden">
+      {/* ── Scroll progress bar ───────────────────────────────── */}
+      <div
+        className="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-[9999]"
+        style={{ width: `${scrollProgress * 100}%` }}
+      />
+
       <Navbar resumeUrl={personalInfo.resumeUrl} />
 
       {/* ── Hero ───────────────────────────────────────────────── */}
