@@ -317,15 +317,13 @@ const Portfolio: React.FC = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleContactSubmit = async () => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      message.success("Message sent! I'll get back to you soon.");
-      form.resetFields();
-      setIsContactModalOpen(false);
-    } catch {
-      message.error("Failed to send message. Please try again.");
-    }
+  const handleContactSubmit = (values: { name: string; email: string; subject: string; message: string }) => {
+    const body = `Name: ${values.name}\nEmail: ${values.email}\n\n${values.message}`;
+    const mailtoUrl = `mailto:${personalInfo.email}?subject=${encodeURIComponent(values.subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoUrl, "_blank");
+    message.success("Opening your email client...");
+    form.resetFields();
+    setIsContactModalOpen(false);
   };
 
 const fadeUp = {
@@ -1047,16 +1045,21 @@ const fadeUp = {
             const isMobile = cardsPerView === 1;
             const maxIndex = Math.max(0, total - certCardsPerView);
 
-            const certCard = (cert: typeof certs[0], _index: number) => (
-              <div className="bg-gray-50 dark:bg-slate-800/50 rounded-2xl p-4 sm:p-5 border border-gray-100 dark:border-slate-700/50 text-center hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 h-full">
-                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl mx-auto mb-3 sm:mb-4 flex items-center justify-center text-white shadow-sm" style={{ backgroundColor: cert.color }}>
-                  {CERT_ICONS[cert.icon] || <SafeIcon icon={FaCode} size={22} />}
+            const certCard = (cert: typeof certs[0], _index: number) => {
+              const inner = (
+                <div className={`bg-gray-50 dark:bg-slate-800/50 rounded-2xl p-4 sm:p-5 border border-gray-100 dark:border-slate-700/50 text-center transition-all duration-300 hover:-translate-y-0.5 h-full ${cert.url ? "hover:shadow-lg hover:border-indigo-200 dark:hover:border-indigo-700/50 cursor-pointer" : "hover:shadow-md"}`}>
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl mx-auto mb-3 sm:mb-4 flex items-center justify-center text-white shadow-sm" style={{ backgroundColor: cert.color }}>
+                    {CERT_ICONS[cert.icon] || <SafeIcon icon={FaCode} size={22} />}
+                  </div>
+                  <h4 className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white mb-1 line-clamp-2 leading-snug">{cert.title}</h4>
+                  <p className="text-xs text-indigo-600 dark:text-indigo-400 font-semibold mb-2">{cert.issuer}</p>
+                  <Tag color="green" className="text-xs">{cert.date}</Tag>
                 </div>
-                <h4 className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white mb-1 line-clamp-2 leading-snug">{cert.title}</h4>
-                <p className="text-xs text-indigo-600 dark:text-indigo-400 font-semibold mb-2">{cert.issuer}</p>
-                <Tag color="green" className="text-xs">{cert.date}</Tag>
-              </div>
-            );
+              );
+              return cert.url ? (
+                <a href={cert.url} target="_blank" rel="noopener noreferrer" className="block no-underline h-full">{inner}</a>
+              ) : inner;
+            };
 
             if (isMobile) {
               return (
@@ -1168,7 +1171,7 @@ const fadeUp = {
       <footer className="border-t border-gray-100 dark:border-slate-800/60 bg-gray-50/50 dark:bg-slate-900/40 py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-400 dark:text-gray-600">
-            © 2026 Shivam Chudasama. All rights reserved.
+            © {new Date().getFullYear()} Shivam Chudasama. All rights reserved.
           </p>
           <div className="flex items-center gap-2">
             <button

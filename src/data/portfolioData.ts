@@ -8,16 +8,16 @@ export type { PortfolioData } from "../services/portfolioService";
 export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Shivam Chudasama",
-    title: "AI-Augmented Frontend Engineer",
+    title: "Frontend Engineer",
     location: "Ahmedabad, Gujarat",
     email: "shivamchudasama.official@gmail.com",
     phone: "+91 7698723169",
     linkedin: "https://www.linkedin.com/in/shivam-chudasama-software-engineer",
     github: "https://github.com/Shivolic76",
-    portfolio: "https://shivam-porfolio.netlify.app",
-    avatar: "/src/assets/shivam-profile.jpg",
+    portfolio: "https://shivcodespace.vercel.app",
+    avatar: "/assets/shivam-profile.jpg",
     description:
-      "AI-Augmented Frontend Engineer with 4+ years of experience building scalable SaaS, analytics, and real-time web applications. I combine React.js, Next.js, and TypeScript expertise with AI tools like GitHub Copilot, Claude AI, and Cursor to ship production-grade features faster and smarter.",
+      "Frontend Engineer with 4+ years of experience building scalable SaaS, analytics, and real-time web applications. I combine React.js, Next.js, and TypeScript expertise with AI tools like GitHub Copilot, Claude AI, and Cursor to ship production-grade features faster and smarter.",
     yearsOfExperience: "4+",
     projectsCompleted: "17+",
     resumeUrl: "https://drive.google.com/file/d/1Pdki-nBdUxkmMcJHK-lltp01BGF5EZnd/view?usp=sharing",
@@ -548,7 +548,7 @@ export const portfolioData: PortfolioData = {
       credentialId: "UC-ed56282a-a83e-4ff4-a281-e4bd99b47acc",
       icon: "CodeOutlined",
       color: "#264DE4",
-      url: "",
+      url: "https://www.udemy.com/certificate/UC-ed56282a-a83e-4ff4-a281-e4bd99b47acc/",
     },
     {
       title: "Modern JavaScript",
@@ -557,7 +557,7 @@ export const portfolioData: PortfolioData = {
       credentialId: "UC-0ab4ba1b-0ff5-4dc2-ac4b-baca7371e6c2",
       icon: "CodeOutlined",
       color: "#F7DF1E",
-      url: "",
+      url: "https://www.udemy.com/certificate/UC-0ab4ba1b-0ff5-4dc2-ac4b-baca7371e6c2/",
     },
     {
       title: "Bootstrap 5",
@@ -566,7 +566,7 @@ export const portfolioData: PortfolioData = {
       credentialId: "UC-6374d852-e3f9-4a4f-961d-30a151576068",
       icon: "AppstoreAddOutlined",
       color: "#7952B3",
-      url: "",
+      url: "https://www.udemy.com/certificate/UC-6374d852-e3f9-4a4f-961d-30a151576068/",
     },
     {
       title: "Modern React",
@@ -575,7 +575,7 @@ export const portfolioData: PortfolioData = {
       credentialId: "UC-2df5a270-1e1c-4edf-8ff1-08e1de8cdec4",
       icon: "ThunderboltOutlined",
       color: "#61DAFB",
-      url: "",
+      url: "https://www.udemy.com/certificate/UC-2df5a270-1e1c-4edf-8ff1-08e1de8cdec4/",
     },
   ],
   blogs: [
@@ -620,7 +620,7 @@ export const portfolioData: PortfolioData = {
     email: "shivamchudasama.official@gmail.com",
     phone: "+91 7698723169",
     location: "Ahmedabad, Gujarat",
-    availability: "Available for freelance projects",
+    availability: "Open to freelance and full-time opportunities",
     responseTime: "Within 24 hours",
     socialLinks: {
       linkedin: "https://www.linkedin.com/in/shivam-chudasama-software-engineer",
