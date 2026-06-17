@@ -25,7 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-      const sections = ["hero", "about", "skills", "experience", "projects", "blog", "contact"];
+      const sections = ["hero", "about", "skills", "experience", "projects", "contact"];
       let current = "hero";
       for (const section of sections) {
         const el = document.getElementById(section);

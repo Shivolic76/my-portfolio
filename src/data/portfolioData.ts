@@ -469,40 +469,40 @@ export const portfolioData: PortfolioData = {
   ],
   testimonials: [
     {
-      name: "Rajesh Patel",
-      role: "Senior Developer",
+      name: "Suraj Sangle",
+      role: "Frontend Developer",
+      company: "Incipient Infotech",
+      content:
+        "Working alongside Shivam at Incipient Infotech was a great experience. He has a solid grasp of React and always wrote clean, well-structured code. His ability to break down complex UI problems and come up with practical solutions made our collaboration seamless.",
+      rating: 5,
+      avatar: "",
+    },
+    {
+      name: "Dharmesh",
+      role: "Frontend Developer",
+      company: "Incipient Infotech",
+      content:
+        "Shivam is one of the most focused developers I've worked with. At Incipient Infotech, he consistently delivered quality work and never shied away from challenging tasks. His attention to detail and commitment to pixel-perfect UI really stood out.",
+      rating: 5,
+      avatar: "",
+    },
+    {
+      name: "Jay Thummar",
+      role: "Software Developer",
       company: "RapidOps Inc.",
       content:
-        "Shivam is an exceptional Software Engineer with strong React.js skills. His attention to detail and ability to deliver clean, maintainable code is impressive.",
+        "Shivam has been an excellent colleague at RapidOps. He's quick to pick up new technologies and always ensures his code is maintainable and performant. His work on our React and TypeScript projects has been consistently reliable and well thought out.",
       rating: 5,
-      avatar: "/assets/images/testimonials/rajesh.jpg",
+      avatar: "",
     },
     {
-      name: "Priya Sharma",
-      role: "UI/UX Designer",
-      company: "RapidOps Inc.",
+      name: "Niraj Goswami",
+      role: "Software Developer",
+      company: "Quantex Solutions",
       content:
-        "Working with Shivam has been a great experience. He perfectly translates designs into responsive, pixel-perfect interfaces with excellent collaboration skills.",
+        "I had the pleasure of working with Shivam at Quantex Solutions. He's a dedicated and skilled frontend developer who takes ownership of his work. His knowledge of React and modern JavaScript made a real impact on the projects we collaborated on.",
       rating: 5,
-      avatar: "/assets/images/testimonials/priya.jpg",
-    },
-    {
-      name: "Amit Kumar",
-      role: "Project Manager",
-      company: "Tech Startup",
-      content:
-        "Shivam consistently delivers high-quality work on time. His expertise in React.js and TypeScript has been invaluable to our team's success.",
-      rating: 5,
-      avatar: "/assets/images/testimonials/amit.jpg",
-    },
-    {
-      name: "Neha Joshi",
-      role: "Team Lead",
-      company: "Digital Agency",
-      content:
-        "Shivam's problem-solving abilities and modern frontend development skills make him a valuable team member. His code quality is always top-notch.",
-      rating: 5,
-      avatar: "/assets/images/testimonials/neha.jpg",
+      avatar: "",
     },
   ],
   certifications: [

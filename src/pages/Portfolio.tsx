@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Modal, Form, Input, message, Spin, Alert, Tag } from "antd";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { usePortfolioData } from "../hooks/usePortfolioData";
 
 import {
@@ -16,6 +16,8 @@ import {
   FaTrophy,
   FaHeart,
   FaExternalLinkAlt,
+  FaQuoteLeft,
+  FaStar,
 } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { SafeIcon } from "../utils/IconWrapper";
@@ -169,8 +171,23 @@ const Portfolio: React.FC = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [animatedStats, setAnimatedStats] = useState({ projects: 0, experience: 0, clients: 0, commits: 0 });
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [projectIndex, setProjectIndex] = useState(0);
+  const [certIndex, setCertIndex] = useState(0);
+  const [cardsPerView, setCardsPerView] = useState(1);
+  const [certCardsPerView, setCertCardsPerView] = useState(3);
   const [form] = Form.useForm();
   const statsRef = useRef<HTMLDivElement>(null);
+
+  const heroMouseX = useMotionValue(0);
+  const heroMouseY = useMotionValue(0);
+  const heroRotateX = useSpring(useTransform(heroMouseY, [-0.5, 0.5], [12, -12]), { stiffness: 150, damping: 20 });
+  const heroRotateY = useSpring(useTransform(heroMouseX, [-0.5, 0.5], [-12, 12]), { stiffness: 150, damping: 20 });
+  const heroGlare = useTransform(
+    [heroMouseX, heroMouseY],
+    ([x, y]: number[]) =>
+      `radial-gradient(circle at ${((x as number) + 0.5) * 100}% ${((y as number) + 0.5) * 100}%, rgba(255,255,255,0.18) 0%, transparent 55%)`
+  );
 
   const animateStats = useCallback(() => {
     if (!portfolioData?.statistics || hasAnimated) return;
@@ -207,6 +224,30 @@ const Portfolio: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [animateStats, hasAnimated]);
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      setCardsPerView(w >= 1024 ? 3 : w >= 768 ? 2 : 1);
+      setCertCardsPerView(w < 550 ? 2 : 3);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  useEffect(() => {
+    setCertIndex(0);
+  }, [certCardsPerView]);
+
+  useEffect(() => {
+    if (!portfolioData) return;
+    const total = portfolioData.testimonials.length;
+    const timer = setInterval(() => {
+      setTestimonialIndex((i) => (i + 1 > total - cardsPerView ? 0 : i + 1));
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [portfolioData, cardsPerView]);
 
   if (loading) {
     return (
@@ -260,35 +301,48 @@ const fadeUp = {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 sm:py-12">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
-            {/* Photo — appears above text on mobile via order */}
+            {/* Photo — 3D tilt card */}
             <motion.div
               className="flex justify-center lg:justify-end order-first lg:order-last"
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              style={{ perspective: "900px" }}
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                heroMouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+                heroMouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+              }}
+              onMouseLeave={() => {
+                heroMouseX.set(0);
+                heroMouseY.set(0);
+              }}
             >
-              <div className="relative">
-                {/* Decorative background tilt */}
-                <div className="absolute -inset-3 sm:-inset-4 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/20 rounded-3xl transform rotate-3 -z-10" />
+              <motion.div
+                className="relative"
+                style={{ rotateX: heroRotateX, rotateY: heroRotateY, transformStyle: "preserve-3d" }}
+              >
+                {/* Ambient glow behind the card */}
+                <div className="absolute -inset-6 bg-gradient-to-br from-indigo-400/25 via-purple-400/20 to-pink-400/15 dark:from-indigo-500/20 dark:via-purple-500/15 dark:to-pink-500/10 rounded-3xl blur-2xl -z-10" />
 
-                <img
-                  src={profileImg}
-                  alt="Shivam Chudasama"
-                  className="w-52 h-52 xs:w-60 xs:h-60 sm:w-72 sm:h-72 lg:w-[22rem] lg:h-[22rem] object-cover object-top rounded-2xl shadow-2xl border-4 border-white dark:border-slate-800"
-                />
+                {/* Tilted background plate */}
+                <div className="absolute -inset-3 sm:-inset-4 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/30 rounded-3xl transform rotate-3 -z-[5]" />
 
-                {/* Floating badge — bottom-left, stays inside on mobile */}
-                <div className="absolute bottom-3 left-3 sm:-bottom-5 sm:-left-5 z-10 bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 shadow-xl border border-gray-100 dark:border-slate-700">
-                  <div className="text-xl sm:text-2xl font-bold text-indigo-600">4+</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">Years Exp.</div>
+                {/* Image + glare wrapper */}
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
+                  <img
+                    src={profileImg}
+                    alt="Shivam Chudasama"
+                    className="w-52 h-52 xs:w-60 xs:h-60 sm:w-72 sm:h-72 lg:w-[22rem] lg:h-[22rem] object-cover object-top block"
+                  />
+                  {/* Mouse-tracked glare */}
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{ background: heroGlare }}
+                  />
                 </div>
 
-                {/* Floating badge — top-right, stays inside on mobile */}
-                <div className="absolute top-3 right-3 sm:-top-5 sm:-right-5 z-10 bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 shadow-xl border border-gray-100 dark:border-slate-700">
-                  <div className="text-xl sm:text-2xl font-bold text-emerald-600">17+</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">Projects</div>
-                </div>
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Text content */}
@@ -457,7 +511,7 @@ const fadeUp = {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader eyebrow="What I Work With" title="Technical Skills" subtitle="Technologies, tools, and practices I rely on every day" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {SKILL_GROUPS.map((group, i) => (
               <motion.div
                 key={i}
@@ -634,88 +688,177 @@ const fadeUp = {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader eyebrow="What I've Built" title="Featured Projects" subtitle="A selection of my best work — real products, real impact" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {portfolioData.projects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
-                className="group bg-white dark:bg-slate-800/60 rounded-2xl border border-gray-100 dark:border-slate-700/50 overflow-hidden hover:shadow-xl dark:hover:shadow-slate-900/60 transition-all duration-300 hover:-translate-y-1 flex flex-col"
-              >
-                {/* Gradient top bar */}
+          {(() => {
+            const projects = portfolioData.projects;
+            const total = projects.length;
+            const isMobile = cardsPerView === 1;
+            const maxIndex = total - 1;
+
+            const projectCard = (project: typeof projects[0], index: number) => (
+              <div className="group bg-white dark:bg-slate-800/60 rounded-2xl border border-gray-100 dark:border-slate-700/50 overflow-hidden hover:shadow-xl dark:hover:shadow-slate-900/60 transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
                 <div className={`h-1.5 bg-gradient-to-r ${PROJECT_GRADIENTS[index % PROJECT_GRADIENTS.length]}`} />
-
                 <div className="p-5 sm:p-6 flex flex-col flex-1">
-                  {/* Category + Status */}
                   <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <span className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                      {project.category}
-                    </span>
-                    <span className={`px-2.5 py-1 text-xs font-bold uppercase tracking-wide rounded-full ${
-                      project.status === "Completed"
-                        ? "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400"
-                        : "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400"
-                    }`}>
-                      {project.status}
-                    </span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{project.category}</span>
+                    <span className={`px-2.5 py-1 text-xs font-bold uppercase tracking-wide rounded-full ${project.status === "Completed" ? "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400" : "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400"}`}>{project.status}</span>
                   </div>
-
-                  {/* Title + Link buttons */}
                   <div className="flex items-start justify-between gap-2 mb-2.5 sm:mb-3">
-                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 dark:text-white leading-snug">
-                      {project.title}
-                    </h3>
+                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 dark:text-white leading-snug">{project.title}</h3>
                     <div className="flex items-center gap-1.5 flex-shrink-0 mt-0.5">
                       {project.github && (
-                        <a
-                          href={project.github} target="_blank" rel="noopener noreferrer"
-                          className="p-1.5 rounded-lg bg-gray-100 dark:bg-slate-700/60 text-gray-500 dark:text-gray-400 hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-200"
-                          onClick={(e) => e.stopPropagation()}
-                        >
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-1.5 rounded-lg bg-gray-100 dark:bg-slate-700/60 text-gray-500 dark:text-gray-400 hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-200" onClick={(e) => e.stopPropagation()}>
                           <SafeIcon icon={FaGithub} size={12} />
                         </a>
                       )}
                       {project.live && (
-                        <a
-                          href={project.live} target="_blank" rel="noopener noreferrer"
-                          className="p-1.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-200"
-                          onClick={(e) => e.stopPropagation()}
-                        >
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-1.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-200" onClick={(e) => e.stopPropagation()}>
                           <SafeIcon icon={FaExternalLinkAlt} size={10} />
                         </a>
                       )}
                     </div>
                   </div>
-
-                  {/* Description */}
-                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-3 flex-1 mb-4">
-                    {project.description}
-                  </p>
-
-                  {/* Impact highlight */}
+                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-3 flex-1 mb-4">{project.description}</p>
                   <div className="flex items-start gap-2.5 p-3 sm:p-4 mb-4 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-xl">
                     <SafeIcon icon={FaTrophy} size={13} className="text-amber-500 flex-shrink-0 mt-0.5" />
-                    <p className="text-xs text-amber-800 dark:text-amber-400 font-medium leading-relaxed">
-                      {project.impact}
-                    </p>
+                    <p className="text-xs text-amber-800 dark:text-amber-400 font-medium leading-relaxed">{project.impact}</p>
                   </div>
-
-                  {/* Tech stack */}
                   <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {project.technologies.slice(0, 4).map((t, i) => (
-                      <span key={i} className="px-2.5 py-1.5 text-xs font-medium text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-slate-700/50 rounded-lg border border-gray-200 dark:border-slate-600/40">
-                        {t}
-                      </span>
+                      <span key={i} className="px-2.5 py-1.5 text-xs font-medium text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-slate-700/50 rounded-lg border border-gray-200 dark:border-slate-600/40">{t}</span>
                     ))}
                     {project.technologies.length > 4 && (
-                      <span className="px-2.5 py-1.5 text-xs font-medium text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-slate-700/50 rounded-lg border border-gray-200 dark:border-slate-600/40">
-                        +{project.technologies.length - 4}
-                      </span>
+                      <span className="px-2.5 py-1.5 text-xs font-medium text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-slate-700/50 rounded-lg border border-gray-200 dark:border-slate-600/40">+{project.technologies.length - 4}</span>
                     )}
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            );
+
+            if (isMobile) {
+              return (
+                <div>
+                  <div className="overflow-hidden -mx-3">
+                    <motion.div
+                      className="flex select-none cursor-grab active:cursor-grabbing"
+                      style={{ width: `${total * 100}%` }}
+                      animate={{ x: `${-projectIndex * (100 / total)}%` }}
+                      transition={{ duration: 0.45, ease: "easeInOut" }}
+                      drag="x"
+                      dragConstraints={{ left: 0, right: 0 }}
+                      dragElastic={0.12}
+                      onDragEnd={(_, info) => {
+                        if (info.offset.x < -50 || info.velocity.x < -600) {
+                          setProjectIndex((i) => Math.min(i + 1, maxIndex));
+                        } else if (info.offset.x > 50 || info.velocity.x > 600) {
+                          setProjectIndex((i) => Math.max(i - 1, 0));
+                        }
+                      }}
+                    >
+                      {projects.map((project, index) => (
+                        <div key={index} style={{ width: `${100 / total}%` }} className="px-3">
+                          {projectCard(project, index)}
+                        </div>
+                      ))}
+                    </motion.div>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 mt-6">
+                    {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+                      <button key={i} onClick={() => setProjectIndex(i)} className={`rounded-full transition-all duration-300 ${i === projectIndex ? "w-6 h-2.5 bg-indigo-600" : "w-2.5 h-2.5 bg-gray-300 dark:bg-slate-600 hover:bg-indigo-400"}`} />
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                {projects.map((project, index) => (
+                  <motion.div key={index} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp} className="flex flex-col">
+                    {projectCard(project, index)}
+                  </motion.div>
+                ))}
+              </div>
+            );
+          })()}
+        </div>
+      </section>
+
+      {/* ── Testimonials ──────────────────────────────────────── */}
+      <section id="testimonials" className="py-12 sm:py-16 lg:py-24 bg-gray-50 dark:bg-slate-800/30">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader eyebrow="Social Proof" title="What People Say" subtitle="Feedback from colleagues I've had the pleasure of working with" />
+
+          {(() => {
+            const avatarGradients = [
+              "from-indigo-500 to-purple-500",
+              "from-emerald-500 to-teal-500",
+              "from-orange-500 to-red-500",
+              "from-blue-500 to-cyan-500",
+            ];
+            const total = portfolioData.testimonials.length;
+            const maxIndex = total - cardsPerView;
+            return (
+              <div>
+                {/* Carousel track */}
+                <div className="overflow-hidden -mx-3">
+                  <motion.div
+                    className="flex select-none cursor-grab active:cursor-grabbing"
+                    style={{ width: `${(total / cardsPerView) * 100}%` }}
+                    animate={{ x: `${-testimonialIndex * (100 / total)}%` }}
+                    transition={{ duration: 0.45, ease: "easeInOut" }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.12}
+                    onDragEnd={(_, info) => {
+                      if (info.offset.x < -50 || info.velocity.x < -600) {
+                        setTestimonialIndex((i) => Math.min(i + 1, maxIndex));
+                      } else if (info.offset.x > 50 || info.velocity.x > 600) {
+                        setTestimonialIndex((i) => Math.max(i - 1, 0));
+                      }
+                    }}
+                  >
+                    {portfolioData.testimonials.map((t, index) => (
+                      <div key={index} style={{ width: `${100 / total}%` }} className="px-3">
+                        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-slate-700/50 shadow-sm h-full flex flex-col">
+                          <SafeIcon icon={FaQuoteLeft} size={28} className="text-indigo-200 dark:text-indigo-700 mb-4" />
+                          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed flex-1 mb-6">
+                            {t.content}
+                          </p>
+                          <div>
+                            <div className="flex gap-1 mb-3">
+                              {Array.from({ length: t.rating }).map((_, j) => (
+                                <SafeIcon key={j} icon={FaStar} size={13} className="text-amber-400" />
+                              ))}
+                            </div>
+                            <div className="flex items-center gap-3 pt-4 border-t border-gray-100 dark:border-slate-700">
+                              <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${avatarGradients[index % avatarGradients.length]} flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>
+                                {t.name.charAt(0)}
+                              </div>
+                              <div className="text-left">
+                                <div className="font-bold text-gray-900 dark:text-white text-sm">{t.name}</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400">{t.role} · {t.company}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </motion.div>
+                </div>
+
+                {/* Dots */}
+                <div className="flex items-center justify-center gap-2 mt-6">
+                  {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setTestimonialIndex(i)}
+                      className={`rounded-full transition-all duration-300 ${i === testimonialIndex ? "w-6 h-2.5 bg-indigo-600" : "w-2.5 h-2.5 bg-gray-300 dark:bg-slate-600 hover:bg-indigo-400"}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </section>
 
@@ -724,25 +867,69 @@ const fadeUp = {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader eyebrow="Credentials" title="Certifications" subtitle="Continuous learning — formal courses and certifications" />
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5">
-            {portfolioData.certifications.map((cert, index) => (
-              <motion.div
-                key={index}
-                initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
-                className="bg-gray-50 dark:bg-slate-800/50 rounded-2xl p-4 sm:p-5 border border-gray-100 dark:border-slate-700/50 text-center hover:shadow-md transition-all duration-300 hover:-translate-y-0.5"
-              >
-                <div
-                  className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl mx-auto mb-3 sm:mb-4 flex items-center justify-center text-white shadow-sm"
-                  style={{ backgroundColor: cert.color }}
-                >
+          {(() => {
+            const certs = portfolioData.certifications;
+            const total = certs.length;
+            const isMobile = cardsPerView === 1;
+            const maxIndex = Math.max(0, total - certCardsPerView);
+
+            const certCard = (cert: typeof certs[0], _index: number) => (
+              <div className="bg-gray-50 dark:bg-slate-800/50 rounded-2xl p-4 sm:p-5 border border-gray-100 dark:border-slate-700/50 text-center hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 h-full">
+                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl mx-auto mb-3 sm:mb-4 flex items-center justify-center text-white shadow-sm" style={{ backgroundColor: cert.color }}>
                   {CERT_ICONS[cert.icon] || <SafeIcon icon={FaCode} size={22} />}
                 </div>
                 <h4 className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white mb-1 line-clamp-2 leading-snug">{cert.title}</h4>
                 <p className="text-xs text-indigo-600 dark:text-indigo-400 font-semibold mb-2">{cert.issuer}</p>
                 <Tag color="green" className="text-xs">{cert.date}</Tag>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            );
+
+            if (isMobile) {
+              return (
+                <div>
+                  <div className="overflow-hidden -mx-3">
+                    <motion.div
+                      className="flex select-none cursor-grab active:cursor-grabbing"
+                      style={{ width: `${(total / certCardsPerView) * 100}%` }}
+                      animate={{ x: `${-certIndex * (100 / total)}%` }}
+                      transition={{ duration: 0.45, ease: "easeInOut" }}
+                      drag="x"
+                      dragConstraints={{ left: 0, right: 0 }}
+                      dragElastic={0.12}
+                      onDragEnd={(_, info) => {
+                        if (info.offset.x < -50 || info.velocity.x < -600) {
+                          setCertIndex((i) => Math.min(i + 1, maxIndex));
+                        } else if (info.offset.x > 50 || info.velocity.x > 600) {
+                          setCertIndex((i) => Math.max(i - 1, 0));
+                        }
+                      }}
+                    >
+                      {certs.map((cert, index) => (
+                        <div key={index} style={{ width: `${100 / total}%` }} className="px-3">
+                          {certCard(cert, index)}
+                        </div>
+                      ))}
+                    </motion.div>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 mt-6">
+                    {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+                      <button key={i} onClick={() => setCertIndex(i)} className={`rounded-full transition-all duration-300 ${i === certIndex ? "w-6 h-2.5 bg-indigo-600" : "w-2.5 h-2.5 bg-gray-300 dark:bg-slate-600 hover:bg-indigo-400"}`} />
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5">
+                {certs.map((cert, index) => (
+                  <motion.div key={index} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
+                    {certCard(cert, index)}
+                  </motion.div>
+                ))}
+              </div>
+            );
+          })()}
         </div>
       </section>
 
@@ -807,7 +994,7 @@ const fadeUp = {
       <footer className="border-t border-gray-100 dark:border-slate-800/60 py-6 sm:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">
-            © 2025 Shivam Chudasama. Built with React & TypeScript.
+            © 2025 Shivam Chudasama.
           </p>
           <div className="flex items-center gap-4">
             <button onClick={() => window.open(personalInfo.github, "_blank")} className="text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors p-1">
