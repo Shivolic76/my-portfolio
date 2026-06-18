@@ -1250,28 +1250,43 @@ const fadeUp = {
             </button>
           </div>
 
-          {/* Write blog CTA */}
+          {/* Blog CTA */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={fadeUp}
-            className="mt-8 sm:mt-10 text-center"
+            className="mt-8 sm:mt-10 flex justify-center"
           >
-            <div className="inline-flex items-center gap-2 px-5 py-3 bg-white dark:bg-slate-800/60 rounded-2xl border border-gray-100 dark:border-slate-700/50 shadow-sm">
-              <SafeIcon icon={FaNewspaper} size={14} className="text-indigo-500" />
-              <span className="text-sm text-gray-500 dark:text-gray-400">
-                More articles coming soon — follow me on{" "}
-                <a
-                  href={portfolioData.contact.socialLinks.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline"
-                >
-                  LinkedIn
-                </a>
-              </span>
-            </div>
+            <a
+              href={portfolioData.contact.socialLinks.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center gap-4 px-6 py-4 bg-white dark:bg-slate-800/70 rounded-2xl border border-gray-100 dark:border-slate-700/50 shadow-sm hover:shadow-lg dark:hover:shadow-slate-900/50 hover:border-indigo-200 dark:hover:border-indigo-700/60 transition-all duration-300 hover:-translate-y-0.5 overflow-hidden"
+            >
+              {/* subtle gradient shimmer on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-50/0 via-indigo-50/60 to-indigo-50/0 dark:from-indigo-900/0 dark:via-indigo-900/20 dark:to-indigo-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              {/* icon bubble */}
+              <div className="relative flex-none w-9 h-9 flex items-center justify-center rounded-xl bg-indigo-100 dark:bg-indigo-900/40 group-hover:bg-indigo-200 dark:group-hover:bg-indigo-800/60 transition-colors duration-200">
+                <SafeIcon icon={FaLinkedin} size={16} className="text-indigo-600 dark:text-indigo-400" />
+              </div>
+
+              {/* text */}
+              <div className="relative text-left">
+                <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 leading-tight">
+                  More articles coming soon
+                </p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                  Follow me on LinkedIn to stay updated
+                </p>
+              </div>
+
+              {/* arrow */}
+              <div className="relative ml-2 flex-none text-indigo-400 dark:text-indigo-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 group-hover:translate-x-1 transition-all duration-200">
+                <SafeIcon icon={FaArrowRight} size={12} />
+              </div>
+            </a>
           </motion.div>
         </div>
       </section>

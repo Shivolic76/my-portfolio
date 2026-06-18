@@ -374,6 +374,32 @@ export const portfolioData: PortfolioData = {
       featured: true,
     },
     {
+      title: "Patient Direct Portal",
+      description:
+        "A healthcare admin portal for Amer Health Care X that streamlines order approvals, billing, reimbursement tracking, and practice analytics — giving medical practices a single dashboard to manage their entire patient supply workflow.",
+      technologies: [
+        "React.js",
+        "TypeScript",
+        "Redux Toolkit",
+        "Ant Design",
+        "REST APIs",
+        "Recharts",
+      ],
+      features: [
+        "Order approval & status tracking",
+        "Reimbursements collected dashboard",
+        "Practice analytics & prescriber reports",
+        "Invoice report generation",
+        "Role-based access for practices",
+      ],
+      status: "Live",
+      impact: "Streamlined order-to-billing workflow for multiple medical practices",
+      image: "/images/projects/patient-direct-portal.jpg",
+      github: "",
+      live: "",
+      category: "Healthcare",
+    },
+    {
       title: "Business for Growth",
       description:
         "A business management platform with workflow automation, analytics dashboards, reusable components, and optimized API integration, improving responsiveness and UI consistency.",
@@ -398,27 +424,27 @@ export const portfolioData: PortfolioData = {
       category: "Business Platform",
     },
     {
-      title: "Game Racers",
+      title: "Cardano Racers",
       description:
-        "A blockchain-enabled gaming platform with secure token-based transactions, gamification features, and frontend performance optimizations for improved engagement and gameplay smoothness.",
+        "A blockchain-enabled NFT gaming platform built on the Cardano network, featuring secure token-based transactions, gamification mechanics, and frontend performance optimizations for smooth gameplay and high engagement.",
       technologies: [
         "Next.js",
         "Unity",
         "TypeScript",
-        "Blockchain",
+        "Cardano Blockchain",
         "REST APIs",
       ],
       features: [
-        "Blockchain token transactions",
-        "Gamification system",
+        "Cardano NFT & token transactions",
+        "Gamification & reward system",
         "Performance optimizations",
         "Smooth gameplay experience",
       ],
-      status: "Completed",
-      impact: "Enhanced user engagement with secure blockchain transactions",
+      status: "Live",
+      impact: "Enhanced user engagement with secure Cardano blockchain transactions",
       image: "/images/projects/game-racers.jpg",
       github: "",
-      live: "",
+      live: "https://www.cardanoracers.com/",
       category: "Gaming Platform",
     },
     {
@@ -469,6 +495,32 @@ export const portfolioData: PortfolioData = {
       live: "",
       category: "FinTech",
     },
+    {
+      title: "Personal Portfolio",
+      description:
+        "My personal developer portfolio — built with React 19, TypeScript, Vite, Ant Design 5, Tailwind CSS, and Framer Motion. Showcases projects, experience, blogs, and certifications with dark/light mode and smooth animations.",
+      technologies: [
+        "React 19",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Ant Design 5",
+        "Framer Motion",
+      ],
+      features: [
+        "Dark / light theme toggle",
+        "Framer Motion page animations",
+        "Horizontal scroll blog strip",
+        "Responsive across all devices",
+        "Contact form with email integration",
+      ],
+      status: "Live",
+      impact: "Single-page showcase reaching recruiters and collaborators worldwide",
+      image: "/images/projects/portfolio.jpg",
+      github: "https://github.com/Shivolic76/my-portfolio",
+      live: "https://shivcodespace.vercel.app",
+      category: "Portfolio",
+    },
   ],
   testimonials: [
     {
@@ -504,6 +556,15 @@ export const portfolioData: PortfolioData = {
       company: "Quantex Solutions",
       content:
         "I had the pleasure of working with Shivam at Quantex Solutions. He's a dedicated and skilled frontend developer who takes ownership of his work. His knowledge of React and modern JavaScript made a real impact on the projects we collaborated on.",
+      rating: 5,
+      avatar: "",
+    },
+    {
+      name: "Ashish Mule",
+      role: "Freelancer",
+      company: "Independent",
+      content:
+        "I hired Shivam for a freelance project and the experience exceeded my expectations. He understood the requirements quickly, communicated proactively throughout, and delivered a polished, responsive UI well within the deadline. His React skills and eye for detail make him a developer you can trust to get things done right the first time.",
       rating: 5,
       avatar: "",
     },
