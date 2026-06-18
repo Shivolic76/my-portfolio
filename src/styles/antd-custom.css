@@ -3180,6 +3180,19 @@ html:not([data-theme='dark']) #blog {
 
 /* Removed background patterns for cleaner UI */
 
+/* ── Blog content typography ──────────────────────────────── */
+.blog-content h2 { font-size: 1.2rem; font-weight: 700; margin: 1.25rem 0 0.5rem; color: inherit; }
+.blog-content h3 { font-size: 1.05rem; font-weight: 700; margin: 1rem 0 0.4rem; color: inherit; }
+.blog-content h4 { font-size: 0.95rem; font-weight: 600; margin: 0.75rem 0 0.35rem; color: inherit; }
+.blog-content p  { margin: 0.5rem 0; line-height: 1.75; }
+.blog-content ul, .blog-content ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+.blog-content li { margin: 0.3rem 0; line-height: 1.65; }
+.blog-content pre { background: #0f172a; color: #e2e8f0; padding: 1rem 1.25rem; border-radius: 0.625rem; overflow-x: auto; margin: 0.85rem 0; font-size: 0.78rem; line-height: 1.65; border: 1px solid rgba(99,102,241,0.2); }
+.blog-content code { background: rgba(99,102,241,0.1); color: #6366f1; padding: 0.12rem 0.4rem; border-radius: 0.3rem; font-size: 0.85em; }
+.blog-content pre code { background: none; color: #e2e8f0; padding: 0; }
+.dark .blog-content code { background: rgba(99,102,241,0.2); color: #a5b4fc; }
+.dark .blog-content pre  { background: #020617; border-color: rgba(99,102,241,0.25); }
+
 /* Experience Timeline Enhancements */
 [data-theme='dark'] .experience-timeline-line::before {
   content: '';
@@ -3198,3 +3211,7 @@ html:not([data-theme='dark']) #blog {
     transparent 100%);
   filter: blur(1px);
 }
+
+/* Blog horizontal scroll — hide scrollbar cross-browser */
+.blog-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+.blog-scroll::-webkit-scrollbar { display: none; }

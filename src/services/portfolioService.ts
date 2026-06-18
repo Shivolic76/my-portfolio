@@ -63,7 +63,9 @@ export interface Project {
   image: string;
   github: string;
   live: string;
+  playStore?: string;
   category: string;
+  featured?: boolean;
 }
 
 export interface Testimonial {

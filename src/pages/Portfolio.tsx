@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Modal, Form, Input, message, Spin, Alert, Tag } from "antd";
+import type { Blog } from "../services/portfolioService";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { usePortfolioData } from "../hooks/usePortfolioData";
 
@@ -23,6 +24,12 @@ import {
   FaArrowUp,
   FaUsers,
   FaCodeBranch,
+  FaNewspaper,
+  FaClock,
+  FaArrowRight,
+  FaGooglePlay,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 import { MdEmail, MdClose } from "react-icons/md";
 import { SafeIcon } from "../utils/IconWrapper";
@@ -141,6 +148,12 @@ const PROJECT_GRADIENTS = [
   "from-pink-500 to-rose-500",
 ];
 
+const BLOG_GRADIENTS = [
+  "from-indigo-500 to-violet-500",
+  "from-emerald-500 to-cyan-500",
+  "from-orange-500 to-pink-500",
+];
+
 const EXP_AVATARS = [
   "from-indigo-500 to-violet-600",
   "from-emerald-500 to-teal-600",
@@ -194,6 +207,8 @@ const SectionHeader = ({
 const Portfolio: React.FC = () => {
   const { data: portfolioData, loading, error } = usePortfolioData();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
+  const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
   const [animatedStats, setAnimatedStats] = useState({ projects: 0, experience: 0, clients: 0, commits: 0 });
   const [hasAnimated, setHasAnimated] = useState(false);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
@@ -205,6 +220,7 @@ const Portfolio: React.FC = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [form] = Form.useForm();
   const statsRef = useRef<HTMLDivElement>(null);
+  const blogScrollRef = useRef<HTMLDivElement>(null);
 
   const heroMouseX = useMotionValue(0);
   const heroMouseY = useMotionValue(0);
@@ -796,12 +812,36 @@ const fadeUp = {
             const maxIndex = total - 1;
 
             const projectCard = (project: typeof projects[0], index: number) => (
-              <div className="group bg-white dark:bg-slate-800/60 rounded-2xl border border-gray-100 dark:border-slate-700/50 overflow-hidden hover:shadow-xl dark:hover:shadow-slate-900/60 transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
-                <div className={`h-1.5 bg-gradient-to-r ${PROJECT_GRADIENTS[index % PROJECT_GRADIENTS.length]}`} />
+              <div className={`group bg-white dark:bg-slate-800/60 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col h-full ${
+                project.featured
+                  ? "border-2 border-indigo-200 dark:border-indigo-700/60 hover:shadow-xl hover:shadow-indigo-100/60 dark:hover:shadow-indigo-900/40 shadow-md shadow-indigo-100/40 dark:shadow-indigo-900/20"
+                  : "border border-gray-100 dark:border-slate-700/50 hover:shadow-xl dark:hover:shadow-slate-900/60"
+              }`}>
+                {/* Top accent — thicker for featured */}
+                <div className={`${project.featured ? "h-2" : "h-1.5"} bg-gradient-to-r ${PROJECT_GRADIENTS[index % PROJECT_GRADIENTS.length]}`} />
                 <div className="p-5 sm:p-6 flex flex-col flex-1">
                   <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <span className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{project.category}</span>
-                    <span className={`px-2.5 py-1 text-xs font-bold uppercase tracking-wide rounded-full ${project.status === "Completed" ? "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400" : "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400"}`}>{project.status}</span>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{project.category}</span>
+                      {project.featured && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-indigo-50 dark:bg-indigo-900/40 border border-indigo-200 dark:border-indigo-700/50 rounded-full text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">
+                          <SafeIcon icon={FaStar} size={7} />
+                          Featured
+                        </span>
+                      )}
+                    </div>
+                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold uppercase tracking-wide rounded-full flex-shrink-0 ${
+                      project.status === "Live"
+                        ? "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400"
+                        : project.status === "Completed"
+                        ? "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400"
+                        : "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400"
+                    }`}>
+                      {project.status === "Live" && (
+                        <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                      )}
+                      {project.status}
+                    </span>
                   </div>
                   <div className="flex items-start justify-between gap-2 mb-2.5 sm:mb-3">
                     <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 dark:text-white leading-snug">{project.title}</h3>
@@ -812,13 +852,19 @@ const fadeUp = {
                         </a>
                       )}
                       {project.live && (
-                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-1.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-200" onClick={(e) => e.stopPropagation()}>
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-1.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-200" title="Visit Website" onClick={(e) => e.stopPropagation()}>
                           <SafeIcon icon={FaExternalLinkAlt} size={10} />
+                        </a>
+                      )}
+                      {project.playStore && (
+                        <a href={project.playStore} target="_blank" rel="noopener noreferrer" className="p-1.5 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-all duration-200" title="Google Play Store" onClick={(e) => e.stopPropagation()}>
+                          <SafeIcon icon={FaGooglePlay} size={10} />
                         </a>
                       )}
                     </div>
                   </div>
-                  <p className="text-sm text-left text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-3 flex-1 mb-4">{project.description}</p>
+                  <p className="text-sm text-left text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-3 mb-4">{project.description}</p>
+                  <div className="flex-1" />
                   <div className="flex items-start gap-2.5 p-3 sm:p-4 mb-4 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-xl">
                     <SafeIcon icon={FaTrophy} size={13} className="text-amber-500 flex-shrink-0 mt-0.5" />
                     <p className="text-xs text-amber-800 dark:text-amber-400 font-medium leading-relaxed">{project.impact}</p>
@@ -1110,6 +1156,126 @@ const fadeUp = {
         </div>
       </section>
 
+      {/* ── Blogs ─────────────────────────────────────────────── */}
+      <section id="blogs" className="py-12 sm:py-16 lg:py-24 bg-gray-50/80 dark:bg-slate-900/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Thoughts & Insights"
+            title="Latest Articles"
+            subtitle="Frontend tips, career stories, and engineering insights — straight from experience"
+          />
+
+          {/* Horizontal scroll track */}
+          <div className="relative">
+            {/* Left fade + arrow */}
+            <div className="absolute left-0 top-0 bottom-4 w-12 bg-gradient-to-r from-gray-50/90 dark:from-slate-900/80 to-transparent z-10 pointer-events-none rounded-l-2xl" />
+            <button
+              onClick={() => blogScrollRef.current?.scrollBy({ left: -374, behavior: "smooth" })}
+              aria-label="Scroll blogs left"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-md text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-200 hover:scale-110"
+            >
+              <SafeIcon icon={FaChevronLeft} size={11} />
+            </button>
+
+            {/* Scrollable row */}
+            <div
+              ref={blogScrollRef}
+              className="blog-scroll flex gap-4 overflow-x-auto scroll-smooth pb-4 px-10"
+            >
+              {portfolioData.blogs.map((blog, index) => (
+                <div
+                  key={index}
+                  className="group flex-none w-[320px] sm:w-[350px] bg-white dark:bg-slate-800/60 rounded-2xl border border-gray-100 dark:border-slate-700/50 overflow-hidden hover:shadow-xl dark:hover:shadow-slate-900/60 transition-all duration-300 hover:-translate-y-1 flex flex-col cursor-pointer"
+                  onClick={() => { setSelectedBlog(blog); setIsBlogModalOpen(true); }}
+                >
+                  {/* Color accent top bar */}
+                  <div className={`h-[3px] flex-none bg-gradient-to-r ${BLOG_GRADIENTS[index % BLOG_GRADIENTS.length]}`} />
+
+                  <div className="p-5 sm:p-6 flex flex-col flex-1">
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {blog.tags.slice(0, 2).map((tag, i) => (
+                        <span
+                          key={i}
+                          className="px-2 py-0.5 text-xs font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 rounded-md border border-indigo-100 dark:border-indigo-800/40"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-2 leading-snug line-clamp-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                      {blog.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-3 mb-4 text-left">
+                      {blog.excerpt}
+                    </p>
+
+                    {/* Spacer pushes footer to bottom */}
+                    <div className="flex-1" />
+
+                    {/* Footer row */}
+                    <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-slate-700/40">
+                      <div className="flex items-center gap-2.5 text-xs text-gray-400 dark:text-gray-500">
+                        <span className="flex items-center gap-1">
+                          <SafeIcon icon={FaCalendarAlt} size={9} />
+                          {new Date(blog.date).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <SafeIcon icon={FaClock} size={9} />
+                          {blog.readTime}
+                        </span>
+                      </div>
+                      <span className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400 group-hover:gap-2 transition-all duration-200">
+                        Read
+                        <SafeIcon icon={FaArrowRight} size={8} />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Right fade + arrow */}
+            <div className="absolute right-0 top-0 bottom-4 w-12 bg-gradient-to-l from-gray-50/90 dark:from-slate-900/80 to-transparent z-10 pointer-events-none rounded-r-2xl" />
+            <button
+              onClick={() => blogScrollRef.current?.scrollBy({ left: 374, behavior: "smooth" })}
+              aria-label="Scroll blogs right"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-md text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-200 hover:scale-110"
+            >
+              <SafeIcon icon={FaChevronRight} size={11} />
+            </button>
+          </div>
+
+          {/* Write blog CTA */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            className="mt-8 sm:mt-10 text-center"
+          >
+            <div className="inline-flex items-center gap-2 px-5 py-3 bg-white dark:bg-slate-800/60 rounded-2xl border border-gray-100 dark:border-slate-700/50 shadow-sm">
+              <SafeIcon icon={FaNewspaper} size={14} className="text-indigo-500" />
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                More articles coming soon — follow me on{" "}
+                <a
+                  href={portfolioData.contact.socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline"
+                >
+                  LinkedIn
+                </a>
+              </span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── Contact ───────────────────────────────────────────── */}
       <section id="contact" className="py-12 sm:py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1301,6 +1467,57 @@ const fadeUp = {
             </div>
           </div>
         </div>
+      </Modal>
+
+      {/* ── Blog Reading Modal ────────────────────────────────── */}
+      <Modal
+        open={isBlogModalOpen}
+        onCancel={() => { setIsBlogModalOpen(false); setSelectedBlog(null); }}
+        footer={null}
+        title={null}
+        closable={false}
+        width="min(760px, 95vw)"
+        className="portfolio-modal"
+        centered
+        styles={{ body: { padding: 0 } }}
+      >
+        {selectedBlog && (
+          <div>
+            {/* Header */}
+            <div className={`relative bg-gradient-to-br ${BLOG_GRADIENTS[portfolioData.blogs.findIndex(b => b.id === selectedBlog.id) % BLOG_GRADIENTS.length]} px-6 pt-7 pb-6 overflow-hidden`}>
+              <div className="absolute -top-10 -right-10 w-36 h-36 bg-white/10 rounded-full pointer-events-none" />
+              <div className="absolute -bottom-12 -left-10 w-44 h-44 bg-white/5 rounded-full pointer-events-none" />
+              {/* Close */}
+              <button
+                onClick={() => { setIsBlogModalOpen(false); setSelectedBlog(null); }}
+                className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-lg bg-white/15 hover:bg-white/30 text-white/80 hover:text-white transition-all duration-200 z-10"
+              >
+                <SafeIcon icon={MdClose} size={18} />
+              </button>
+              {/* Tags */}
+              <div className="relative flex flex-wrap gap-1.5 mb-3">
+                {selectedBlog.tags.map((tag, i) => (
+                  <span key={i} className="px-2.5 py-1 bg-white/20 border border-white/30 rounded-lg text-xs font-medium text-white">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h2 className="relative text-base sm:text-xl font-bold text-white leading-snug mb-3">
+                {selectedBlog.title}
+              </h2>
+              <div className="relative flex items-center gap-4 text-white/65 text-xs">
+                <span className="flex items-center gap-1"><SafeIcon icon={FaCalendarAlt} size={9} /> {new Date(selectedBlog.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+                <span className="flex items-center gap-1"><SafeIcon icon={FaClock} size={9} /> {selectedBlog.readTime}</span>
+                <span>By {selectedBlog.author}</span>
+              </div>
+            </div>
+            {/* Content */}
+            <div
+              className="px-6 py-6 max-h-[60vh] overflow-y-auto text-sm text-gray-700 dark:text-gray-300 blog-content"
+              dangerouslySetInnerHTML={{ __html: selectedBlog.content }}
+            />
+          </div>
+        )}
       </Modal>
 
     </div>
