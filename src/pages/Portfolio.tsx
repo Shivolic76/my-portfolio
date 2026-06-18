@@ -385,7 +385,7 @@ const fadeUp = {
               className="flex justify-center lg:justify-end order-first lg:order-last"
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
               style={{ perspective: "900px" }}
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
@@ -421,7 +421,7 @@ const fadeUp = {
               className="order-last lg:order-first flex flex-col items-center lg:items-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
               {/* Status badges */}
               <div className="flex flex-wrap items-center gap-2 mb-6 sm:mb-8 justify-center lg:justify-start">
@@ -554,7 +554,7 @@ const fadeUp = {
         className="hidden sm:flex flex-col items-center gap-1.5 cursor-pointer pt-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
         onClick={() => scrollToSection("about")}
       >
         <span className="text-[11px] font-medium text-gray-400 dark:text-gray-600 tracking-widest uppercase">Scroll</span>
