@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { FaGithub, FaLinkedin, FaDownload, FaBriefcase, FaCode, FaGraduationCap } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { SafeIcon } from "../utils/IconWrapper";
 import MagneticElement from "../components/MagneticElement";
+import NeuralBackground from "../components/NeuralBackground";
 import profileImg from "../assets/shivam-profile.jpg";
 import logoRapidOps from "../assets/logos/rapidops.jpg";
 import type { PersonalInfo } from "../services/portfolioService";
+
+const ROLES = [
+  "Frontend Engineer",
+  "React & Next.js Expert",
+  "TypeScript Developer",
+  "Generative AI App Builder",
+  "UI/UX Enthusiast",
+  "AI-Powered Developer",
+];
 
 interface Props {
   personalInfo: PersonalInfo;
@@ -15,6 +25,35 @@ interface Props {
 }
 
 const HeroSection: React.FC<Props> = ({ personalInfo, onContactOpen, onScrollToSection }) => {
+  const [typeState, setTypeState] = useState({ ri: 0, ci: 0, deleting: false });
+  const [displayed, setDisplayed] = useState("");
+
+  useEffect(() => {
+    const { ri, ci, deleting } = typeState;
+    const word = ROLES[ri];
+    if (!deleting && ci < word.length) {
+      const t = setTimeout(() => {
+        setDisplayed(word.slice(0, ci + 1));
+        setTypeState((s) => ({ ...s, ci: s.ci + 1 }));
+      }, 75);
+      return () => clearTimeout(t);
+    }
+    if (!deleting && ci === word.length) {
+      const t = setTimeout(() => setTypeState((s) => ({ ...s, deleting: true })), 2200);
+      return () => clearTimeout(t);
+    }
+    if (deleting && ci > 0) {
+      const t = setTimeout(() => {
+        setDisplayed(word.slice(0, ci - 1));
+        setTypeState((s) => ({ ...s, ci: s.ci - 1 }));
+      }, 40);
+      return () => clearTimeout(t);
+    }
+    if (deleting && ci === 0) {
+      setTypeState({ ri: (ri + 1) % ROLES.length, ci: 0, deleting: false });
+    }
+  }, [typeState]);
+
   const heroMouseX = useMotionValue(0);
   const heroMouseY = useMotionValue(0);
   const heroRotateX = useSpring(useTransform(heroMouseY, [-0.5, 0.5], [12, -12]), { stiffness: 150, damping: 20 });
@@ -26,16 +65,9 @@ const HeroSection: React.FC<Props> = ({ personalInfo, onContactOpen, onScrollToS
   );
 
   return (
-    <section id="hero" className="pt-16 relative overflow-hidden">
+    <section id="hero" className="pt-16 relative overflow-hidden isolate">
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div
-          className="absolute inset-0 opacity-40 dark:opacity-60"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(99,102,241,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.08) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
+        <NeuralBackground />
         <div className="absolute -top-40 -left-32 w-[28rem] h-[28rem] bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-3xl" />
         <div className="absolute -bottom-20 -right-24 w-[22rem] h-[22rem] bg-violet-400/10 dark:bg-violet-600/10 rounded-full blur-3xl" />
       </div>
@@ -96,8 +128,9 @@ const HeroSection: React.FC<Props> = ({ personalInfo, onContactOpen, onScrollToS
               </span>
             </h1>
 
-            <p className="text-lg sm:text-xl lg:text-2xl text-gray-500 dark:text-gray-400 font-light mb-4 sm:mb-6 text-center lg:text-left">
-              {personalInfo.title}
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-500 dark:text-gray-400 font-light mb-4 sm:mb-6 text-center lg:text-left min-h-[1.8em]">
+              {displayed}
+              <span className="inline-block w-[2px] h-[1em] bg-blue-600 dark:bg-blue-400 ml-0.5 align-middle animate-pulse" />
             </p>
 
             <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-6 sm:mb-8 max-w-lg text-center lg:text-left">

@@ -143,9 +143,7 @@ class PortfolioService {
       return this.data;
     }
 
-    console.log('Loading portfolio data from static import');
     this.data = portfolioData;
-    console.log('Portfolio data loaded successfully');
     return this.data;
   }
 
