@@ -192,9 +192,12 @@ const SectionHeader = ({
   subtitle: string;
 }) => (
   <div className="text-center mb-10 sm:mb-14 lg:mb-16 px-2">
-    <span className="text-xs font-semibold tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-2 sm:mb-3 block">
-      {eyebrow}
-    </span>
+    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-700/40 rounded-full mb-4 sm:mb-5">
+      <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full flex-shrink-0" />
+      <span className="text-xs font-bold tracking-widest uppercase text-indigo-600 dark:text-indigo-400">
+        {eyebrow}
+      </span>
+    </div>
     <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-3 sm:mb-4">
       {title}
     </h2>
@@ -654,7 +657,10 @@ const fadeUp = {
                     {group.skills.map((skill, j) => (
                       <div
                         key={j}
-                        className="flex items-center gap-1.5 px-3 py-2 bg-gray-50 dark:bg-slate-700/40 border border-gray-200 dark:border-slate-600/40 rounded-lg hover:border-gray-300 dark:hover:border-slate-500 hover:shadow-sm transition-all duration-200 cursor-default"
+                        className="group/chip flex items-center gap-1.5 px-3 py-2 bg-gray-50 dark:bg-slate-700/40 border border-gray-200 dark:border-slate-600/40 rounded-lg hover:border-gray-300 dark:hover:border-slate-500 hover:shadow-md transition-all duration-200 cursor-default"
+                        style={{ ["--chip-glow" as string]: skill.color + "33" }}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `0 4px 14px ${skill.color}33`; }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = ""; }}
                       >
                         <SafeIcon icon={skill.icon} size={14} style={{ color: skill.color, flexShrink: 0 }} />
                         <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap leading-none">
@@ -1349,33 +1355,57 @@ const fadeUp = {
       </section>
 
       {/* ── Footer ────────────────────────────────────────────── */}
-      <footer className="border-t border-gray-100 dark:border-slate-800/60 bg-gray-50/50 dark:bg-slate-900/40 py-5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-gray-400 dark:text-gray-600">
-            © {new Date().getFullYear()} Shivam Chudasama. All rights reserved.
-          </p>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => window.open(personalInfo.github, "_blank")}
-              title="GitHub"
-              className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-gray-400 hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-200"
-            >
-              <SafeIcon icon={FaGithub} size={14} />
-            </button>
-            <button
-              onClick={() => window.open(personalInfo.linkedin, "_blank")}
-              title="LinkedIn"
-              className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-gray-400 hover:bg-[#0A66C2] hover:text-white transition-all duration-200"
-            >
-              <SafeIcon icon={FaLinkedin} size={14} />
-            </button>
-            <button
-              onClick={() => setIsContactModalOpen(true)}
-              title="Email"
-              className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-gray-400 hover:bg-rose-500 hover:text-white transition-all duration-200"
-            >
-              <SafeIcon icon={MdEmail} size={15} />
-            </button>
+      <footer className="border-t border-gray-100 dark:border-slate-800/60 bg-gray-50/50 dark:bg-slate-900/40 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Top row */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-5">
+            {/* Brand */}
+            <div className="text-center sm:text-left">
+              <p className="text-base font-bold text-gray-900 dark:text-white tracking-tight">
+                Shivam<span className="text-indigo-600 dark:text-indigo-400">.</span>
+              </p>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                Frontend Engineer · React · TypeScript
+              </p>
+            </div>
+
+            {/* Social icons */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => window.open(personalInfo.github, "_blank")}
+                title="GitHub"
+                className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-gray-400 hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-200"
+              >
+                <SafeIcon icon={FaGithub} size={14} />
+              </button>
+              <button
+                onClick={() => window.open(personalInfo.linkedin, "_blank")}
+                title="LinkedIn"
+                className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-gray-400 hover:bg-[#0A66C2] hover:text-white transition-all duration-200"
+              >
+                <SafeIcon icon={FaLinkedin} size={14} />
+              </button>
+              <button
+                onClick={() => setIsContactModalOpen(true)}
+                title="Email"
+                className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-gray-400 hover:bg-rose-500 hover:text-white transition-all duration-200"
+              >
+                <SafeIcon icon={MdEmail} size={15} />
+              </button>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px bg-gray-100 dark:bg-slate-800/60 mb-4" />
+
+          {/* Bottom row */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-400 dark:text-gray-600">
+            <p>© {new Date().getFullYear()} Shivam Chudasama. All rights reserved.</p>
+            <p className="flex items-center gap-1">
+              Built with
+              <SafeIcon icon={FaHeart} size={10} className="text-rose-400 mx-0.5" />
+              using React, TypeScript & Tailwind CSS
+            </p>
           </div>
         </div>
       </footer>
