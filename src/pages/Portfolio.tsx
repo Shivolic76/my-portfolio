@@ -24,7 +24,6 @@ import {
   FaArrowUp,
   FaUsers,
   FaCodeBranch,
-  FaNewspaper,
   FaClock,
   FaArrowRight,
   FaGooglePlay,
@@ -350,10 +349,6 @@ const fadeUp = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" as const } },
   };
 
-  const stagger = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.1 } },
-  };
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 text-gray-900 dark:text-white overflow-x-hidden">
@@ -424,12 +419,12 @@ const fadeUp = {
             {/* Text content */}
             <motion.div
               className="order-last lg:order-first flex flex-col items-center lg:items-start"
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
             >
               {/* Status badges */}
-              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2 mb-6 sm:mb-8 justify-center lg:justify-start">
+              <div className="flex flex-wrap items-center gap-2 mb-6 sm:mb-8 justify-center lg:justify-start">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/40 rounded-full">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse flex-shrink-0" />
                   <span className="text-xs text-green-700 dark:text-green-400 font-medium">Available for opportunities</span>
@@ -438,35 +433,26 @@ const fadeUp = {
                   <img src={COMPANY_LOGOS["RapidOps Inc."]} alt="RapidOps" className="w-4 h-4 rounded object-contain" />
                   <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">RapidOps Inc.</span>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.h1
-                variants={fadeUp}
-                className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-3 sm:mb-4 text-center lg:text-left"
-              >
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-3 sm:mb-4 text-center lg:text-left">
                 Shivam{" "}
                 <span className="bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 bg-clip-text text-transparent">
                   Chudasama
                 </span>
-              </motion.h1>
+              </h1>
 
-              <motion.p
-                variants={fadeUp}
-                className="text-lg sm:text-xl lg:text-2xl text-gray-500 dark:text-gray-400 font-light mb-4 sm:mb-6 text-center lg:text-left"
-              >
+              <p className="text-lg sm:text-xl lg:text-2xl text-gray-500 dark:text-gray-400 font-light mb-4 sm:mb-6 text-center lg:text-left">
                 {personalInfo.title}
-              </motion.p>
+              </p>
 
-              <motion.p
-                variants={fadeUp}
-                className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-6 sm:mb-8 max-w-lg text-center lg:text-left"
-              >
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-6 sm:mb-8 max-w-lg text-center lg:text-left">
                 4+ years building scalable SaaS and analytics platforms with React.js, Next.js, and TypeScript.
                 I care about clean architecture, performance, and shipping work teams are proud of.
-              </motion.p>
+              </p>
 
               {/* Primary CTA buttons */}
-              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 mb-5 justify-center lg:justify-start">
+              <div className="flex flex-wrap items-center gap-3 mb-5 justify-center lg:justify-start">
                 <button
                   onClick={() => scrollToSection("projects")}
                   className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white font-semibold rounded-xl shadow-lg shadow-blue-800/30 transition-all duration-200 hover:-translate-y-0.5 text-sm"
@@ -481,10 +467,10 @@ const fadeUp = {
                   <SafeIcon icon={MdEmail} size={14} />
                   Let's Talk
                 </button>
-              </motion.div>
+              </div>
 
               {/* Social icons */}
-              <motion.div variants={fadeUp} className="flex items-center gap-3 mb-6 sm:mb-8 justify-center lg:justify-start">
+              <div className="flex items-center gap-3 mb-6 sm:mb-8 justify-center lg:justify-start">
                 {/* Social links */}
                 <button
                   onClick={() => window.open(personalInfo.github, "_blank")}
@@ -532,7 +518,7 @@ const fadeUp = {
                 >
                   <SafeIcon icon={FaGraduationCap} size={15} />
                 </button>
-              </motion.div>
+              </div>
             </motion.div>
           </div>
         </div>
