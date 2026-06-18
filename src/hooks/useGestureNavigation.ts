@@ -12,7 +12,6 @@ const SECTIONS = [
   'blogs',
 ]
 
-const SWIPE_THRESHOLD = 65
 const NAV_COOLDOWN = 900
 
 const getTargetSection = (direction: 'next' | 'prev'): string | null => {
@@ -40,8 +39,6 @@ const getTargetSection = (direction: 'next' | 'prev'): string | null => {
 }
 
 const useGestureNavigation = () => {
-  const touchStartY = useRef(0)
-  const touchStartX = useRef(0)
   const lastNav = useRef(0)
 
   useEffect(() => {
@@ -52,20 +49,6 @@ const useGestureNavigation = () => {
       if (!target) return
       lastNav.current = now
       document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' })
-    }
-
-    const onTouchStart = (e: TouchEvent) => {
-      touchStartY.current = e.touches[0].clientY
-      touchStartX.current = e.touches[0].clientX
-    }
-
-    const onTouchEnd = (e: TouchEvent) => {
-      const dy = touchStartY.current - e.changedTouches[0].clientY
-      const dx = touchStartX.current - e.changedTouches[0].clientX
-      // Only fire for clearly vertical swipes (not horizontal carousel drags)
-      if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) >= SWIPE_THRESHOLD) {
-        navigate(dy > 0 ? 'next' : 'prev')
-      }
     }
 
     const onKeyDown = (e: KeyboardEvent) => {
@@ -82,13 +65,9 @@ const useGestureNavigation = () => {
       }
     }
 
-    window.addEventListener('touchstart', onTouchStart, { passive: true })
-    window.addEventListener('touchend', onTouchEnd, { passive: true })
     window.addEventListener('keydown', onKeyDown)
 
     return () => {
-      window.removeEventListener('touchstart', onTouchStart)
-      window.removeEventListener('touchend', onTouchEnd)
       window.removeEventListener('keydown', onKeyDown)
     }
   }, [])
