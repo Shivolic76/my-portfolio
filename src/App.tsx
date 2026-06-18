@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from './theme';
 import { TOAST_CONFIG } from './constants';
@@ -11,7 +10,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <AICursor />
-      <div className="App min-h-screen">
+      <div className="min-h-screen">
         <Portfolio />
         <ToastContainer
           position={TOAST_CONFIG.POSITION}

@@ -31,7 +31,6 @@ export interface About {
 
 export interface Skill {
   name: string;
-  level: number;
   color: string;
   icon: string;
 }
@@ -116,8 +115,8 @@ export interface Contact {
   socialLinks: {
     linkedin: string;
     github: string;
-    twitter: string;
-    instagram: string;
+    twitter?: string;
+    instagram?: string;
   };
 }
 

@@ -17,10 +17,10 @@ export const portfolioData: PortfolioData = {
     portfolio: "https://shivcodespace.vercel.app",
     avatar: "/assets/shivam-profile.jpg",
     description:
-      "Frontend Engineer with 4+ years of experience building scalable SaaS, analytics, and real-time web applications. I combine React.js, Next.js, and TypeScript expertise with AI tools like GitHub Copilot, Claude AI, and Cursor to ship production-grade features faster and smarter.",
+      "4+ years building scalable SaaS and analytics platforms with React.js, Next.js, and TypeScript. I care about clean architecture, performance, and shipping work teams are proud of.",
     yearsOfExperience: "4+",
     projectsCompleted: "17+",
-    resumeUrl: "https://drive.google.com/file/d/1Pdki-nBdUxkmMcJHK-lltp01BGF5EZnd/view?usp=sharing",
+    resumeUrl: "/resume.pdf",
   },
   statistics: {
     projects: 17,
@@ -47,67 +47,56 @@ export const portfolioData: PortfolioData = {
       // Frontend Technologies
       {
         name: "HTML5",
-        level: 95,
         color: "#E34F26",
         icon: "FaHtml5",
       },
       {
         name: "CSS3",
-        level: 93,
         color: "#1572B6",
         icon: "BiLogoCss3",
       },
       {
         name: "JavaScript (ES6+)",
-        level: 92,
         color: "#F7DF1E",
         icon: "SiJavascript",
       },
       {
         name: "TypeScript",
-        level: 88,
         color: "#3178C6",
         icon: "SiTypescript",
       },
       {
         name: "React.js",
-        level: 90,
         color: "#61DAFB",
         icon: "FaReact",
       },
       {
         name: "Next.js",
-        level: 85,
         color: "#000000",
         icon: "SiNextdotjs",
       },
       {
         name: "Tailwind CSS",
-        level: 85,
         color: "#06B6D4",
         icon: "SiTailwindcss",
       },
       {
         name: "Bootstrap 5",
-        level: 87,
         color: "#7952B3",
         icon: "SiBootstrap",
       },
       {
         name: "Material-UI",
-        level: 90,
         color: "#0081CB",
         icon: "SiMui",
       },
       {
         name: "Ant Design",
-        level: 88,
         color: "#1890FF",
         icon: "SiAntdesign",
       },
       {
         name: "SASS/SCSS",
-        level: 80,
         color: "#CD6799",
         icon: "FaSass",
       },
@@ -115,25 +104,21 @@ export const portfolioData: PortfolioData = {
       // Libraries & Frameworks
       {
         name: "Redux/Redux Toolkit",
-        level: 85,
         color: "#764ABC",
         icon: "SiRedux",
       },
       {
         name: "Formik & Yup",
-        level: 87,
         color: "#FF6B6B",
         icon: "SiFormik",
       },
       {
         name: "React Router",
-        level: 90,
         color: "#CA4245",
         icon: "SiReactrouter",
       },
       {
         name: "Axios",
-        level: 92,
         color: "#5A29E4",
         icon: "SiAxios",
       },
@@ -141,55 +126,46 @@ export const portfolioData: PortfolioData = {
       // Core Concepts
       {
         name: "Responsive Design",
-        level: 95,
         color: "#4ECDC4",
         icon: "MdDevices",
       },
       {
         name: "REST APIs",
-        level: 90,
         color: "#FF6B6B",
         icon: "BiCloudDownload",
       },
       {
         name: "State Management",
-        level: 88,
         color: "#764ABC",
         icon: "MdManageAccounts",
       },
       {
         name: "Performance Optimization",
-        level: 85,
         color: "#00D084",
         icon: "MdSpeed",
       },
       {
         name: "SEO Optimization",
-        level: 82,
         color: "#34A853",
         icon: "MdSearch",
       },
       {
         name: "Linting & Formatting (ESLint & Prettier)",
-        level: 85,
         color: "#4B32C3",
         icon: "SiEslint",
       },
       {
         name: "AI Prompt Engineering",
-        level: 88,
         color: "#FF6B35",
         icon: "FaRobot", // Font Awesome
       },
       {
         name: "ECharts",
-        level: 85,
         color: "#AA344D",
         icon: "SiApacheecharts", // Simple Icons
       },
       {
         name: "Chart.js",
-        level: 82,
         color: "#FF6384",
         icon: "SiChartdotjs", // Simple Icons
       },
@@ -197,37 +173,31 @@ export const portfolioData: PortfolioData = {
     tools: [
       {
         name: "Git & GitHub",
-        level: 88,
         color: "#F05032",
         icon: "FaGithub",
       },
       {
         name: "VS Code",
-        level: 95,
         color: "#007ACC",
         icon: "SiVisualstudiocode",
       },
       {
         name: "Webpack",
-        level: 75,
         color: "#8DD6F9",
         icon: "SiWebpack",
       },
       {
         name: "NPM/Yarn",
-        level: 90,
         color: "#CB3837",
         icon: "SiNpm",
       },
       {
         name: "Chrome DevTools",
-        level: 88,
         color: "#4285F4",
         icon: "SiGooglechrome",
       },
       {
         name: "Figma",
-        level: 80,
         color: "#F24E1E",
         icon: "FaFigma",
       },
@@ -797,8 +767,6 @@ export const portfolioData: PortfolioData = {
     socialLinks: {
       linkedin: "https://www.linkedin.com/in/shivam-chudasama-software-engineer",
       github: "https://github.com/Shivolic76",
-      twitter: "https://twitter.com/shivam_dev",
-      instagram: "https://instagram.com/shivam.codes",
     },
   },
 };
