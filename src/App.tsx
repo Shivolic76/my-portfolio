@@ -4,11 +4,13 @@ import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from './theme';
 import { TOAST_CONFIG } from './constants';
 import Portfolio from './pages/Portfolio';
+import AICursor from './components/AICursor';
 import "react-toastify/dist/ReactToastify.css";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider>
+      <AICursor />
       <div className="App min-h-screen">
         <Portfolio />
         <ToastContainer

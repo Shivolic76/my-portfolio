@@ -41,6 +41,8 @@ import {
 } from "react-icons/si";
 import { FaMobileAlt, FaBolt, FaSearch, FaMagic, FaDatabase, FaRobot } from "react-icons/fa";
 import Navbar from "../components/Navbar";
+import MagneticElement from "../components/MagneticElement";
+import useGestureNavigation from "../hooks/useGestureNavigation";
 import profileImg from "../assets/shivam-profile.jpg";
 
 const SKILL_GROUPS = [
@@ -223,6 +225,8 @@ const Portfolio: React.FC = () => {
   const [form] = Form.useForm();
   const statsRef = useRef<HTMLDivElement>(null);
   const blogScrollRef = useRef<HTMLDivElement>(null);
+
+  useGestureNavigation();
 
   const heroMouseX = useMotionValue(0);
   const heroMouseY = useMotionValue(0);
@@ -453,71 +457,87 @@ const fadeUp = {
 
               {/* Primary CTA buttons */}
               <div className="flex flex-wrap items-center gap-3 mb-5 justify-center lg:justify-start">
-                <button
-                  onClick={() => scrollToSection("projects")}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white font-semibold rounded-xl shadow-lg shadow-blue-800/30 transition-all duration-200 hover:-translate-y-0.5 text-sm"
-                >
-                  <SafeIcon icon={FaCode} size={13} />
-                  View My Projects
-                </button>
-                <button
-                  onClick={() => setIsContactModalOpen(true)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 font-semibold rounded-xl border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all duration-200 hover:-translate-y-0.5 text-sm shadow-sm"
-                >
-                  <SafeIcon icon={MdEmail} size={14} />
-                  Let's Talk
-                </button>
+                <MagneticElement>
+                  <button
+                    onClick={() => scrollToSection("projects")}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white font-semibold rounded-xl shadow-lg shadow-blue-800/30 transition-all duration-200 hover:-translate-y-0.5 text-sm"
+                  >
+                    <SafeIcon icon={FaCode} size={13} />
+                    View My Projects
+                  </button>
+                </MagneticElement>
+                <MagneticElement>
+                  <button
+                    onClick={() => setIsContactModalOpen(true)}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 font-semibold rounded-xl border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all duration-200 hover:-translate-y-0.5 text-sm shadow-sm"
+                  >
+                    <SafeIcon icon={MdEmail} size={14} />
+                    Let's Talk
+                  </button>
+                </MagneticElement>
               </div>
 
               {/* Social icons */}
               <div className="flex items-center gap-3 mb-6 sm:mb-8 justify-center lg:justify-start">
                 {/* Social links */}
-                <button
-                  onClick={() => window.open(personalInfo.github, "_blank")}
-                  title="GitHub"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-900 dark:bg-gray-800 text-white hover:bg-gray-700 transition-all duration-200"
-                >
-                  <SafeIcon icon={FaGithub} size={15} />
-                </button>
-                <button
-                  onClick={() => window.open(personalInfo.linkedin, "_blank")}
-                  title="LinkedIn"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-[#0A66C2] hover:bg-[#004182] text-white transition-all duration-200"
-                >
-                  <SafeIcon icon={FaLinkedin} size={15} />
-                </button>
-                <button
-                  onClick={() => { window.location.href = `mailto:${personalInfo.email}`; }}
-                  title="Email"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-rose-500 hover:bg-rose-600 text-white transition-all duration-200"
-                >
-                  <SafeIcon icon={MdEmail} size={15} />
-                </button>
+                <MagneticElement strength={0.5}>
+                  <button
+                    onClick={() => window.open(personalInfo.github, "_blank")}
+                    title="GitHub"
+                    className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-900 dark:bg-gray-800 text-white hover:bg-gray-700 transition-all duration-200"
+                  >
+                    <SafeIcon icon={FaGithub} size={15} />
+                  </button>
+                </MagneticElement>
+                <MagneticElement strength={0.5}>
+                  <button
+                    onClick={() => window.open(personalInfo.linkedin, "_blank")}
+                    title="LinkedIn"
+                    className="w-9 h-9 flex items-center justify-center rounded-full bg-[#0A66C2] hover:bg-[#004182] text-white transition-all duration-200"
+                  >
+                    <SafeIcon icon={FaLinkedin} size={15} />
+                  </button>
+                </MagneticElement>
+                <MagneticElement strength={0.5}>
+                  <button
+                    onClick={() => { window.location.href = `mailto:${personalInfo.email}`; }}
+                    title="Email"
+                    className="w-9 h-9 flex items-center justify-center rounded-full bg-rose-500 hover:bg-rose-600 text-white transition-all duration-200"
+                  >
+                    <SafeIcon icon={MdEmail} size={15} />
+                  </button>
+                </MagneticElement>
 
                 <div className="w-px h-7 bg-gray-200 dark:bg-slate-700" />
 
                 {/* Section shortcuts */}
-                <button
-                  onClick={() => window.open(personalInfo.resumeUrl, "_blank")}
-                  title="Download Resume"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 text-white transition-all duration-200"
-                >
-                  <SafeIcon icon={FaDownload} size={14} />
-                </button>
-                <button
-                  onClick={() => scrollToSection("experience")}
-                  title="Experience"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-amber-500 hover:bg-amber-600 text-white transition-all duration-200"
-                >
-                  <SafeIcon icon={FaBriefcase} size={14} />
-                </button>
-                <button
-                  onClick={() => scrollToSection("education")}
-                  title="Education"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-violet-500 hover:bg-violet-600 text-white transition-all duration-200"
-                >
-                  <SafeIcon icon={FaGraduationCap} size={15} />
-                </button>
+                <MagneticElement strength={0.5}>
+                  <button
+                    onClick={() => window.open(personalInfo.resumeUrl, "_blank")}
+                    title="Download Resume"
+                    className="w-9 h-9 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 text-white transition-all duration-200"
+                  >
+                    <SafeIcon icon={FaDownload} size={14} />
+                  </button>
+                </MagneticElement>
+                <MagneticElement strength={0.5}>
+                  <button
+                    onClick={() => scrollToSection("experience")}
+                    title="Experience"
+                    className="w-9 h-9 flex items-center justify-center rounded-full bg-amber-500 hover:bg-amber-600 text-white transition-all duration-200"
+                  >
+                    <SafeIcon icon={FaBriefcase} size={14} />
+                  </button>
+                </MagneticElement>
+                <MagneticElement strength={0.5}>
+                  <button
+                    onClick={() => scrollToSection("education")}
+                    title="Education"
+                    className="w-9 h-9 flex items-center justify-center rounded-full bg-violet-500 hover:bg-violet-600 text-white transition-all duration-200"
+                  >
+                    <SafeIcon icon={FaGraduationCap} size={15} />
+                  </button>
+                </MagneticElement>
               </div>
             </motion.div>
           </div>
